@@ -1,0 +1,299 @@
+<ngx-json-ld [json]="schema"></ngx-json-ld>
+<blog-post-header></blog-post-header>
+<article class="post">
+  <div class="post__container">
+    <div class="post__title"></div>
+    <h1 class="post__title--title">
+      Fundamentos Javascript - Scope
+    </h1>
+    <h2 class="post__title--subtitle">
+      Fundamentos Javascript (I) - Definición y tipos de Scope
+    </h2>
+    <div class="post__title--footer"></div>
+
+    <blog-post-publish-info [publishDate]="publishDate" [postCategories]="postCategories"></blog-post-publish-info>
+
+    <div class="post__image">
+      <img class="post__image--image" src="https://victordeandres.es/assets/images/posts/javascript_scope.png" alt="javascript scope">
+    </div>
+
+    <p class="post__paragraph">En un post anterior,
+      <a href="https://victordeandres.es/post/javascript-un-must-debes-dominar" title="JavaScript un 'must' que debes dominar">“JavaScript un 'must' que debes dominar”</a>, escribí sobre las razones por las que Javascript es un “must” que debes
+      dominar. Y siguiendo aquel post voy a continuar escribiendo una serie de post sobre los conceptos básicos de Javascript
+      que todo buen programador de Javascript debería conocer.</p>
+
+    <p class="post__paragraph">En este primer post haré una introducción del scope. Un concepto que no es sencillo, pero que si lo comprendes reducirás
+      el número de errores y te permitirá realizar mejores desarrollos.</p>
+
+    <h3 class="post__title--title-paragraph">
+      Que es el scope
+    </h3>
+
+    <p class="post__paragraph">Lo primero es definir qué es el scope. El scope es el ámbito o alcance de una variable, función u objetos en una parte
+      concreta de tu código durante la ejecución de tu código. O dicho en otras palabras el scope determina cuales son las
+      áreas donde son accesibles tus variables, u otros recursos en tu programa.</p>
+
+    <p class="post__paragraph">En Javascript disponemos de diferentes tipos de scope, que iré detallando a continuación. Teniendo cada uno de ellos
+      sus reglas propias.</p>
+
+    <h3 class="post__title--title-paragraph">
+      Global Scope
+    </h3>
+
+    <p class="post__paragraph">Empezaré por el más sencillo, el scope global. Este tipo de scope, como su propio nombre indica implica todo el código.
+      Toda variable o recurso que se defina en este scope es accesible desde cualquier parte del programa.</p>
+
+    <pre>
+        <code highlight class="typescript">
+    // Definción de variable global
+
+    var miNombre = "Victor";
+
+    // Y podemos acceder desde cualquier parte del programa.
+
+    console.log(miNombre);   // Victor
+
+    function logName() &#123;
+      console.log(miNombre);  // la variable mi nombre es accesible globalmente 
+    &#125;
+
+    logName();   // Victor
+        </code>
+    </pre>
+
+    <p class="post__paragraph">Una ventaja obvia de este tipo de scope es la sencillez para su declaración y que es accesible desde cualquier parte
+      del programa. Pero al mismo tiempo puede ser una causa de errores bastante comunes y difíciles de solucionar principalmente
+      por la colisión entre nombres.</p>
+    <p class="post__paragraph">Por ello es recomendable utilizar lo menos posible este tipo de variables.</p>
+    <p class="post__paragraph">Todas las variables declaradas a nivel global también son accesibles desde el objeto global, this. Que es accesible desde
+      toda la aplicación. Por ello además de poder definir las variables con la palabra reservada var, como hemos visto anteriormente,
+      también podemos definirlas como una propiedad del objeto global “this”.</p>
+    <pre>
+        <code highlight class="typescript">
+    // Definición como propiedad objeto this
+
+    this.miNombre = "Victor";
+        </code>
+    </pre>
+
+    <h3 class="post__title--title-paragraph">
+      Local Scope
+    </h3>
+
+    <p class="post__paragraph">El siguiente tipo de scope que vamos a ver es el scope local. Como su propio nombre este tipo de scope es más concreto,
+      y se encuentra limitado al espacio correspondiente a una función. Siendo solamente accesibles dentro de esa función.
+    </p>
+
+    <pre>
+        <code highlight class="typescript">
+    // Definición variable scope local
+
+    function logName() &#123;
+      var miNombre = "Victor";
+      console.log(miNombre);  // Victor
+    &#125;
+
+    console.log(miNombre);  // Error
+        </code>
+    </pre>
+
+    <p class="post__paragraph">Uno de los errores más comunes en javascript es cuando definimos una variable dentro de una función y nos olvidamos de
+      utilizar la palabra reservada var. Entonces esta variable pasa a ser automáticamente de tipo global.</p>
+
+    <pre>
+        <code highlight class="typescript">
+    // Definición variable scope local sin utilizar var
+            
+    function logName() &#123;
+      miNombre = "Victor";
+      console.log(miNombre);  // Victor
+    &#125;
+
+    console.log(miNombre);  // Victor
+        </code>
+    </pre>
+
+    <h3 class="post__title--title-paragraph">
+      Function Scope
+    </h3>
+
+    <p class="post__paragraph">Todos los scope en Javascript son creados por una función, nunca son creados cuando creamos bucles con for o while o
+      expresiones condicionales como if o switch. Una nueva función un nuevo scope.</p>
+
+    <pre>
+        <code highlight class="typescript">
+    // Scope Global
+
+    var miFuncionA = function () &#123;
+
+      // Scope A	
+
+      var miFuncionB = function () &#123;
+
+        // Scope B
+
+      &#125;
+    &#125;          
+        </code>
+    </pre>
+
+    <h3 class="post__title--title-paragraph">
+      Lexical Scope
+    </h3>
+
+    <p class="post__paragraph">Como hemos visto en el ejemplo anterior, tenemos una funcion “miFuncionA” con un scope, y dentro de esta función tenemos
+      a su vez otro función “miFuncionB” con su propio scope. Desde dentro de “miFuncionB” tenemos acceso al scope de “miFuncionA”,
+      que es lo que se conoce como lexical scope.</p>
+    <p class="post__paragraph">Es muy importante recordar que en el Lexical Scope, sólo los “hijos” tienen acceso al padre y no viceversa.</p>
+
+    <pre>
+          <code highlight class="typescript">
+
+      var funcionA = function() &#123;
+
+        // Scope A
+        var nombre = "Victor - scope A";
+
+        console.log(nombre);  // Victor - scope A
+
+        var funcionB = function() &#123;
+          
+          // Scope B
+          var nombreB = "Victor - scope B";
+
+          console.log(nombre); // Victor - scope A
+          console.log(nombreB);  // Victor - scope B
+
+          nombre = "Cambio de nombre";
+
+          console.log(nombre); // Cambio de nombre
+        &#125;
+
+        funcionB();
+
+        console.log(nombre);  // Cambio de nombre
+        console.log(nombreB);  // error
+      &#125;
+              
+          </code>
+      </pre>
+
+    <p class="post__paragraph">Como puedes observar el ejemplo anterior desde el scope de la función B tenemos acceso a la variable “nombre” que pertenece
+      al scope de la función A, pero desde la función A no tenemos acceso a la variable “nombreB” que pertenece al scope
+      de la funcion B.</p>
+
+    <h3 class="post__title--title-paragraph">
+      Block Statements Scope
+    </h3>
+
+    <p class="post__paragraph">Como hemos visto anteriormente cuando realizamos un bucle con for o while o una estructura condicional con if o switch
+      no se crea un nuevo scope. Pero desde el lanzamiento de Javascript 2015 o ES6 existe una tipo de scope que se generá
+      para estas unidades de código. Para ello deberemos sustituir la palabra reservada var por let o const. Y de esta forma
+      el scope de estas variables aunque se encuentre dentro de una función sólo corresponderá al ámbito del bucle o la estructura
+      condicional.
+    </p>
+
+    <p class="post__paragraph">En el siguiente ejemplo lo vamos a ver con un poco más de detalle.</p>
+
+    <pre>
+        <code highlight class="typescript">
+
+      // Ejemplo con let
+
+      var funcionA = function() &#123;
+
+        let idx = 1;
+        console.log(idx);	// 1
+
+        for ( let idx = 0; idx &#60; 3; idx ++) &#123;
+          console.log(idx);	// 0, 1, 2
+        &#125;
+
+        console.log(idx) // 1
+
+      &#125;
+
+      // Ejemplo sin let 
+
+      var funcionA = function() &#123;
+
+        let idx = 1;
+        console.log(idx);	// 1
+
+        for ( idx = 0; idx &#60; 3; idx ++) &#123;
+          console.log(idx);	// 0, 1, 2
+        &#125;
+
+        console.log(idx) // 3
+
+      &#125;
+        </code>
+    </pre>
+
+    <p class="post__paragraph">Como puedes observar en la primera parte del ejemplo, cuando hemos utilizado el let para definir la variable idx, cuando
+      ha finalizado el contador el valor de la variable idx seguía siendo 1. Ya que en el bucle for hemos definido la variable
+      con la palabra let, y por ello se ha creado un nuevo scope para la variable.</p>
+    <p class="post__paragraph">Pero en el ejemplo 2, no hemos utilizado let, y por tanto idx se encuentra en el mismo scope por ello cuando finaliza
+      el bucle el valor de la variable idx es 3, porque ha sido modificada en el interior del bucle. </p>
+
+    <h3 class="post__title--title-paragraph">
+      Qué es un closure
+    </h3>
+
+    <p class="post__paragraph">Un concepto que se encuentra muy unido al concepto scope, es el closure. Es algo muy similar al concepto que hemos visto
+      anteriormente de lexical scope. Un closure es un tipo especial de objeto que combina dos cosas: una función, y el entorno
+      en que se creó esa función. El entorno está formado por las variables locales que estaban dentro del alcance en el
+      momento que se creó el closure.</p>
+
+    <p class="post__paragraph">El closure permite acceder a las variables de su función más externa incluso cuando ya hemos invocado la función y hemos
+      obtenido su retorno. De esta forma permitimos que la función retornada mantenga acceso a las variables del scope superior.</p>
+
+    <p class="post__paragraph">Tal vez con un ejemplo lo veas un poco más claro:</p>
+
+    <pre>
+        <code highlight class="typescript">
+
+      function creaSumador(x) &#123;
+        return function(y) &#123;
+          return x + y;
+        &#125;
+      &#125;
+
+        </code>
+    </pre>
+
+    <p class="post__paragraph">Como ves hemos creado la función creaSumador que le pasamos un parámetro, y nos devolverá una función a la cual le indicaremos
+      un nuevo parámetro que a su vez se sumará al primer parámetro.</p>
+
+    <pre>
+        <code highlight class="typescript">
+
+      var suma5 = creaSumador(5);
+      var suma10 = creaSumador(10);
+
+        </code>
+    </pre>
+
+    <p class="post__paragraph">El siguiente paso que hemos dado ha sido crear dos nuevas variables a las que le estamos pasando el primer parámetro
+      de la suma.</p>
+
+    <pre>
+          <code highlight class="typescript">
+  
+        console.log(suma5(5));  // 10
+        console.log(suma10(5)); // 15
+  
+          </code>
+      </pre>
+
+    <p class="post__paragraph">Y posteriormente llamamos a nuestras dos nuevas variables que nos devolverán la suma del parámetro que les hemos enviado
+      más el parámetro que habíamos enviado anteriormente.</p>
+
+    <p class="post__paragraph">Creo que con este ejemplo lo has podido ver un poco más claro.</p>
+
+    <p class="post__paragraph">Hasta aquí este primer post sobre los fundamentos de Javascript, en próximos post iremos avanzando poco a poco en los
+      fundamentos de Javascript.</p>
+    <blog-post-footer [titlepost]="titlepost"></blog-post-footer>
+  </div>
+</article>
+<blog-post-comment [idpost]="url"></blog-post-comment>

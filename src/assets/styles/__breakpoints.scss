@@ -1,0 +1,16 @@
+// Define breakpoints
+$monitor: 1200px;
+$tablet: 768px;
+$movil: 320px;
+
+@mixin respond-to($media) {
+  @if $media == movil {
+    @media only screen and (min-width: $movil) and (max-width: $tablet) { @content; }
+  }
+  @else if $media == tablet {
+    @media only screen and (min-width: $tablet) and (max-width: $monitor) { @content; }
+  }
+  @else if $media == monitor {
+    @media only screen and (min-width: $monitor) { @content; }
+  }
+}

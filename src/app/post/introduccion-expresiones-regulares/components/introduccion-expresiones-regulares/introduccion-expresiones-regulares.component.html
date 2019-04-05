@@ -1,0 +1,238 @@
+<ngx-json-ld [json]="schema"></ngx-json-ld>
+<blog-post-header></blog-post-header>
+<article class="post">
+  <div class="post__container">
+    <div class="post__title"></div>
+    <h1 class="post__title--title">
+      Introducción a expresiones regulares (RegEx) en JS
+    </h1>
+    <h2 class="post__title--subtitle">
+      Breve introducción a las reglas para utilizar expresiones regulares en JavaScript
+    </h2>
+    <div class="post__title--footer"></div>
+
+    <blog-post-publish-info [publishDate]="publishDate" [postCategories]="postCategories"></blog-post-publish-info>
+
+    <div class="post__image">
+      <img class="post__image--image" src="https://victordeandres.es/assets/images/posts/regular_expresion.png" alt="regular expresion">
+    </div>
+
+    <p class="post__paragraph">En este post voy a realizar una introducción a las expresiones regulares desde el punto de vista para un desarrollador de Javascript. Esas expresiones que parecen algo incompresibles y complicadas pero que nos pueden ayudar ahorrar mucho tiempo si sabemos utilizarlas.</p>
+
+    <h3 class="post__title--title-paragraph">
+      Que son las expresiones regulares. 
+    </h3>
+
+    <p class="post__paragraph">Una expresión regular es sólo un tipo de objecto, recuerda que en Javascript todo son objetos, que se utiliza para unir combinaciones de caracteres en cadenas. Como algo tan sencillo puede parecer tan complicado.</p>
+
+    <h3 class="post__title--title-paragraph">
+      Manos a la obra. 
+    </h3>
+
+    <p class="post__paragraph">Una vez hemos visto la definición de que es una expresión regular vamos a empezar a crearlas. Y para ello tenemos dos formas:</p>
+
+    <p class="post__paragraph">A través de una expresión regular. Usando las barras ‘/’ para contener el patrón.</p>
+
+    <pre>
+      <code highlight class="bash">
+  const pattern = /foo/
+      </code>
+    </pre>    
+
+    <p class="post__paragraph">O desde un constructor:</p>
+
+    <pre>
+      <code highlight class="bash">
+  const pattern = new RegExp(‘foo’)
+      </code>
+    </pre>    
+
+    <p class="post__paragraph">En ambos ejemplos ambos patrones son iguales: Primero se buscará la letra f, seguida de la o en dos ocasiones.</p>
+    
+    <p class="post__paragraph">Aunque los dos patrones son iguales, yo utilizo la siguiente regla cuando los defino. Si es un patrón constante utilizo una constante y si el patrón es dinámico, a continuación veremos como crearlos, utilizo un constructor.</p>
+    
+    <h3 class="post__title--title-paragraph">
+      Métodos expresiones regulares.
+    </h3>
+
+    <p class="post__paragraph">Como he indicado anteriormente las expresiones regulares son objetos, por ello tienen sus propios métodos. Que en este caso son los siguientes: exec(), test() y toString(). De estos tres métodos el que utilizaremos habitualmente será test() que nos devolvera un verdadero o falso si el patrón que evaluamos se encuentra en una cadena.</p>
+
+    <p class="post__paragraph">Pero veamos este método con un sencillo ejemplo:</p>
+
+    <pre>
+      <code highlight class="bash">
+    const str1 = ‘El caballo blanco de santiago’;
+    const str2 = ‘El caballo negro de santiago’;
+    
+    const hasBlanco = /blanco/;
+    hasBlanco.test(str1);	// true
+    hasBlanco.test(str2);	// false        
+      </code>
+    </pre>
+
+    <h3 class="post__title--title-paragraph">
+      Patrones dinámicos. 
+    </h3>
+
+    <p class="post__paragraph">Como comente anteriormente además de expresiones fijas, también podemos crear patrones dinámicos.</p>
+
+    <p class="post__paragraph">A continuación adjunto una pequeña guía con algunas de las reglas para crear los patrones dinámicos de las expresiones regulares.</p>    
+
+    <p class="post__paragraph"><span class="post__paragraph--font-weight">Simbolos:</span></p>
+    <ul>
+      <li>
+        . (punto): cualquier carácter, sólo uno, excepto la saltos de línea, 
+      </li>
+      <li>
+        * : cualquier expresión 0 o más ocasiones,
+      </li>
+      <li>
+        +: cualquier expresión 1 o más ocasiones,
+      </li>
+      <li>
+        ?: la expresión anterior es opcional ( coincide 0 o 1 ocasión),
+      </li>
+      <li>
+        ^: Marca el inicio de la cadena,
+      </li>
+      <li>
+        $: marca el final de la cadena.
+      </li>
+    </ul>
+
+    <p class="post__paragraph"><span class="post__paragraph--font-weight">Grupos:</span></p>
+    <ul>
+      <li>
+        \d: cualquier carácter decimal [0-9],
+      </li>
+      <li>
+        \w: cualquier carácter alfanumérico además del guión bajo,
+      </li>
+      <li>
+        [ABC]: cualquiera de los caracteres contenidos corchetes. También se puede indicar un rango: [A-C],
+      </li>
+      <li>
+        [^ABC]: El símbolo ^ dentro de una cadena de caracteres se utiliza como negación,
+      </li>
+      <li>
+        (ABC): patrón exacto dentro de los paréntesis.  
+      </li>
+    </ul>
+
+    <p class="post__paragraph"><span class="post__paragraph--font-weight">Modificadores:</span></p>
+    <ul>
+      <li>
+        g: busqueda global, 
+      </li>
+      <li>
+        i: la busqueda no es case sensitive, no distingue entre mayusculas o minusculas,
+      </li>
+      <li>
+        m:  busca varias veces el patrón.
+      </li>
+    </ul>
+
+    <h3 class="post__title--title-paragraph">
+      Algunos ejemplos sencillos.     
+    </h3>
+
+    <p class="post__paragraph">Una vez hemos visto algunas de las reglas para formas patrones dinámicos vamos a ver unos cuantos ejemplos sencillos para entenderlos mejor.</p>
+    
+    <p class="post__paragraph">Vamos a seguir el orden en el cual hemos visto las reglas. Por ello vamos a empezar a trabajar con los números.</p>
+    
+    <p class="post__paragraph">Evaluemos la siguiente expresión:</p>        
+    
+    <pre>
+      <code highlight class="bash">
+  console.log(/\d/.test(‘12-12’)); // true        
+      </code>
+    </pre>
+
+    <p class="post__paragraph">En este ejemplo estamos buscando simplemente un número. Al igual que en el siguiente ejemplo donde mezclaremos números y letras.</p>  
+
+    <pre>
+      <code highlight class="bash">
+  console.log(/\d/.test(‘1A-2B’)); // true      
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Pero hagamos lo  un poco más complicado, vamos a validar un formato telefónico que tiene que ser tres grupos de tres números separados por un espacio.</p>  
+
+    <pre>
+      <code highlight class="bash">
+  console.log(/\d \d \d/.test(‘600 789 456’));             // false
+  
+  console.log(/\d\d\d \d\d\d \d\d\d/.test(‘600 789 456’)); // true
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Fijate en la diferencia, en este caso en la primera de las consultas estamos buscando un patrón que es un dígito un espacio un dígito un espacio y finalmente un dígito. Pero lo que nosotros buscamos son patrones de tres dígitos unidos separados por un espacio. Por ello hemos utilizado la expresión \d en tres ocasiones seguida de un espacio. Pero podemos hacer este patrón un poco más sencillo con el asterisco.</p>  
+
+    <pre>
+      <code highlight class="bash">
+  console.log(/\d* \d* \d*/.test(‘600 789 456’)); // true
+      </code>
+    </pre>
+  
+    <p class="post__paragraph">El patrón de búsqueda es el mismo pero en esta ocasión indicamos el que el grupo de dígitos tiene que ser mayor que 0. Esto nos podría dar un falso positivo, ya que la siguiente evaluación también sería positiva y no es el patrón que estamos buscando.</p>  
+
+    <pre>
+      <code highlight class="bash">
+  console.log(/\d* \d* \d*/.test(‘6007 89 456’)); // true
+      </code>
+    </pre>
+  
+    <p class="post__paragraph">Es por ello que debemos ser muy cuidadosos al generar los patrones porque podemos obtener falsos positivos.</p>
+
+    <p class="post__paragraph">Ahora hagamos algunos ejemplos un poco más complicados con cadenas, además utilizaremos los paréntesis para agrupar expresiones dentro de nuestro patrón de búsqueda.</p>
+    
+    <p class="post__paragraph">Vamos a practicar con el siguiente texto ‘Golgolgoooooooooool’.</p>
+
+    <pre>
+      <code highlight class="bash">
+  console.log(/(gol)+/.test(‘Golgolgoooooooooool’));	// true
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Ya que en esta caso estamos buscando el patron ‘gol’ (gol)+ por lo menos en una ocasión dentro de la cadena que estamos analizando.</p>
+    
+    <p class="post__paragraph">Ahora veamos un ejemplo con el simbolo *</p>
+
+    <pre>
+      <code highlight class="bash">
+  console.log(/(fol)(gol)+/.test(‘Golgolgoooooooooool’));	// false
+
+  console.log(/(fol)*(gol)+/.test(‘Golgolgoooooooooool’));	// true
+      </code>
+    </pre>
+
+    <p class="post__paragraph">En la primera ocasión obtenemos el resultado false ya que nuestro patrón indica que debemos buscar ‘fol’ seguido de ‘gol’ por lo menos en una ocasión. Pero en el segundo test estamos recibiendo true. ¿ Como es eso posible ?, si en nuestra cadena no existe ‘fol’. Esto es debido a que hemos añadido después del patrón ‘fol’ el símbolo del asterisco. Que nos indica que ese patrón tiene que aparecer en 0 o más ocasiones. Por ello el resultado es true.</p>
+    
+    <p class="post__paragraph">Sigamos jugando con los simbolos, ya hemos visto el + y el *. Ahora vamos a testar los simbolos ^ y el $.</p>
+
+    <pre>
+      <code highlight class="bash">
+  console.log(/(ooo)/.test(‘Golgolgoooooooooool’));	// true
+
+  console.log(/^(ooo)/.test(‘Golgolgoooooooooool’));	// false
+      </code>
+    </pre>
+
+    <p class="post__paragraph">En el primer test, hemos buscado un patrón compuesto por tres o consecutivas, que es correcto. Y en el segundo hemos utilizado el símbolo ^ antes del patrón de las tres oes consecutivas, que indica que tiene que ser el principio de la cadena. En este caso estamos recibiendo false ya que nuestra cadena no comienza con tres oes consecutivas si no con gol.</p>
+    
+    <pre>
+      <code highlight class="bash">
+  console.log(/[A-Z]ol$/.test(‘Golgolgoooooooooool’));	// false
+
+  console.log(/[A-Z]*ol$/.test(‘Golgolgoooooooooool’));	// true
+      </code>
+    </pre>    
+    
+    <p class="post__paragraph">En el primer caso la respuesta es negativa porque en nuestro patrón indicamos un carácter entre la A y la Z y que finalize en ol. Pero solo le hemos indicado un carácter, por eso obtenemos false. Pero cuando añadimos el símbolo * después de [A-Z] estamos indicando que busque en 0 o más ocasiones el carácter [A-Z]. Entonces nuestra cadena ya corresponde con el patrón.</p>
+
+    <p class="post__paragraph">Como has podido ver las reglas básicas son muy sencillas, sólo hay que practicar un poco para obtener toda las ventajas de trabajar con las expresiones regulares. Si quieres practicar te recomiendo la siguiente página: <a href="https://regex101.com/" title="regex101">https://regex101.com/</a> donde podrás practicar el uso de las expresiones regulares además de obtener explicación de todas las reglas que estas utilizando. Una página muy útil para comprobar que tus patrones son correctos.</p>
+
+    <blog-post-footer [titlepost]="titlepost"></blog-post-footer>
+  </div>
+</article>
+<blog-post-comment [idpost]="url"></blog-post-comment>

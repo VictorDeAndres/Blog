@@ -1,0 +1,279 @@
+@import './../../../../assets/styles/__breakpoints.scss';
+@import './../../../../assets/styles/__colors.scss';
+@import './../../../../assets/styles/__measures.scss';
+
+@import url(https://fonts.googleapis.com/css?family=Gochi+Hand);
+
+.contact {
+
+  @include respond-to(monitor) {
+    flex-direction: row;
+    justify-content: center;
+  }
+  @include respond-to(tablet) {
+    flex-direction: column;
+  }
+  @include respond-to(movil) {
+    flex-direction: column;
+  }
+
+  background-image: url('./../../../../assets/images/struckaxiom.png');
+
+  display: flex;
+
+  width: 100%;
+  min-height: 100%;
+
+  &__nav {
+    @include respond-to(monitor) {
+      display: flex;
+      width: $posts-nav-width;
+    }
+    @include respond-to(tablet) {
+      display: block;
+      margin: 0 2em;
+    }
+    @include respond-to(movil) {
+      display: block;
+      margin: 0 1em;
+    }
+  }
+
+  &__form {
+    @include respond-to(monitor) {
+      width: $posts-width;
+    }
+    @include respond-to(tablet) {
+      margin: 0 4em;
+    }
+    @include respond-to(movil) {
+      margin: 0 2em;
+    }
+
+    display: flex;
+    flex-direction: column;
+  }
+
+}
+
+.contact__nav__container{
+    display: flex;
+    flex-direction: column;
+    @include respond-to(monitor) { 
+        width: 375px;
+    }    
+    @include respond-to(tablet) { 
+        width: 100%;
+        height: 150px;
+    }
+    @include respond-to(movil) { 
+        width: 100%;
+        height: 100px;
+    }
+
+    &--title{
+      font-family: Roboto;
+      background-color: #000;
+      color: white;
+      @include respond-to(monitor) { 
+          width: $nav-width;
+          display: block;
+          text-align: center;
+          padding: 1em 0 0.3em 0;
+          margin-top: 1em;
+      }    
+      @include respond-to(tablet) { 
+          display: block;
+          text-align: center;
+          padding: 1em 0.5em 0.3em 0.5em;   
+          margin-top: 1em;
+      }
+      @include respond-to(movil) { 
+          display: block;
+          text-align: center;
+          padding: 1em 0.5em 0.3em 0.5em;    
+          margin-top: 1em;
+      }
+    }
+
+    &--subtitle{
+      background-color: #fff;
+      color: black;
+      margin-top: -2.5em;
+      @include respond-to(monitor) { 
+          width: $nav-width;
+          display: block;
+          text-align: center;
+          padding: 0.5em 0 1em 0;
+      }    
+      @include respond-to(tablet) { 
+          width: 100%;
+          display: block;
+          text-align: center;
+          padding: 0.5em 0 1em 0;
+      }
+      @include respond-to(movil) { 
+          width: 100%;
+          display: block;
+          text-align: center;
+          padding: 0.5em 0 1em 0;
+      }        
+    }
+}
+
+.contact__form--header {
+  font-family: BebasNeue;
+  
+  color: #000;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  padding-top: 0.5em;
+  letter-spacing: 2px;
+
+  @include respond-to(monitor) {
+    font-size: 96px;
+    padding-top: 0.5em;
+    margin-botton: 2em;
+  }
+
+  @include respond-to(tablet) {
+    font-size: 72px;
+    margin-botton: 1em;
+  }
+  @include respond-to(movil) {
+    font-size: 48px;
+    margin-botton: 1em;
+  }
+
+  &--line{
+    width: 90%;
+    display: flex;
+    flex-direction: column;  
+    height: 10px;
+    background-color: #cecece;
+
+    @include respond-to(monitor) {
+      margin: 2em 5% 2em 5%;    
+    }
+
+    @include respond-to(tablet) {
+      margin: 1em 5% 1em 5%;
+    }
+    @include respond-to(movil) {
+      margin: 1em 5% 1em 5%;
+    }    
+  }
+
+}
+
+
+.contact__form--form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;  
+  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: $bordeaux-light;
+    @include respond-to(monitor) {
+      font-size: 24px;
+      font-family: BebasNeue;
+      letter-spacing: 4px;
+    }
+
+    @include respond-to(tablet) {
+      font-size: 18px;
+      font-family: BebasNeue;
+      letter-spacing: 2px;
+    }
+
+    @include respond-to(movil) {
+      font-size: 12px;
+      font-family: BebasNeue;
+      letter-spacing: 2px;
+    }       
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+    color: $bordeaux-light;
+  }
+  ::-ms-input-placeholder { /* IE 10+ */
+    color: $bordeaux-light;
+  }
+  ::-moz-placeholder { /* Firefox 18- */
+    color: $bordeaux-light;
+  }
+  :focus {
+    outline: none;
+  }
+  &--input {
+    margin: 1em 5% 0 5%;
+    border: none;
+    background-color: transparent;
+    border-bottom-style: solid;
+    border-bottom-color: $ink-blog;
+    border-bottom-width: 1px;  
+    padding-top: 0.25em; 
+    padding-bottom: 0.25em;
+    color: $ink-contact;
+    font-family: 'Gochi Hand', cursive;
+
+    @include respond-to(monitor) {
+      font-size: 32px;
+    }
+
+    @include respond-to(tablet) {
+      font-size: 24px;
+    }
+
+    @include respond-to(movil) {
+      font-size: 16px;
+    }  
+
+    &__yourname {
+    }
+
+    &__youraddress {
+    }
+
+    &__message {
+      rows: 10;
+      height: 10em;
+    }
+
+  }
+}
+
+.contact__form--form--input__button{
+  font-family: Roboto;
+  background: transparent;
+  border-style: solid;
+  border-width: 1px;
+  padding: 0.5em 2em;
+  border-radius: 1.5em;
+
+  @include respond-to(monitor) {
+    font-size: 18px;
+    margin: 2em 5% 3em calc(75% - 1em);
+  }
+
+  @include respond-to(tablet) {
+    font-size: 14px;
+    margin: 2em 5% 3em calc(75% - 1em);
+
+  }
+
+  @include respond-to(movil) {
+    font-size: 12px;
+    margin: 2em 5% 3em calc(75% - 3em);
+
+  }  
+
+  &--enabled {
+    color: $ink-blog;
+    border-color: $ink-blog;    
+  }
+  &--disabled {
+    color: #cecece;
+    border-color: #cecece;   
+  }
+}

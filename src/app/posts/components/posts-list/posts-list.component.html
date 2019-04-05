@@ -1,0 +1,34 @@
+<div *ngFor="let post of posts | toArrayValue">
+  <div class="posts__resume__post">
+      <div class="posts__resume__header"></div> 
+      <div class="posts__resume__title">
+          <div class="posts__resume__title--star"></div>
+          <div class="posts__resume__title--column">
+              <a [routerLink]="'/' + post.url" class="posts__resume__title--title">{{post.title}}</a>    
+          </div>
+      </div>  
+      <div>
+          <span class="posts__resume__title__publishedate">
+              <span class="fa fa-calendar fa-fw"></span>
+              Publicado el: 
+          </span>
+          <span class="posts__resume__publishedate">{{post.publisheddate}}</span>
+      <div>
+          <h6 class="posts__resume__text">{{post.resume}}</h6>
+          <a [routerLink]="'/' + post.url" class="posts__resume__link">Leer mas</a>
+      </div>
+      <br>
+      <div>
+          <div class="posts__resume__title__category">
+              <span class="fa fa-tag fa-fw"></span>
+              Archivado en: 
+          </div>
+          <span *ngFor="let category of post.categories | toArrayKey; let idx = index">
+              <span *ngIf="idx > 0" class="post__resume__categories--separator"> | </span>
+              <div class="posts__resume__category" (click)="selectByCategory(category)">
+                  <span>{{category}}</span>
+              </div>
+          </span>
+      <div>
+  </div>
+</div> 

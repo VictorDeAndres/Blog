@@ -1,0 +1,184 @@
+
+@import './../../../../assets/styles/__breakpoints.scss';
+@import './../../../../assets/styles/__colors.scss';
+
+.posts__resume__header
+{
+    display: block;
+    width: 100%;
+    height: 10px;
+    background-color: #cecece;
+    margin: 2em 1em 2em 0;
+}
+
+.posts__resume__title{
+    display: block;
+    height: 100%;
+}
+
+.posts__resume__title--star{
+    height: 50px;
+    background: url('./../../../../assets/images/star.png') no-repeat 0 3px transparent;
+    float: left;
+    @include respond-to(monitor) { 
+        width: 7.5%;
+    }          
+    @include respond-to(tablet) { 
+        width: 7.5%;
+    }      
+    @include respond-to(movil) { 
+        width: 12.5%;
+    }
+}
+
+.posts__resume__title--column{
+    display: inline-block;
+    @include respond-to(monitor) { 
+        width: 90%;
+    }
+    @include respond-to(tablet) { 
+        width: 90%;
+    }
+    @include respond-to(movil) { 
+        width: 75%;
+    }
+
+}
+
+.posts__resume__title--title{
+    font-family: BebasNeue;
+    font-weight: bold;    
+    text-decoration: none;
+    color: #000;
+    @include respond-to(monitor) { 
+        font-size: 70px;
+        line-height: 70px;
+    }
+    @include respond-to(tablet) { 
+        font-size: 70px;
+        line-height: 70px;
+    }
+    @include respond-to(movil) { 
+        font-size: 36px;
+        line-height: 36px;
+    }      
+      
+}
+
+a.posts__resume__title--title:hover {
+    color: #000;
+    text-decoration: none;
+}
+
+.posts__resume__title__publishedate,
+.posts__resume__title__publisheby,
+.posts__resume__title__category,
+{
+    color: #757D81;
+    @include respond-to(monitor) { 
+        font-size: 14px;
+    }          
+    @include respond-to(tablet) { 
+        font-size: 14px;
+    }          
+    @include respond-to(movil) { 
+        font-size: 12px;        
+    }      
+}
+
+.posts__resume__publishedate,
+.posts__resume__publisheby,
+.posts__resume__category
+{
+    @include respond-to(monitor) { 
+        font-size: 14px;
+    }
+    @include respond-to(tablet) { 
+        font-size: 14px;
+    }
+    @include respond-to(movil) { 
+        font-size: 12px;        
+    }      
+}
+
+.posts__resume__title__category {
+    float: left;
+    margin-right: 8px;
+}
+
+.posts__resume__publishedate,
+.posts__resume__publisheby,
+{
+    color: $ink-blog;
+}
+
+.posts__resume__category {
+    color: #000;
+    float: left;
+}
+
+.posts__resume__category:hover {
+    color: $ink-blog;
+    text-decoration: underline;
+}
+
+.post__resume__categories {
+    &--separator {
+        padding: 0 4px 0 4px;
+        font-size: 12px;
+        float: left;
+    }
+}
+
+a.post__resume__categories--separator:hover {
+    text-decoration: underline;
+}
+
+.posts__resume__text
+{
+    padding-top: 1em;
+    font-family: sans-serif;
+    font-weight: 500;
+    @include respond-to(monitor) { 
+        font-size: 26px;
+        line-height: 36px;   
+    }
+    @include respond-to(tablet) { 
+        font-size: 26px;
+        line-height: 36px;   
+    }        
+    @include respond-to(movil) { 
+        font-size: 18px;     
+        line-height: 24px;   
+    }      
+}
+
+.posts__resume__link
+{
+    text-decoration: none;
+    color: #7d7c7c;
+    @include respond-to(monitor) { 
+        font-size: 14px;
+    }    
+    @include respond-to(tablet) { 
+        font-size: 14px;
+    }    
+    @include respond-to(movil) { 
+        font-size: 12px;        
+    }      
+}
+
+.posts__footer {
+    margin: 2em 0 2em 0;
+    font-size: 80%;
+    color: #7d7c7c;
+}
+
+.post__footer__text {
+    padding: 0 0.5em 0 0.5em;
+}
+
+a.posts__resume__link:hover {
+    color: $ink-blog;
+    text-decoration: underline;
+}

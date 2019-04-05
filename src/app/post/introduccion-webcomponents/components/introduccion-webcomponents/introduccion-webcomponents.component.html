@@ -1,0 +1,139 @@
+<ngx-json-ld [json]="schema"></ngx-json-ld>
+<blog-post-header></blog-post-header>
+<article class="post">
+  <div class="post__container">
+    <div class="post__title"></div>
+    <h1 class="post__title--title">
+      Introducción a los WebComponents
+    </h1>
+    <h2 class="post__title--subtitle">
+      Breve introducción y caracteristicas de los WebComponents
+    </h2>
+    <div class="post__title--footer"></div>
+
+    <blog-post-publish-info [publishDate]="publishDate" [postCategories]="postCategories"></blog-post-publish-info>
+
+    <div class="post__image">
+      <img class="post__image--image" src="https://victordeandres.es/assets/images/posts/webcomponents.png" alt="webcomponents">
+    </div>
+   
+    <p class="post__paragraph">En este post voy a realizar una introducción a los WebComponents, un conjunto de caracteristicas aún en desarrollo por parte de la <a href="https://www.w3.org/standards/techs/components#w3c_all" title="W3C Webcomponents">W3C</a> que unidas a las especificaciones actuales de HTML y DOM nos permitirá desarrollar widgets o componentes reutilizables tanto para páginas como aplicaciones web. Este modelo de componentes nos permite realizar tanto la encapsulación como la interoperabilidad de nuestros componentes con otros.</p>
+
+    <h3 class="post__title--title-paragraph">Caracteristicas</h3>
+
+    <p class="post__paragraph">Las caracteristicas que podemos encontrar en los webcomponents son las siguientes:</p>
+
+    <ul>
+      <li>Custom Elements</li>
+      <br>
+      <li>HTML Templates</li>
+      <br>
+      <li>HTML Imports</li>
+      <br>
+      <li>Shadow Dom</li>
+    </ul>
+
+    <p class="post__paragraph">A continuación veremos cada una de estas características más detalladamente:</p>
+
+    <h3 class="post__title--title-paragraph">Custom Elements</h3>
+
+    <p class="post__paragraph">Son elementos HTML personalizados, creados desde 0 y construidos sobre elementos de HTML nativo. Pudiendo tener sus propios CSS. Además pueden ser utilizados de forma independiente.</p>
+    
+    <p class="post__paragraph">Veamos la construcción de un componente sencillo, un componente que nos muestre la fecha del dia. </p>
+
+    <pre>
+      <code highlight class="javascript">
+  var prototype = Object.create(HTMLElement.prototype);
+
+  function onCreatedComponent() &#123;
+    this.textContent = new Date().toString();
+  &#125;
+  
+  prototype.createdCallback = onCreatedComponent;
+  
+  document.registerElement('current-date', &#123;
+    prototype: prototype
+  &#125;);
+      </code>
+    </pre>
+
+    <h3 class="post__title--title-paragraph">HTML Templates</h3>
+
+    <p class="post__paragraph">Otra característica de los webcomponents, es que podemos utilizar “templates” de HTML que no se renderizaran cuando se realice la carga de la página, pero pueden ser instanciados en cualquier momento desde Javascript. Para utilizar esta característica deberemos utilizar la etiqueta <template></template></p>
+
+    <pre>
+      <code highlight class="html">
+  &#60;html lang="es"&#62;
+    &#60;template&#62;
+      &#60;style&#62;
+        p &#123;
+          padding: 10px;
+          color: blue;
+        &#125;
+      &#60;/style&#62;
+      &#60;p&#62;Este parrafo no se renderiza hasta que lo invoques&#60;/p&#62;
+    &#60;/template&#62;
+  &#60;/html&#62;
+      </code>
+    </pre>    
+
+    <h3 class="post__title--title-paragraph">HTML Imports</h3>
+
+    <p class="post__paragraph">Esta característica nos permite incluir webComponents en nuestros documentos HTML sin necesidad de realizar peticiones AJAX o métodos similares. Este mecanismo evita cargar y ejecutar scripts previamente cargados.</p>
+    
+    <p class="post__paragraph">La sintaxis para realizar una importación es como vemos a continuación</p>
+
+    <pre>
+      <code highlight class="html">
+  &#60;link rel=”import” href=”myWebComponent.html”&#62;
+      </code>
+    </pre>    
+
+    <p class="post__paragraph">Si quisiéramos cargar y utilizar el componente que realizamos anteriormente nuestro documento sería como el siguiente:</p>
+
+    <pre>
+        <code highlight class="html">
+  &#60;html lang="es"&#62;
+    &#60;head&#62;
+      &#60;title&#62;Dia Actual&#60;/title&#62;
+      &#60;link rel="import" href="current-date.html"&#62;
+    &#60;/head&#62;
+
+    &#60;body&#62;
+      &#60;current-date&#62;&#60;/current-date&#62;
+    &#60;/body&#62;
+
+  &#60;/html&#62;
+        </code>
+      </pre>    
+  
+    <h3 class="post__title--title-paragraph">Shadow DOM</h3>
+
+    <p class="post__paragraph">La última característica de los webcomponts que vamos a ver es el Shadow Dom. Esta característica permite que el navegador web renderize nuestros elementos DOM, aislandolo del árbol principal del documento. Es decir que se crea una barrera “virtual” que impide que cualquier regla declarada en nuestro documento HTML interfiera en nuestro componente.</p>
+
+    <h3 class="post__title--title-paragraph">Librerias webcomponents</h3>
+
+    <p class="post__paragraph">Para crear nuestros propios webComponents podemos utilizar la API nativa que está desarrollando el W3C, o utilizar alguna de las siguientes librerías que nos facilitan el desarrollo de los nuestros webComponents.</p>
+
+    <h3 class="post__title--title-paragraph">Polymer</h3>
+
+    <p class="post__paragraph">Desarrollado por Google, ofrece la posibilidad de realizar binding en uno o dos sentidos dentro de los templates de los elemento y proporciona un mejor rendimiento entre navegadores.</p>
+    
+    <p class="post__paragraph">link: <a href="https://www.polymer-project.org/" title="Polymer">Polymer</a></p>  
+
+    <h3 class="post__title--title-paragraph">X-Tag</h3>
+
+    <p class="post__paragraph">Desarrollado por Microsoft esta librería es un “wrapper” del standard del W3C. No tiene soporte para los Custom Elements por lo que para utilizar esta característica, si no esta soportado nativamente por el explorador de uso, hay que utilizar los polyfills de Polymer.</p>
+
+    <p class="post__paragraph">link: <a href="https://x-tag.github.io/" title="x-tag">X-Tag</a></p>  
+
+    <h3 class="post__title--title-paragraph">Slim.js</h3>
+
+    <p class="post__paragraph">Es una librería que nos provee de la capacidad de realizar data binding, y utilizar la herencia de clases nativas de es6 en nuestros webComponents nativos.</p>
+    
+    <p class="post__paragraph">link: <a href="http://slimjs.com/#/getting-started" title="slim.js">Slim.js</a></p>  
+
+    <blog-post-footer [titlepost]="titlepost"></blog-post-footer>
+  </div>
+</article>
+<blog-post-comment [idpost]="url"></blog-post-comment>

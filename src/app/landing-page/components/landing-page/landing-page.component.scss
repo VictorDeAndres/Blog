@@ -1,0 +1,117 @@
+@import './../../../../assets/styles/__breakpoints.scss';
+
+@font-face {
+  font-family: mohave;
+  src: url('./../../../../assets/fonts/Mohave.otf');
+}
+
+@font-face {
+  font-family: nevis;
+  src: url('./../../../../assets/fonts/nevis.ttf');
+}
+
+#sidebarmenu {
+  height: 100%;
+}
+
+.landing__page__container {
+
+  @include respond-to(monitor) {
+    background-image: url('./../../../../assets/images/cover_m.jpg');
+  }
+
+  @include respond-to(tablet) {
+    background-image: url('./../../../../assets/images/cover.jpg');
+  }
+
+  @include respond-to(movil) {
+    background-image: url('./../../../../assets/images/cover.jpg');
+  }
+
+  width: 100%;
+  height: 100%;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -10;
+
+  display: flex;
+
+  justify-content: center;
+
+
+  background-size: cover;
+
+  &--image {
+
+    display: flex;
+    align-items: center;
+  }
+
+}
+
+.landing__page__card {
+
+  padding-top: 3em;
+  padding-right: 1em;
+  padding-bottom: 3em;
+  padding-left: 1em;
+  color: #fff;
+  background-color: rgba(32, 32, 32, 0.2);
+  text-align: center;
+
+  @include respond-to(monitor) {
+    margin-top: -34%;
+  }
+
+  &--name {
+    @include respond-to(monitor) {
+      font-size: 5.2em;
+    }
+
+    @include respond-to(tablet) {
+      font-size: 4.6em;
+    }
+
+    @include respond-to(movil) {
+      font-size: 3.4em;
+    }
+
+    font-family: mohave;
+    padding-bottom: .5em;
+  }
+
+  &--title {
+    @include respond-to(monitor) {
+      font-size: 3em;
+    }
+
+    @include respond-to(tablet) {
+      font-size: 2.5em;
+    }
+
+    @include respond-to(movil) {
+      font-size: 1.8em;
+    }
+
+    font-family: nevis;
+    font-weight: 500;
+    line-height: 1em;
+  }
+
+  &--subtitle {
+    @include respond-to(monitor) {
+      font-size: 2.7em;
+    }
+
+    @include respond-to(tablet) {
+      font-size: 2.2em;
+    }
+
+    @include respond-to(movil) {
+      font-size: 1.5em;
+    }
+
+  }
+}

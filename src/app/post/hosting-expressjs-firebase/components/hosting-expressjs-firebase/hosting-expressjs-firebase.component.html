@@ -1,0 +1,169 @@
+<ngx-json-ld [json]="schema"></ngx-json-ld>
+<blog-post-header></blog-post-header>
+<article class="post">
+  <div class="post__container">
+    <div class="post__title"></div>
+    <h1 class="post__title--title">
+      Hosting de un proyecto ExpressJS en Firebase
+    </h1>
+    <h2 class="post__title--subtitle">
+      Tutorial para alojar tu proyecto ExpressJS en Firebase con Cloud Functions de Firebase
+    </h2>
+    <div class="post__title--footer"></div>
+
+    <blog-post-publish-info [publishDate]="publishDate" [postCategories]="postCategories"></blog-post-publish-info>
+
+    <div class="post__image">
+      <img class="post__image--image" src="https://victordeandres.es/assets/images/posts/firebase_express.png" alt="firebase express">
+    </div>
+
+    <p class="post__paragraph">Hasta ahora sólo era posible alojar páginas estáticas en el hosting de Firebase. Pero con la nueva funcionalidad de Firebase,
+      <span class="post__paragraph--font-weight">Cloud Functions</span> o funciones dinámicas, podremos tener alojada un página web dinámica desarrollada con NodeJS
+      y
+      <span class="post__paragraph--font-weight">ExpressJS</span>. A continuación veremos paso a paso cómo utilizar estas funciones de firebase para alojar nuestras
+      aplicaciones.</p>
+
+    <h3 class="post__title--title-paragraph">
+      Prerequisitos.
+    </h3>
+
+    <p class="post__paragraph">Antes de comenzar con nuestro proyecto habremos creado un nuevo proyecto desde la consola de firebase. Posteriormente
+      instalaremos una serie de herramientas en nuestro equipo.</p>
+
+    <p class="post__paragraph">En primer lugar instalaremos la interfaz de comandos de firebase. Para ello ejecutaremos el siguiente comando.</p>
+
+    <pre>
+      <code highlight class="bash">
+  npm install -g firebase-tools
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Una vez instalada la interfaz de comandos el siguiente paso que debemos realizar es iniciar nuestro proyecto firebase.
+      Para ello nos situaremos en el directorio donde queremos desarrollar nuestro proyecto, en nuestro caso "test_express_firebase"
+      y ejecutaremos la instrucción para inicializar nuestro proyecto.</p>
+
+    <pre>
+      <code highlight class="bash">
+  cd test_express_firebase
+  firebase init hosting
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Durante el proceso de inicialización se nos preguntará, entre otras cuestiones, donde queremos alojar nuestro proyecto,
+      a lo cual nosotros seleccionaremos el proyecto que anteriormente creamos en firebase. Y si queremos que nuestro proyecto
+      sea de tipo SPA, a lo cual responderemos negativamente, ya que queremos realizar una página web dinámica.</p>
+
+    <h3 class="post__title--title-paragraph">
+      Dynamics Cloud Functions.
+    </h3>
+
+    <p class="post__paragraph">Una vez finalizado este proceso observaremos como en nuestro directorio se han creado una serie de ficheros de configuración
+      de firebase (.firebaserc y firebase.json) y una carpeta public. El siguiente paso es instalar las "Cloud Functions",
+      la funcionalidad que nos permitirá alojar nuestro proyecto ExpressJS en firebase. Para ello desde la consola de comandos
+      introduciremos el siguiente comando.</p>
+
+    <pre>
+      <code highlight class="bash">
+  firebase init functions
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Este proceso nos instalará las dependencias de NPM que se necesitan. Una vez finalizada la instalación de todas las dependencias
+      nos situaremos en la carpeta functions, que se acaba de crear, e instalaremos ExpressJS, que será el servidor web que
+      utilizaremos para nuestra página web.</p>
+
+    <h3 class="post__title--title-paragraph">
+      Desarrollo de nuestra Cloud Function
+    </h3>
+
+    <p class="post__paragraph">Una vez instaladas todas las herramientas necesarias para el desarrollo del proyecto comenzaremos. Para empezar el desarrollo
+      de nuestra aplicación, lo primero que debemos hacer es ir al fichero "index.js" de la carpeta functions. Aquí encontraremos
+      un pequeño boilerplate de una función. Si leemos esta función de ejemplo veremos que respondería con el mensaje "Hello
+      from Firebase!" a todas las peticiones que le hiciéramos llegar a nuestra cloud function. Pero en nuestro caso lo que
+      queremos hacer es una aplicación mucho más dinámica.</p>
+
+    <p class="post__paragraph"> Para ello modificaremos el código de ejemplo de respuesta de la función de ejemplo y lo sustituiremos por una pequeña
+      aplicación que responderá a una petición get a la url "testconexion" y nos devolverá el siguiente mensaje: "Test hosting
+      NodeJS en Firebase a las: hh:mm.ss</p>
+
+    <p class="post__paragraph">El código final debería quedar como muestro a continuación</p>
+
+    <pre>
+      <code highlight class="javascript">
+  const functions = require('firebase-functions');
+
+  const express = require('express');
+  const app = express();
+
+  app.get('/testconexion', (request, response) => &#123;
+    const d = new Date();
+    response.send(`
+      Testing hosting NodeJS en firebase a las: 
+      $&#123;d.getHours()&#125;:$&#123;d.getMinutes()&#125;.$&#123;d.getSeconds()&#125;`)
+  &#123;);
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Como podéis ver es una aplicación muy sencilla escrita en NodeJs con ExpressJS, en la cual simplemente tenemos dos líneas
+      diferentes a un proyecto habitual que hubiéramos escrito anteriormente. La primera de ellas es "const functions = require('firebase-functions');"
+      la cual importa la librería 'firebase-functions', y la segunda de ellas es la última línea de código. En la cual estamos
+      indicando el nombre con el cual "exponemos" nuestra función y en la cual le estamos indicando que todas las peticiones
+      que se realicen las conteste nuestra app.
+
+      <p class="post__paragraph">El siguiente paso que tenemos que realizar es conectar nuestra cloud function con el hosting de firebase. Para ello
+        deberemos modificar el fichero firebase.json, y en este le indicaremos que cuando llamemos a la ruta "testconexion"
+        en nuestra url el firebase llame a nuestra función.
+        <p>
+
+          <pre>
+      <code highlight class="javascript">
+  &#123;
+    "hosting": &#123;
+      "public": "public",
+      "rewrites": [&#123;
+        "source": "/testconexion",
+        "function": "webapp"
+      &#125;]
+    &#125;
+  &#125;
+      </code>
+    </pre>
+
+          <h3 class="post__title--title-paragraph">
+            Despliegue
+          </h3>
+
+          <p>Bueno como has podido observar el desarrollo de nuestra primera cloud function es muy sencillo. Ahora vamos a testar
+            su funcionamiento y si todo es correcto procederemos a su posterior despliegue.</p>
+
+          <p>Para ejecutar nuestra function dinámica en nuestro entorno local simplemente deberemos ejecutar el siguiente comando</p>
+
+          <pre>
+      <code highlight class="bash">
+  firebase serve --only hosting,functions
+      </code>
+    </pre>
+
+          <p>Este comando nos levantará un servidor local en el puerto 5000. A continuación abriremos nuestro navegador favorito
+            y navegaremos a la siguiente url "http://localhost:5000/testconexion" y voula veremos nuestro mensaje de prueba</p>
+
+          <div class="post__image">
+            <img class="post__image--image" src="./../assets/images/posts/firebase_express_test.png" alt="firebase express">
+          </div>
+
+          <p>Una vez hayamos comprobado que todo es correcto procederemos a su despliegue en los servidores de firebase con
+            el siguiente comando</p>
+
+          <pre>
+      <code highlight class="bash">
+  firebase deploy
+      </code>
+    </pre>
+
+          <p>Una vez finalizado el despliegue ya tendrás disponible tu página web dinámica gracias a la funcionalidad de las
+            Cloud Functions de Firebase.</p>
+
+          <blog-post-footer [titlepost]="titlepost"></blog-post-footer>
+  </div>
+</article>
+<blog-post-comment [idpost]="url"></blog-post-comment>

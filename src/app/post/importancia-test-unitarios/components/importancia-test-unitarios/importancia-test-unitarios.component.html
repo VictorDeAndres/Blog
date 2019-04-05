@@ -1,0 +1,118 @@
+<ngx-json-ld [json]="schema"></ngx-json-ld>
+<blog-post-header></blog-post-header>
+<article class="post">
+  <div class="post__container">
+    <div class="post__title"></div>
+    <h1 class="post__title--title">
+      La importancia de los test unitarios
+    </h1>
+    <h2 class="post__title--subtitle">
+      Ventajas de realizar test unitarios en los desarrollos
+    </h2>
+    <div class="post__title--footer"></div>
+
+    <blog-post-publish-info [publishDate]="publishDate" [postCategories]="postCategories"></blog-post-publish-info>
+
+    <div class="post__image">
+      <img class="post__image--image" src="https://victordeandres.es/assets/images/posts/units_test.png" alt="unit test">
+    </div>
+
+    <p class="post__paragraph">Cada vez desarrollamos programas más complejos y grandes, además estos interactúan con otros sistemas. Y normalmente
+      suele haber cambios en los requisitos durante del desarrollo. Esto suele producir que nuestras estimaciones iniciales
+      de desarrollo sufren importantes desvíos o se cierren los desarrollos sin cumplir todas las expectativas creadas en
+      un principio.</p>
+
+    <p class="post__paragraph">Para minimizar estas desviaciones disponemos de las metodologías de desarrollo ágiles. Y una parte importante de esta
+      metodologías es la parte dedicada a realizar los test.</p>
+
+    <p class="post__paragraph">Los test son una parte importante en la fase de desarrollo y no siempre les damos la importancia necesaria. Tendemos
+      a posponer los test al final del proyecto, cuando menos tiempo tenemos y más compleja es la aplicación de testar, o
+      simplemente pensamos que los test los deben hacer tanto los usuarios finales como el departamento de test en caso de
+      haberlo. Pero estas premisas en muchas ocasiones dadas por verdaderas por dogma son erróneas.</p>
+
+    <h3 class="post__title--title-paragraph">
+      Como ponerlo en práctica.
+    </h3>
+
+    <p class="post__paragraph">Realizar los test no es algo complicado. Para ello disponemos de la técnica de desarrollo, TDD o test driven develop.
+      La cual nos va ayudar a realizar los test de nuestra aplicación sencilla y rapidamente, además de ayudarnos a que nuestra
+      aplicación final sea más estable, tenga menos errores y la hallamos desarrollado en menos tiempo. Interesante verdad.</p>
+
+    <p class="post__paragraph">Al principio cuesta aplicar esta forma de programar ya que requiere un cambio de mentalidad en nuestra forma habitual
+      de trabajar. Esta forma de desarrollar nos indica que primero tenemos que escribir los test y posteriormente escribir
+      nuestro código. Justo al revés de como lo hacemos habitualmente.</p>
+
+    <h3 class="post__title--title-paragraph">
+      Tipos de test.
+    </h3>
+
+    <p class="post__paragraph">Pero antes de comenzar tenemos que conocer los tipos de test que existen. Los test unitarios, en los que nos vamos a
+      centrar en este post, y los test de integración o end-2-end. </p>
+
+    <h3 class="post__title--title-paragraph">
+      Test unitarios.
+    </h3>
+
+    <p class="post__paragraph">Algunas de las caracteristicas de los test unitarios son las siguientes.</p>
+
+    <p class="post__paragraph">Los test unitarios son un tipo de test que están desarrollados para probar un método concreto de una clase. En teoría
+      deberíamos escribir test unitarios que ejecuten todas las líneas de código de nuestro programa. Tanto para las líneas
+      que ejecutan una acción, como para las que controlan un error.</p>
+
+    <p class="post__paragraph">Si llegáramos a esos niveles tendríamos un 100% de cobertura de nuestro código. Algo realmente complicado de conseguir,
+      por ello el porcentaje de cobertura en los desarrollos suele ser menor. Lógicamente a menor grado de cobertura más
+      riesgo de errores y viceversa.</p>
+
+    <p class="post__paragraph">Un test unitario es una unidad de código que queremos ejecutar y que dados un datos concretos (input) a obtengamos unos
+      datos de salida (output) concretos. Ya sea una acción concreta o un error forzado. Para ello utilizaremos normalmente
+      utilizaremos datos mockeados que realicen la acción que deseamos.</p>
+
+    <p class="post__paragraph">Estas unidades de código para realizar los test deben ser claras y concisas. Un input concreto, un output concreto. Por
+      lo que programar test unitarios debe ser algo rápido y sencillo. Si no cumplimos este principio, no estaremos realizando
+      correctamente los test.</p>
+
+    <h3 class="post__title--title-paragraph">
+      Ventajas de los test unitarios.
+    </h3>
+
+    <p class="post__paragraph">Y sus ventajas son las siguientes:</p>
+
+    <p class="post__paragraph">Facilita los cambios. Los test unitarios nos aseguran que los cambios que realizamos en nuestra aplicación son correctos.
+      Ya que antes de subir estos cambios habremos pasado con anterioridad los test unitarios y nos habremos asegurado que
+      nuestros cambios son correctos.</p>
+
+    <p class="post__paragraph">Simplifica la integración. Al tener nuestra aplicación menos errores potenciales la fase de integración será más rápida
+      y sencilla.</p>
+
+    <p class="post__paragraph">Documenta el código. Los test nos indican de una forma clara y concisa cuál es el funcionamiento de un método o función
+      cualquiera. </p>
+
+    <p class="post__paragraph">Los errores están más acotados, ya que disponemos de test concretos para cada método o función lo que nos permiten acotar
+      rápidamente el error.</p>
+
+    <p class="post__paragraph">Disminuye el tiempo de desarrollo. Aunque parece mentira, escribir test unitarios disminuye el tiempo de desarrollo ya
+      que el tiempo de reescritura de partes del código erróneo disminuye considerablemente.</p>
+
+    <p class="post__paragraph">Ayuda a mantener el código desacoplado. Ya que cada método está pensado para devolver un único resultado y de esta forma
+      pasar los test.</p>
+
+    <p class="post__paragraph">Si realizamos habitualmente refactorizaciones de código, nos aseguraremos que esas refactorizaciones son correctas ya
+      que al finalizar la refactorización pasaremos los test.</p>
+
+    <h3 class="post__title--title-paragraph">
+      Test de integración.
+    </h3>
+
+    <p class="post__paragraph">Los test de integración son un tipo de test donde se prueba la correcta integración entre todos los métodos que componen
+      nuestra aplicación, además de comprobar que el programa realiza correctamente las necesidades planteadas por los usuarios.</p>
+
+    <p class="post__paragraph">Estas pruebas se realizan en entornos paralelos al entorno de desarrollo y suelen hacerse tanto por el departamento de
+      desarrollo como los usuarios finales.</p>
+
+    <p class="post__paragraph">Como acabas de leer los test unitarios son algo que nos beneficiara en bastantes sentidos. Por ello te animo si lo haces
+      ya, a escribir ya test unitarios en tus próximos desarrollos.</p>
+
+    <blog-post-footer [titlepost]="titlepost"></blog-post-footer>
+  </div>
+</article>
+<blog-post-comment [idpost]="url"></blog-post-comment>

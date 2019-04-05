@@ -1,0 +1,75 @@
+<ngx-json-ld [json]="schema"></ngx-json-ld>
+<blog-post-header></blog-post-header>
+<article class="post">
+  <div class="post__container">
+    <div class="post__title"></div>
+    <h1 class="post__title--title">
+      Micro FrontEnds
+    </h1>
+    <h2 class="post__title--subtitle">
+      Enfoque de microservicios para el desarrollo web front-end
+    </h2>
+    <div class="post__title--footer"></div>
+
+    <blog-post-publish-info [publishDate]="publishDate" [postCategories]="postCategories"></blog-post-publish-info>
+
+    <div class="post__image">
+      <img class="post__image--image" src="https://victordeandres.es/assets/images/posts/microfrontend.png" alt="micro frontends">
+    </div>
+
+    <p class="post__paragraph">En la actualidad las aplicaciones web se estan volviendo cada vez más grandes y complejas. Además de la parte visual,
+      en muchas ocasiones se incluye la lógica o las reglas de negocio que anteriormente se incluían en la parte backend.</p>
+
+    <p class="post__paragraph">Y a lo anteriormiente indicado hay que añadir que las aplicaciones web también cambian con el tiempo, al igual que las
+      técnicas y frameworks de desarrollo. Esto requiere dar soporte para permitir coexistir diferentes frameworks y técnicas.
+      Por ejemplo, módulos más antiguos construidos en JQuery o AngularJS 1.x, combinados con módulos más nuevos construidos
+      en Angular 2+ o Vue.</p>
+
+    <h3 class="post__title--title-paragraph">
+      El enfoque monolítico no funciona para aplicaciones web más grandes
+    </h3>
+
+    <p class="post__paragraph">Por todo ello mantener un enfoque monolítico para una gran aplicación web se vuelve complicado de desarrollar y mantener.
+      Para solucionar este problema vamos a dividir nuestra web en módulos más pequeños que pueden actuar independientemente.</p>
+
+    <p class="post__paragraph">Por ejemplo imaginemos que tenemos una aplicación web, la cual estaría modulariza de la siguiente manera:</p>
+    <ul>
+      <li>
+        <span class="post__paragraph--font-weight">myapp.com/</span> - página de destino construida con HTML estático.</li>
+      <li>
+        <span class="post__paragraph--font-weight">myapp.com/settings</span> - antiguo módulo de configuración construido en AngularJS 1.x.</li>
+      <li>
+        <span class="post__paragraph--font-weight">myapp.com/dashboard</span> - nuevo módulo de panel integrado en VUE.</li>
+    </ul>
+
+    <p class="post__paragraph">Por tanto la estructura de esta aplicación web debería contener:</p>
+    <ul>
+      <li>Un de código compartido parar realizar la gestión de enrutamiento y controlar las sesiones de usuario.</li>
+      <li>También necesitaremos algunas hojas de estilo comunes, nuestra aplicación tiene un único estilo.</li>
+      <li>Por supuesto una colección de módulos separados, "mini-apps", construidos en distintos frameworks. Los cuales los tendremos
+        almacenados en distintos repositorios de código.</li>
+      <li>Y finalmente un sistema de despliegue que agrupa todos los módulos de los diferentes repositorios y los implemente
+        en un servidor, siempre que se actualice un módulo.</li>
+    </ul>
+
+    <h3 class="post__title--title-paragraph">
+      Implementación de Micro FrontEnds
+    </h3>
+
+    <p class="post__paragraph">Para implementar este tipo de solución tenemos distintas posibilidades, a continuación te indico algunas sugerencias:</p>
+    <ul>
+      <li>
+        <a href="https://github.com/CanopyTax/single-spa" title="Meta-Framework">"Meta-framework"</a> de Single-SPA para combinar múltiples frameworks en la misma página sin refrescar la página.</li>
+      <br>
+      <li>
+        <a href="https://www.mosaic9.org/" title="Mosaic">"Mosaic"</a> de Zalando, es un conjunto de servicios, bibliotecas y especificaciónes que define cómo sus componentes
+        interactúan entre sí, para apoyar una arquitectura de estilo de microservicios para sitios web.</li>
+      <br>
+      <li>Y finalmente hacer los que los diferentes modulos se comuniquen a través de un bus de eventos compartidos, por ejemplo
+        <a href="https://github.com/chrisdavies/eev" title="eev">"Eev"</a> de chrisdavies.</li>
+    </ul>
+
+    <blog-post-footer [titlepost]="titlepost"></blog-post-footer>
+  </div>
+</article>
+<blog-post-comment [idpost]="url"></blog-post-comment>

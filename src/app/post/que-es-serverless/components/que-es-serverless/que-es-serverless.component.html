@@ -1,0 +1,105 @@
+<ngx-json-ld [json]="schema"></ngx-json-ld>
+<blog-post-header></blog-post-header>
+<article class="post">
+  <div class="post__container">
+    <div class="post__title"></div>
+    <h1 class="post__title--title">
+      Serverless. ¿ Qué es ?. 
+    </h1>
+    <h2 class="post__title--subtitle">
+      Conoce la arquitectura serverless. Sus ventajas y desventajas
+    </h2>
+    <div class="post__title--footer"></div>
+
+    <blog-post-publish-info [publishDate]="publishDate" [postCategories]="postCategories"></blog-post-publish-info>
+    <div class="post__image">
+      <img class="post__image--image" src="https://images.unsplash.com/photo-1546864903-e99c8237840d?q=75&fm=jpg" alt="@angular\elementswebcomponents">
+      <div class="post__photo">Photo by Brunno Tozzo on Unsplash</div>
+    </div>
+   
+    <p class="post__paragraph">Tal vez hayas oído hablar de la arquitectura Serverless o Fass ( functions as a service ). En este post explicaré brevemente en qué consiste esta arquitectura.</p>
+
+    <h3 class="post__title--title-paragraph">¿Qué es?.</h3>
+
+    <p class="post__paragraph">Comencemos por el principio. ¿Qué es la arquitectura Serverless o Fass?. Cuando lees serverless lo primero que puedes pensar es que es una arquitectura sin servidores. Efectivamente es una arquitectura sin servidores, aunque no en el sentido de no disponer de servidores físicos o dockerizados, en algún servidor deberemos ejecutar nuestros programas. En esta arquitectura los servidores son elementos anónimos que se encuentran alojados en una nube. Son contenedores efímeros y sin estado que sólo se crearán en el momento de ejecutar una función. Es por esto que se denomina arquitectura serverless o Fass.</p>
+
+    <h3 class="post__title--title-paragraph">Ventajas.</h3>
+
+    <p class="post__paragraph">Cuando desarrollemos con la arquitectura serverless tendremos algunas de las siguientes ventajas:</p>
+
+    <ul>
+      <li>Posee un alto nivel de desacoplamiento entre los distintos servicios, lo que favorece el desarrollo de arquitecturas basadas en microservicios. Facilitando de esta forma la continua mejora y despliegue de nuestros servicios.</li>
+      <br>
+      <li>El proveedor se encargará de proporcionar todos los servicios necesarios: hardware, soporte, actualizaciones de los servidores, ect… para poder ofrecernos el servicio. Por lo que nosotros nos desentendemos de una parte importante a la hora de hacer nuestros despliegues. Simplifica los ciclos de desarrollo, además de facilitarnos una escalabilidad horizontal de nuestra aplicación en caso de necesidad.</li>
+      <br>
+      <li>Reducción de los gastos. Sólo pagaremos cuando se realicen peticiones a nuestras funciones con ello disminuiremos el gasto de hardware.</li>
+      <br>
+      <li>Esta arquitectura es agnóstica a los proveedores. Tenemos una flexibilidad total para elegir nuestros proveedores a la hora de hacer el despliegue. Podremos utilizar esta arquitectura haciendo un mix de proveedores, no siendo esclavo de ninguno de ellos, o trabajar con un único proveedor.</li>
+      <br>
+      <li>Nuestras funciones se pueden integrar fácilmente con servicios de terceros lo que disminuye el tiempo de desarrollo de nuestra aplicación.</li>
+    </ul>
+
+    <h3 class="post__title--title-paragraph">Desventajas.</h3>
+
+    <p class="post__paragraph">Pero por supuesto todo tiene un lado positivo y un lado negativo. Siendo algunas de las desventajas de utilizar la arquitectura serverless las siguientes:</p>
+
+    <ul>
+      <li>Los recursos de programación ( lenguajes, librerías, ect ) se encuentran definidos por el proveedor del servicio. Debemos adaptarnos a los requisitos del proveedor seleccionado, aunque también podremos optar por nuestros propios contenedores.</li>
+      <br>
+      <li>Es un servicio sin estado. Cualquier operación que necesite datos anteriores deberá utilizar otros servicios para almacenar los datos.</li>
+      <br>
+      <li>Latencia inicial.  Dado que el contenedor se crea en el momento de hacer la petición es posible que la ejecución sufra latencias en su arranque, aunque existen técnicas para disminuir este tiempo de latencia.</li>
+    </ul>
+
+    <h3 class="post__title--title-paragraph">Mi opinión.</h3>
+
+    <p class="post__paragraph">Creo que la tecnología serverless o fass tiene un futuro prometedor debido a su flexibilidad. Tiene una curva de aprendizaje muy suave que facilita mucho la introducción en esta arquitectura. Promoverá la reutilización de los servicios propios como de terceros lo que hará disminuir el tiempo medio del desarrollo de las aplicaciones. Nos facilita el desarrollo de las aplicaciones así como la rápida adopción a los cambios necesarios en la lógica de las mismas.</p>
+
+    <p class="post__paragraph">Si quieres comenzar a trabajar o profundizar en esta arquitectura a continuación te adjunto una lista tanto de proveedores que ofrecen este servicio, como herramientas que posibilitan crear tu cloud privada para hacer el despliegue de esta arquitectura, y una serie de servicios de terceros que utilizan esta arquitectura que podrías integrar en tus aplicaciones.</p>
+
+    <h3 class="post__title--title-paragraph">Proveedores.</h3>
+
+    <p class="post__paragraph">Los proveedores más importantes en la actualidad que nos ofertan este servicio son los siguientes:</p>
+
+    <ul>
+      <li><a href="https://aws.amazon.com/es/lambda/" title="Amazon AWS Lamda">Amazon AWS Lamda</a></li>
+      <br>
+      <li><a href="https://cloud.google.com/functions/" title="Google Cloud Functions">Google Cloud Functions</a></li>
+      <br>
+      <li><a href="https://azure.microsoft.com/es-es/services/functions/" title="Microsoft Azure Functions">Microsoft Azure Functions</a></li>
+      <br>
+      <li><a href="https://console.bluemix.net/openwhisk/" title="IBM OpenWhisk Actions">IBM OpenWhisk Actions</a></li>
+    </ul>
+
+    <p class="post__paragraph">Aunque también podemos optar por soluciones privadas como:</p>
+
+    <ul>
+      <li><a href="https://open.iron.io/" title="Iron Functions">Iron Functions</a></li>
+      <br>
+      <li><a href="https://github.com/openstack/picasso" title="OpenStack Picasso">OpenStack Picasso</a></li>
+      <br>
+      <li><a href="https://fission.io/" title="Fission">Fission</a></li>
+    </ul>
+
+    <h3 class="post__title--title-paragraph">Servicios de terceros.</h3>
+
+    <p class="post__paragraph">Por su puesto además de nuestros servicios podemos utilizar servicios de terceros lo cual nos facilitará el desarrollo de nuestras aplicaciones no teniendo que desarrollar ciertas partes:</p>
+
+    <ul>
+      <li>Autenticación como <a href="https://auth0.com/" title="Auth0">Auth0</a> o <a href="https://aws.amazon.com/es/cognito/" title="Amazon Cognito">Amazon Cognito</a></li>
+      <br>
+      <li>Bases de datos NoSQL como <a href="https://firebase.google.com/docs/database/?hl=es" title="Firebase Realtime Database">Firebase Realtime Database</a> o <a href="https://aws.amazon.com/es/dynamodb/" title="DynamoDB">DynamoDB</a></li>
+      <br>
+      <li>Almacenamiento como <a href="https://firebase.google.com/docs/storage/?hl=es" title="Firebase Storage">Firebase Storage</a> o <a href="https://aws.amazon.com/es/s3/" title="Amazon Simple Storage Service">Amazon Simple Storage Service</a></li>
+      <br>
+      <li>Envío de correos electrónicos como <a href="http://www.mandrill.com/" title="Mandrill">Mandrill</a> o <a href="https://aws.amazon.com/es/ses/" title="Amazon Simple Email Service">Amazon Simple Email Service</a></li>
+      <br>
+      <li>Websockets como <a href="https://pusher.com/" title="Pusher">Pusher</a> o <a href="hhttps://socketize.com/" title="Socketize">Socketize</a></li>
+    </ul>
+
+    <blog-post-footer [titlepost]="titlepost"></blog-post-footer>
+  </div>
+</article>
+<blog-post-comment [idpost]="url"></blog-post-comment>
+
+

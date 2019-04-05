@@ -1,0 +1,218 @@
+<ngx-json-ld [json]="schema"></ngx-json-ld>
+<blog-post-header></blog-post-header>
+<article class="post">
+  <div class="post__container">
+    <div class="post__title"></div>
+    <h1 class="post__title--title">
+      Introducción a GraphQL
+    </h1>
+    <h2 class="post__title--subtitle">
+      Introducción a GrapghQL. Un lenguaje de consultas para tu API Rest
+    </h2>
+    <div class="post__title--footer"></div>
+
+    <blog-post-publish-info [publishDate]="publishDate" [postCategories]="postCategories"></blog-post-publish-info>
+
+    <div class="post__image">
+      <img class="post__image--image" src="https://victordeandres.es/assets/images/posts/graphql.png" alt="GraphQL">
+    </div>
+
+    <p class="post__paragraph">Cuando estás desarrollando habitualmente en la parte front end de un proyecto y utilizas habitualmente una rest api para
+      establecer las comunicaciones con tu base de datos tal vez en algún momento habrás realizado la siguiente pregunta.</p>
+
+    <p class="post__paragraph">¿ Como organizo mis json de respuesta ?. Recargo el tiempo de mis payload de respuesta con información que no necesito
+      en ese momento, con lo cual estoy penalizando la experiencia de usuario. O creo en el backend un api rest, donde tengo
+      un end point por cada vista de datos necesaria para mi aplicación. Esta solución no penaliza la experiencia del usuario,
+      ya que cada petición del front end recibo una respuesta exacta en json de los datos que necesito, pero complica en
+      exceso tanto el desarrollo como el posterior mantenimiento de la aplicación.</p>
+
+    <p class="post__paragraph">Tómate un minuto. ¿Qué opción tomarías o tomaste?. Yo personalmente ninguna de las dos. Siempre he optado por una respuesta
+      mixta. En algunos casos creaba endpoints para ciertas vistas, intentando que estas fueran lo más reutilizables posibles,
+      y en otras ocasiones seleccionaba por la recarga del json en el payload con datos que no necesito. Si eres un buen
+      desarrollador y aplicas clean Code en tus desarrollos seguro que ninguna de las respuestas que te he dado te parece
+      la correcta en su totalidad.</p>
+
+    <p class="post__paragraph">Además con la api rest siempre hemos tenido otro hándicap. las consultas anidadas. Cuántas veces no te has encontrado
+      en la situación en la que para obtener ciertos datos, has tenido que esperar a recibir una respuesta json de tu servidor
+      backend para a continuación hacer una o varias consultas más para obtener los detalles de ciertos campos que has recibido
+      en tu primera consulta.</p>
+
+    <p class="post__paragraph">Pero afortunadamente, existe una respuesta que cubre estas necesidades de una manera bastante más sencilla,
+      <span class="post__paragraph--font-weight">GraphQL</span>. La cual nos permite realizar consultas al backend como si hiciéramos una consulta Sql directamente
+      en la servidor backend pero manteniendo las ventajas de una api rest y json.</p>
+
+    <h3 class="post__title--title-paragraph">
+      Qué es GraphQL
+    </h3>
+
+    <p class="post__paragraph">GraphQL es un lenguaje para hacer consultas desarrollado por Facebook in 2012 y que se hizo público en 2015. Este lenguaje
+      proporciona una alternativa a los servicios REST y los webservices. GraphQL permite a los clientes la estructura de
+      los datos solicitados. Es un lenguaje fuertemente tipado que permite a los clientes solicitar sólo los datos que necesita.
+      Lo que evita los problemas cuando solicitamos datos, y tenemos datos no solicitados, o datos incompletos.</p>
+
+    <p class="post__paragraph">GraphQL ha sido implantado en múltiples lenguajes como por ejemplo Javascript, Python, Ruby, Java, C#, Scala, Go, Elixir.
+      Erlang, PHP y Clojure. </p>
+
+    <p class="post__paragraph">Si quieres puedes leer más información en el siguiente articulo
+      <a href="https://code.facebook.com/posts/1691455094417024"
+        title="GraphQL: A data query language">“GraphQL: A data query language”</a> del blog
+      <a href="https://code.facebook.com/" title="code.facebook.com">“code.facebook.com”</a>
+    </p>
+
+    <h3 class="post__title--title-paragraph">
+      Introducción GraphQL
+    </h3>
+
+    <p class="post__paragraph">Una vez ya hemos visto que es GraphQl y cómo puede ayudarnos vamos a hacer una breve introducción funcional.</p>
+
+    <p class="post__paragraph">La gran diferencia que vamos a ver con una api rest tradicional es la cantidad de endpoints que tenemos. En una api rest
+      tradicional tenemos n endpoints, y cada uno de ellos podemos invocarlos con los distintos verbos, Get, Post, Put o
+      Delete dependiendo de la acción que queramos realizar. Pero en GraphQL solo tenemos un único endpoint con un solo verbo,
+      Post.</p>
+
+    <p class="post__paragraph">Para indicarle al backend acción queramos realizar, crear, modificar, borrar o consultar datos tenemos que indicar en
+      el cuerpo de la petición alguna de las siguientes opciones.</p>
+    <ul>
+      <li>Query</li>
+      <li>Mutation</li>
+      <li>Subcription</li>
+    </ul>
+
+    <h5 class="post__title--title-index">
+      Query
+    </h5>
+
+    <p class="post__paragraph">Comenzaremos por la parte más sencilla y la que más vamos a utilizar, la consulta o query a nuestra base de datos. Definir
+      la consulta que queremos realizar es muy sencillo. Como podemos observar en el siguiente ejemplo comenzaremos nuestra
+      petición Post con la palabra query y en el objeto definiremos los campos que queremos consultar.</p>
+
+    <pre>
+      <code highlight class="typescript">
+  query &#123;
+    getPais("id": "ES") &#123;
+      id
+      pais
+      provincias &#123;
+        id
+        provincia
+        localidades &#123;
+          id
+          municipio
+          codigopostal
+        &#125;
+      &#125;
+    &#125;
+  &#125;    
+      </code>
+    </pre>
+
+    <p class="post__paragraph">En esta consulta estamos obteniendo todos los municipios de un país, en nuestro caso españa, además de todas sus provincias
+      y las localidades pertenecientes a estas. El resultado que obtendriamos sería como el siguiente</p>
+
+    <pre>
+      <code highlight class="bash">
+  &#123;
+    "data" &#123;
+      getPais &#123;
+        "id": "ES",
+        "pais": "España", 
+        "provincias": [&#123;
+          "id": "01",
+          "provincia": "Alava",
+          "localidades" [&#123;
+            "id": 1,
+            "municipio": "Alava",
+            "codigopostal": "01001"
+          &#125;,&#123;
+            ...
+          &#125;] 
+        &#125;,&#123;
+         ...
+        &#125;]
+      &#125;
+    &#125;    
+  &#125;      
+      </code>
+    </pre>
+
+    <h5 class="post__title--title-index">
+      Mutation
+    </h5>
+
+    <p class="post__paragraph">La opción mutation es similar a la opción query. La única diferencia es que modificamos query por mutation. Con esta
+      acción podremos hacer tanto inserciones, modificaciones y eliminaciones en nuestra base de datos.</p>
+
+    <p class="post__paragraph">Cuando llamamos a la opción mutation además de realizar la opción que queramos en nuestra base de datos, una inserción,
+      modificación o eliminación, al finalizar la acción GraphQL nos devolverá una respuesta, la cual podremos definir como
+      si hiciéramos una nueva consulta.</p>
+
+    <p class="post__paragraph">En este ejemplo, una base de datos con tareas, crearemos un nuevo registro en nuestra lista de tareas. Y obtendremos
+      una lista con las tareas y su subtareas con estado.</p>
+
+    <pre>
+      <code highlight class="typescript">
+  mutation &#123;
+    AddTask(
+      "id": 15,
+      "task": "Compilar app"
+    ) &#123;
+      id
+      task 
+      subtask &#123;
+        id
+        subtask
+        finished
+      &#125;
+    &#125;
+  &#125;    
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Y la repuesta de GraphQL sería como se muestra a continuación</p>
+
+    <pre>
+      <code highlight class="bash">
+  &#123;
+    "data" &#123;
+      AddTask &#123;
+        "id": "1",
+        "task": "Preparar entorno desarrollo", 
+        "subtasks": [&#123;
+          "id": "1",
+          "subtask": "Crear repositorio GIT",
+          "finished": "true"
+        &#125;,&#123;
+          ...
+        &#125;] 
+      &#125;,&#123;
+        ...
+      &#125;
+      &#125;,&#123;
+        "id": "15",
+        "task": "Compilar app"      
+      &#125;
+    &#125;    
+  &#125;      
+      </code>
+    </pre>
+
+    <h5 class="post__title--title-index">
+      Subcription
+    </h5>
+
+    <p class="post__paragraph">Y finalmente tenemos los suscripciones, otra parte importante de GQL son las suscripciones. Lo que nos permiten las suscripciones,
+      es como su nombre indica suscribirnos a los cambios que se realicen en la base de datos. De esta forma nuestra aplicación
+      se mantendrá actualizada en todo momento con los cambios que sucedan en nuestra base de datos. Básicamente es como
+      mantener una conexión websocket con nuestra base de datos.</p>
+
+    <p class="post__paragraph">La estructura de las suscripciones es similar a la de las querys, la única diferencia es que pedimos una "subcription"
+      en vez de una "query".</p>
+
+    <p class="post__paragraph">Como has podido observar esta es una pequeña introduccióna GraphQL, en la cual has podido leer sobre el potencial de
+      este lenguaje de consultas el cual da respuesta a algunas de nuestras preguntas como desarrolladores de front end más
+      habituales.</p>
+
+    <blog-post-footer [titlepost]="titlepost"></blog-post-footer>
+  </div>
+</article>
+<blog-post-comment [idpost]="url"></blog-post-comment>

@@ -1,0 +1,41 @@
+<div class="post__comment__container">
+  <div class="post__comment">
+    Comentarios
+    <div class="post__comment--box">
+      <div class="post__comment--box--header" (click)="enabledComment()">
+        <span class="post__comment--box--icon footer--icon fa fa-comment-o"></span>
+        <span>Escribe tu comentario</span>
+      </div>
+
+      <div [hidden]="!showComment">
+        <form class="post--comment__comment--box" (ngSubmit)="onSubmit()" #commentForm="ngForm">
+          <input class="post--comment__comment--box--input post--comment__comment--box--input--yourname" type="text"
+            name="yourname" id="yourname" [(ngModel)]="comment.name" placeholder="&#xF2c3;  Tu nombre" required>
+          <textarea class="post--comment__comment--box--input post--comment__comment--box--input--comment" type="text"
+            name="comment" id="comment" [(ngModel)]="comment.message" placeholder="escribe tu comentario" required></textarea>
+          <button type="submit" class="post--comment__comment--box--sendbutton" [ngClass]="{'post--comment__comment--box--sendbutton--enabled': commentForm.form.valid, 'post--comment__comment--box--sendbutton--disabled': !commentForm.form.valid}">
+            <span>Enviar</span>
+          </button>
+        </form>
+      </div>
+      
+      <ul class="comment__container">
+        <li *ngFor="let item of postComments">
+          <div class="comment__container--row">
+            <div class="comment__container--row--username">
+              {{ item.username }}
+            </div>
+            <div class="comment__container--row--date">
+              <span class="comment__container--row--date--day">{{ item.commentdate.day }}</span>
+              <span>{{ item.commentdate.hour }}</span>
+            </div>
+            <div class="comment__container--row--comment">
+              {{ item.comment }}
+            </div>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>

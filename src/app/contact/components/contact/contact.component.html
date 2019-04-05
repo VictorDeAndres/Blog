@@ -1,0 +1,30 @@
+<div class="contact">
+  <nav class="contact__nav">
+    <div class="contact__nav__container">
+      <h1><span class="contact__nav__container--title">Blog</span></h1>
+      <h6><span class="contact__nav__container--subtitle">Victor de Andres</span></h6>
+    </div>
+  </nav>
+
+  <div class="contact__form">
+    <div class="contact__form--header">
+      CONTACTO
+    </div>
+    <div class="contact__form--header--line"></div>
+    <form class="contact__form--form" (ngSubmit)="onSubmit()" #contactForm="ngForm">
+      <input class="contact__form--form--input contact__form--form--input__yourname" 
+        type="text" name="yourname" id="yourname"
+        [(ngModel)]="contact.name"
+        placeholder="Tu nombre" required>
+      <input class="contact__form--form--input contact__form--form--input__youraddress" 
+        type="email" name="youraddress" id="youraddress"
+        [(ngModel)]="contact.mailAddress"
+        placeholder="Tu correo" required email>
+      <textarea class="contact__form--form--input contact__form--form--input__message" 
+        type="text" name="message" id="message"
+        [(ngModel)]="contact.message"
+        placeholder="Y tu mensaje ..." required></textarea>
+      <button type="submit" [disabled]="!contactForm.form.valid" [ngClass]="{'contact__form--form--input__button': true, 'contact__form--form--input__button--enabled': contactForm.form.valid, 'contact__form--form--input__button--disabled': !contactForm.form.valid}">enviar</button>
+    </form>
+  </div>
+</div>

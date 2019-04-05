@@ -1,0 +1,216 @@
+
+<ngx-json-ld [json]="schema"></ngx-json-ld>
+<blog-post-header></blog-post-header>
+<article class="post">
+  <div class="post__container">
+    <div class="post__title"></div>
+    <h1 class="post__title--title">
+      ES6 - Bucles Asíncronos
+    </h1>
+    <h2 class="post__title--subtitle">
+      Desarrollo bucles asíncronos ES6 - EcmaScript 2015
+    </h2>
+    <div class="post__title--footer"></div>
+
+    <blog-post-publish-info [publishDate]="publishDate" [postCategories]="postCategories"></blog-post-publish-info>
+
+    <div class="post__image">
+      <img class="post__image--image" src="https://images.unsplash.com/photo-1531148502260-2920d70c8ed4?q=75&fm=jpg" alt="ES6 - Bucles Asincronos">
+      <div class="post__photo">Photo by Olia Nayda Images on Unsplash</div>
+    </div>
+
+    <p class="post__paragraph">Como ya sabes una de las grandes ventajas de Javascript es que es una programación asíncrona. Pero al igual que es una gran ventaja también puede ser una fuente muy común de errores y confusiones para todo tipo de programadores. En este artículo vamos a ver como poder hacer bucles asíncronos.</p>
+
+    <p class="post__paragraph">En esta ocasión daré por entendido que conoces el funcionamiento de las promesas en Javascript, si no puedes ver el siguiente link de <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Promise" title="mozilla web docs">mdn, </a>donde se explica el funcionamiento de las mismas.
+    </p>
+
+    <h3 class="post__title--title-paragraph">
+      ¿ Cuál es mi error ?. No funciona la promesa.
+    </h3>
+
+    <p class="post__paragraph">Si ejecutamos el siguiente código:</p>
+
+    <pre>
+      <code highlight class="typescript">
+    &#39;use strict&#39;;
+
+    function showValue(item) &#123;
+    
+      const self = item;
+    
+      return new Promise ( resolve => &#123;
+        setTimeout( () => &#123;
+          console.info(self);
+          resolve(); 
+        &#125;, Math.floor((Math.random() * 10) + 3) * 1000);  // Random 1 - 3 segundos.
+      &#125;)
+    &#125;
+    
+    async function processArray(array) &#123;
+      array.forEach(async (item) => &#123;
+        await showValue(item);
+      &#125;)
+      console.log(&#39;Fin&#39;);
+    &#125;
+    
+    processArray([1, 2, 3, 4, 5]);
+        
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Esperaríamos el siguiente resultado por pantalla:</p>
+
+    <pre>
+      <code highlight>
+    1
+    2
+    3
+    4
+    5
+    Fin    
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Pero obtendremos algo similar a lo siguiente:</p>
+
+    <pre>
+      <code highlight>
+    Fin
+    4
+    2
+    1
+    3
+    5
+      </code>
+    </pre>
+  
+    <p class="post__paragraph">Este es un posible resultado ya que estamos haciendo una pausa aleatoria de entre 1 y 3 segundos cuando ejecutamos la función por lo que el resultado puede variar de una ocasión a otra.</p>
+
+    <h3 class="post__title--title-paragraph">Pero porque es esto así.</h3>
+
+    <p class="post__paragraph">Si modificamos nuestra código de ejemplo, y añadimos un nueva línea en el momento que comienza la ejecución de la función lo veremos un poco más claro.</p>
+
+    <p class="post__paragraph">El código de la función sería como sigue:</p>
+    
+    <pre>
+        <code highlight class="typescript">
+    function showValue(item) &#123;
+
+    const self = item;
+    
+    console.info(&#39;Iteración: &#39;, self);
+    
+    return new Promise ( resolve => &#123;
+      setTimeout( () => &#123;
+        console.info(self);
+        resolve(); 
+      &#125;, Math.floor((Math.random() * 10) + 3) * 1000);  // Random 1 - 3 segundos.
+    &#125;)
+    &#125;
+      </code>
+    </pre> 
+
+    <p class="post__paragraph">Y en esta ocasión el resultado que obtendremos es el siguiente:</p>
+
+    <pre>
+      <code highlight>
+    Iteración: 1
+    Iteración: 2
+    Iteración: 3
+    Iteración: 4
+    Iteración: 5
+    Fin
+    4
+    1
+    2
+    3
+    5
+      </code>
+    </pre>   
+
+    <p class="post__paragraph">Como puedes observar las iteraciones han comenzado correctamente, y una vez lanzadas todas las iteraciones se ejecuta el fin de nuestras función. Pero nosotros en realidad lo que deseamos es que no se ejecute la siguiente iteración hasta haber finalizado la anterior.</p>
+
+    <h3 class="post__title--title-paragraph">Procesamiento secuencial.</h3>
+
+    <p class="post__paragraph">Para solucionar nuestro problema de una forma elegante y sencilla podemos hacer uso de la sentencia for … of que nos permite una ejecución secuencial dentro de nuestro bucle. Está es una nueva caracteristica que disponemos desde ES6 o EcmaScript 2015</p>    
+
+    <p class="post__paragraph">Quedando el código de nuestro loop de la siguiente forma:</p>
+
+    <pre>
+      <code highlight class="typescript">
+    async function processArray(array) &#123;
+    for ( let item of array ) &#123;
+      await showValue(item);
+    &#125;
+    console.log(&#39;Fin&#39;);
+    &#125;
+      </code>
+    </pre> 
+
+    <p class="post__paragraph">Si ejecutamos nuestro nuevo código obtendremos el resultado que deseamos.</p>
+
+    <pre>
+      <code highlight>
+    1
+    2
+    3
+    4
+    5
+    Fin    
+      </code>
+    </pre>
+
+    <h3 class="post__title--title-paragraph">Procesamiento paralelo.</h3>
+
+    <p class="post__paragraph">Otra posible solución para nuestro problema será el procesamiento en paralelo de todas nuestras funciones/promesas. Este método es más rápido que el anterior ya que se ejecutan todas las funciones en paralelo, tenlo en cuenta porque arrays grandes pueden generar una sobrecarga de la memoria o la CPU.</p>
+
+    <p class="post__paragraph">Nuestro nuevo código sería como el siguiente:</p>
+
+    <pre>
+      <code highlight class="typescript">
+    async function processArray(array) &#123;
+      const promises = array.map( (item) => &#123;
+        return showValue(item);
+      &#125;);
+      await Promise.all(promises);
+      console.log(&#39;Fin&#39;);
+    &#125;    
+      </code>
+    </pre>
+
+    <p class="post__paragraph">En esta ocasión lo que hemos creado es un array con las llamadas a nuestra función asíncrona, y una vez creado el array lo hemos utilizado para llamar a nuestras funciones de forma paralela con la sentencia Promise.all la cual no nos devuelve una respuesta hasta que existe un fallo, o se ejecutan todas las promesas.</p>
+
+    <p class="post__paragraph">Recuerda que en la resolución de nuestra promesa hemos utilizado un random de tiempo por lo que la respuesta obtenida puede ser como la siguiente:</p>
+
+    <pre>
+      <code highlight>
+      2
+      1
+      5
+      4
+      3
+      Fin    
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Si eliminamos el random tiempo de nuestra función de respuesta obtendremos el siguiente resultado:</p>
+
+    <pre>
+      <code highlight>
+    1
+    2
+    3
+    4
+    5
+    Fin    
+      </code>
+    </pre>
+
+    <h3 class="post__title--title-paragraph">Conclusión.</h3>
+
+    <p class="post__paragraph">Por su puesto es sólo son dos soluciones de las muchas que hay, ya que el este problema se puede plantear de distintas formas. Pero personalmente creo ambas soluciones son bastante sencillas y elegantes, sólo debemos tener claro cuál de ellas se adapta mejor a nuestro problema y aplicarla.</p>    
+
+    <blog-post-footer [titlepost]="titlepost"></blog-post-footer>
+  </div>
+</article>
+<blog-post-comment [idpost]="url"></blog-post-comment>

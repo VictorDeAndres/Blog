@@ -1,0 +1,123 @@
+<ngx-json-ld [json]="schema"></ngx-json-ld>
+<blog-post-header></blog-post-header>
+<article class="post">
+  <div class="post__container">
+    <div class="post__title"></div>
+    <h1 class="post__title--title">
+      Fundamentos Javascript - Hoisting
+    </h1>
+    <h2 class="post__title--subtitle">
+      Fundamentos Javascript (II) - Definición Hoisting
+    </h2>
+    <div class="post__title--footer"></div>
+
+    <blog-post-publish-info [publishDate]="publishDate" [postCategories]="postCategories"></blog-post-publish-info>
+
+    <div class="post__image">
+      <img class="post__image--image" src="https://victordeandres.es/assets/images/posts/javascript_hoisting.png" alt="javascript scope">
+    </div>
+
+    <p class="post__paragraph">En este artículo voy a seguir escribiendo sobre los conceptos básicos que todo desarrollador de Javascript deber dominar para ser un auténtico Javascript ninja. En esta ocasión vamos a ver el concepto <span class="post__paragraph--font-weight">Hoisting</span>.</p>
+
+    <p class="post__paragraph">Un concepto tal vez menor y bastante sencillo, pero que una correcta compresión del mismo puede evitarte una gran cantidad de tiempo realizando depuraciones de tu código con comportamientos extraños y aparentemente extraños.</p>    
+    
+    <p class="post__paragraph">Para una mejor compresión del hoisting antes debes saber perfectamente como funciona el scope, a continuación te adjunto el link  a un artículo mío anterior <a href="https://victordeandres.es/post/javascript-scope" title="Scope Javascript">“Fundamentos Javascript (I) - Definición y tipos de Scope”</a>, donde explico el concepto scope, ya que ambos están muy interrelacionados.</p>
+  
+    <h3 class="post__title--title-paragraph">
+      Definición de Hoisting
+    </h3>
+
+    <p class="post__paragraph">Hoisting significa que las declaraciones de las variables y las funciones son procesadas antes de que el código se ejecute, recuerda que Javascript es un lenguaje interpretado y eso significa que a menos que sea compilado se ejecuta en línea. Por ello el hoisting puede generar los siguientes resultados, que tal vez puedan parecer un poco confusos y sin sentido si no sabes que está aplicando este concepto.</p>
+
+    <ul>
+      <li>Cuando estas leyendo el código puede parecer que estas utilizando una variable o una función antes de ser declarada.</li>
+      <br>
+      <li>Declarar cualquier variable o función en el cualquier parte del código es igual a definirlas al inicio del código.</li>
+    </ul>
+
+    <h3 class="post__title--title-paragraph">
+      Funcionamiento. Declaración vs definición.
+    </h3>
+
+    <p class="post__paragraph">Pero no en todos los casos se aplica el hosting. Dependiendo de la forma en que se inicialice una variable o función el funcionamiento de la misma puede sufrir variaciones. Siendo las reglas las siguientes:</p>
+
+    <ul>
+      <li>Declaraciones => <span class="post__paragraph--font-weight">Se aplica</span> hoisting</li>
+      <br>
+      <li>Definiciones => <span class="post__paragraph--font-weight">No se aplica</span> hosting</li>
+    </ul>
+
+    <p class="post__paragraph">Veámoslo con unos ejemplos, será más sencillo.</p>
+
+    <pre>
+        <code highlight class="typescript">
+    // Declaración
+
+    let nombreVariable;
+    
+    // Ejemplo Declaración
+
+    nombreVariable = 'foo';
+    console.log(nombreVariable);		// foo
+    let nombreVariable;
+        </code>
+    </pre>
+
+    <pre>
+        <code highlight class="typescript">
+    // Definición
+
+    const nombreVariable = ‘foo’;
+    
+    // Ejemplo Definición
+
+    console.log(nombreVariable);		// undefined
+    const nombreVariable = ‘foo’;
+        </code>
+    </pre>
+
+    <p class="post__paragraph">Pero tal vez lo veamos mejor con las funciones.</p>
+
+    <pre>
+        <code highlight class="typescript">
+    // Declaración
+
+    muestraTexto();		
+
+    function muestraTexto() &#123;
+        console.log('Muestra Texto');   // Muestra Texto
+    &#125;
+        </code>
+    </pre>
+
+    <pre>
+        <code highlight class="typescript">
+    // Definción
+
+    muestraTexto();   // TypeError: muestraTexto is not a function
+
+    const muestraTexto = function() &#123;
+        console.log('Muestra Texto');
+    &#125;
+
+        </code>
+    </pre>
+
+    <h3 class="post__title--title-paragraph">
+      Buenas practicas.
+    </h3>
+
+    <p class="post__paragraph">Es por esto por lo cual se recomiendan aplicar las siguientes reglas para escribir un mejor código.</p>
+
+    <ul>
+      <li>Define siempre las variables antes de utilizarlas.</li>
+      <br>
+      <li>Las variables siempre se deben declarar en el inicio del scope al que pertenecen para que tu código se más limpio y fácil de leer.</li>
+    </ul>
+
+    <p class="post__paragraph">Hasta aquí este post sobre los fundamentos de Javascript, en próximos post iremos avanzando poco a poco en los
+      fundamentos de Javascript.</p>
+    <blog-post-footer [titlepost]="titlepost"></blog-post-footer>
+  </div>
+</article>
+<blog-post-comment [idpost]="url"></blog-post-comment>

@@ -1,0 +1,246 @@
+<ngx-json-ld [json]="schema"></ngx-json-ld>
+<blog-post-header></blog-post-header>
+<article class="post">
+  <div class="post__container">
+    <div class="post__title"></div>
+    <h1 class="post__title--title">
+      Desarrollo de WebComponents con Angular, @angular/elements
+    </h1>
+    <h2 class="post__title--subtitle">
+      Tutorial para desarrollar webComponents reutilizables con @angular/elements
+    </h2>
+    <div class="post__title--footer"></div>
+
+    <blog-post-publish-info [publishDate]="publishDate" [postCategories]="postCategories"></blog-post-publish-info>
+    <div class="post__image">
+      <img class="post__image--image" src="https://images.unsplash.com/photo-1426927308491-6380b6a9936f?q=75&fm=jpg" alt="@angular\elementswebcomponents">
+      <div class="post__photo">Photo by Barn Images on Unsplash</div>
+    </div>
+   
+    <p class="post__paragraph">Hace ya un tiempo escribí un post introductorio a los <a href="./post/introduccion-webcomponents" title="webcomponents">webcomponents</a>. Al final de aquel post indicaba varias librerías con las cuales podríamos diseñar nuestros propios webcomponents. Hoy, como continuación a aquel post vamos a añadir una nueva librería para realizar nuestros webcomponents. En esta ocasión vamos a utilizar una nueva funcionalidad disponible desde la versión 6 de angular, los <span class="post__paragraph--font-weight">@angular/elements</span>.</p>
+
+    <p class="post__paragraph">Al final de este post podréis encontrar el enlace a todo el código que vamos a ver a continuación.</p>
+
+    <h3 class="post__title--title-paragraph">Comencemos</h3>
+
+    <p class="post__paragraph">Lógicamente para desarrollar nuestro primer webcomponent deberemos tener instalado como mínimo la versión de angular 6 en nuestro equipo, que ya dispone de la funcionalidad @angular/elements nativamente. Aunque yo voy a utilizar la versión 7 que ya se encuentra disponible para su descarga.</p>
+
+    <p class="post__paragraph">El primer paso será inicializar nuestro proyecto. Lo haremos con el comando new de angular-cli.</p>
+
+    <pre>
+        <code highlight class="bash">
+    ng new WebComponentDemo --prefix webcomponentdemo
+        </code>
+    </pre>
+    
+    <p class="post__paragraph">En esta ocasión he añadido el flag "prefix" para añadir “webcomponentdemo” a todos los componentes que creemos en este proyecto.</p>
+
+    <p class="post__paragraph">Una vez construido el esquema de nuestro proyecto debemos instalar las dependencias necesarias para crear nuestro primer webcomponent con angular. Es muy sencillo solo deberemos introducir el siguiente comando:</p>
+    
+    <pre>
+        <code highlight class="bash">
+    ng add @angular/elements
+        </code>
+    </pre>
+    
+    <h3 class="post__title--title-paragraph">Nuestro primer WebComponent.</h3>
+    
+    <p class="post__paragraph">Una vez instaladas todas las dependencias necesarias comenzaremos a desarrollar nuestro webcomponent.</p>
+    
+    <p class="post__paragraph">En esta ocasión voy a realizar un componente sencillo. Un botón que irá sumando uno a nuestro contador cada vez que lo pulsemos.</p>
+    
+    <p class="post__paragraph">Como es habitual en los proyectos en los cuales utilizamos angular usaremos el ng-cli para crear la estructura de nuestro componente.</p>
+
+    <pre>
+        <code highlight class="bash">
+    ng generate component incrButton --inline-style --inline-template --view-encapsulation Native
+        </code>
+    </pre>
+
+    <p class="post__paragraph">Veamos un poco más detalle los flags que hemos utilizado para crear nuestro webcomponent.</p>
+
+    <p class="post__paragraph">Los dos primeros flags que hemos utilizado son ‘--inline--style’ e ‘--inline-template’. Con ellos hemos indicado que queremos que los estilos y la plantilla de nuestro componente se encuentren en un único fichero. Y no como es habitual los tres ficheros diferentes que encontramos para cada componente en los proyectos de angular. Un fichero para la lógica, otro con los estilos y un tercero con la plantilla de nuestro componente.</p>
+
+    <p class="post__paragraph">Y el último flag que hemos utilizado es ‘--view-encapsulation’ el cual nos permite especificar el tipo de encapsulación de nuestro componente. De esta manera facilitaremos la compatibilidad con distintos navegadores. Las opciones posibles para este flag son las siguientes:</p>
+
+    <p class="post__paragraph">Las opciones posibles para este flag son las siguientes:</p>
+
+    <ul>
+      <li><span class="post__paragraph--font-weight">None:</span> No utiliza el el Shadow DOM.</li>
+      <br>
+      <li><span class="post__paragraph--font-weight">Emulated:</span> No utiliza el Shadow DOM pero emula su funcionamiento.</li>
+      <br>
+      <li><span class="post__paragraph--font-weight">Native</span> Utiliza el Shadow DOM con soporte nativo del navegador.</li>
+      <br>
+    </ul>
+
+    <p class="post__paragraph">Para este ejemplo he utilizado la opción ‘Native’, para utilizar el soporte nativo del navegador.</p>
+
+    <p class="post__paragraph">Una vez construido la base de nuestro webcomponent procederemos a añadir la lógica, plantilla y los estilos del mismo.</p>
+
+    <p class="post__paragraph">El código de nuestro webcomponent será el siguiente:</p>
+
+    <pre>
+      <code highlight class="javascript">
+  import  &#123; Component, Input, Output, EventEmitter, ViewEncapsulation  &#125; from '@angular/core';
+
+  @Component( &#123;
+    selector: 'webcomponentdemo-incr-button',
+    template: `
+      &#60;button class="incrButton" (click)="handleClick()"&#62; &#123; &#123;label &#125; &#125;&#60;/button&#62;
+    `,
+    styles: [`
+      .incrButton  &#123;
+        background-color: #44c767;
+        -moz-border-radius: 28px;
+        -webkit-border-radius: 28px;
+        border-radius: 28px;
+        border: 1px solid #18ab29;
+        display: inline-block;
+        cursor: pointer;
+        color: #ffffff;
+        font-family: Arial;
+        font-size: 14px;
+        padding: 16px 31px;
+        text-decoration: none;
+        text-shadow: 0px 1px 0px #2f6627;
+       &#125;
+  
+      .incrButton:hover  &#123;
+        background-color:#5cbf2a;
+       &#125;
+    `],
+    encapsulation: ViewEncapsulation.Native
+   &#125;)
+  
+  export class IncrButtonComponent  &#123;
+  
+    constructor()  &#123;  &#125;
+  
+    @Output() action = new EventEmitter&#60;number&#62;();
+    @Input() label = 'Incrementa valor';
+  
+    private contadorClick = 0;
+  
+    public handleClick(): void  &#123;
+      this.contadorClick++;
+      this.action.emit(this.contadorClick);
+     &#125;
+   &#125;
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Como puedes ver en el código; hemos creado un botón que cada vez que interactuamos con él sumará uno a un contador que comienza en 0.</p>
+
+    <p class="post__paragraph">Además hemos creado dos interacciones en nuestro webcomponent. Una de entrada o input, que nos permitirá personalizar el texto de nuestro botón, y una de salida o output que enviará el valor de nuestro contador.</p>
+
+    <h3 class="post__title--title-paragraph">Registremos nuestro webComponent</h3>
+
+    <p class="post__paragraph">Hasta el momento no hemos realizado nada distinto a lo que realizamos habitualmente al desarrollar un proyecto en angular. De hecho podríamos añadir nuestro componente en el fichero app.component.html y el componente funcionaria normalmente.</p>
+
+    <p class="post__paragraph">Para que nuestro componente pueda ser reutilizable y los podamos utilizar como componente embebido en cualquier otro proyecto, no solo en proyectos angular. Realizaremos las siguientes modificaciones.</p>
+
+    <p class="post__paragraph">Primero debemos agregar nuestro componente, en nuestro ejemplo ‘IncrButtonComponent’ al array de entryComponents, ya que el componente que hemos creado no es parte de ningún componente superior, queremos que nuestro componente sea parte del bootstraping de la aplicación.</p>
+
+    <p class="post__paragraph">Y el siguiente paso es crear nuestro componente. En esta ocasión lo vamos a realizar en el constructor de nuestra función principal. Para ello debemos añadir "Injector" en la lista de nuestro @angular/core y "createCustomElement" desde @angular/elements.</p>
+
+    <p class="post__paragraph">Una vez realizados nuestros cambios, el fichero app.components.ts será:</p>
+
+    <pre>
+      <code highlight class="javascript">
+  import  &#123; BrowserModule  &#125; from '@angular/platform-browser';
+  import  &#123; NgModule, Injector  &#125; from '@angular/core';
+  import  &#123; createCustomElement  &#125; from '@angular/elements';
+  import  &#123; IncrButtonComponent  &#125; from './incr-button/incr-button.component';
+  
+  @NgModule( &#123;
+    declarations: [
+      IncrButtonComponent
+    ],
+    imports: [
+      BrowserModule
+    ],
+    entryComponents: [
+      IncrButtonComponent
+    ]
+   &#125;)
+  
+  export class AppModule  &#123;
+    constructor(
+      private injector: Injector
+    )  &#123;
+      const el = createCustomElement(IncrButtonComponent,  &#123; injector  &#125;);
+      customElements.define('wc-incr-button', el);
+     &#125;
+    ngDoBootstrap()  &#123; &#125;
+   &#125;
+      </code>
+    </pre>
+
+    <h3 class="post__title--title-paragraph">Construcción | Empaquetado Web Component</h3>
+
+    <p class="post__paragraph">El siguiente paso, una vez construido nuestro webcomponent, es la construcción o empaquetado de nuestro webcomponent. Como estamos trabajando en Angular para hacer la construcción de nuestro componente utilizaremos la instrucción:</p>
+
+    <pre>
+      <code highlight class="bash">
+  ng build --prod --output-hashing=none
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Pero utilizar directamente este comando sin ningún flag más nos generará un output de cuatro ficheros (runtime.js, scripts.js, polyfills.js y main.js), lo cual dificultará la distribución de nuestro web component.</p>
+
+    <p class="post__paragraph">Para construir o empaquetar nuestro webcomponent en un único fichero podemos ejecutar el siguiente comando:</p>
+
+    <pre>
+      <code highlight class="bash">
+  ng build --prod --output-hashing=none && cat dist/WebComponentDemo/ &#123;runtime,polyfills,scripts,main &#125;.js > wcincrbutton.js.gz
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Este comando realizará la construcción de nuestro webcomponent y el resultado lo unirá en un único fichero comprimido.</p>
+
+    <h3 class="post__title--title-paragraph">Demo</h3>
+
+    <p class="post__paragraph">Hasta aquí la construcción de nuestro webComponent con Angular. Ahora realizaremos la prueba definitiva. Utilizaremos nuestro webComponent en una página web sencilla.</p>
+
+    <pre>
+      <code highlight class="html">
+  &#60;!doctype html&#62;
+  &#60;html lang="en"&#62;
+  &#60;head&#62;
+    &#60;meta charset="utf-8"&#62;
+    &#60;title&#62;Angular Elements&#60;/title&#62;
+    &#60;meta name="viewport" content="width=device-width, initial-scale=1"&#62;
+    &#60;script type="text/javascript" src="element.js"&#62;&#60;/script&#62;
+  &#60;/head&#62;
+  &#60;body&#62;
+  
+    &#60;p style="font-size: 18px"&#62;
+      &#60;span&#62;Valor Actual:&#60;/span&#62;
+      &#60;span id="currentValue"&#62;0&#60;/span&#62;
+    &#60;/p&#62;
+
+    &#60;webcomponentdemo-custom-button label="Suma++"&#62;&#60;/webcomponentdemo-custom-button&#62;
+
+    &#60;script&#62;
+      var button = document.querySelector('webcomponentdemo-custom-button');
+      button.addEventListener('action', function(event) &#123;
+        document.getElementById("currentValue").innerHTML = event.detail;
+        &#125;);
+    &#60;/script&#62;
+
+  &#60;/body&#62;
+  &#60;/html&#62;  
+      </code>
+    </pre>  
+
+    <p class="post__paragraph">En esta sencilla página web cada vez que pulsemos el botón con el texto “Suma ++”, se sumará 1 al valor actual.</p>
+
+    <p class="post__paragraph">Tal como indiqué al principio de este post a continuación dejo el link a este proyecto en <a href=" https://github.com/VictorDeAndres/Angular_WebComponent_Demo" title="Angular WebComponent Demo">Github </a> donde prodrás ver todo el código de este proyecto. Así como este link con la <a href="https://codepen.io/VictorDeAndres/pen/EOvazM" title="demo @angular/element">demo </a> funcional de este ejemplo.</p>
+
+    <blog-post-footer [titlepost]="titlepost"></blog-post-footer>
+  </div>
+</article>
+<blog-post-comment [idpost]="url"></blog-post-comment>
+
+

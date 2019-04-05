@@ -1,0 +1,115 @@
+<ngx-json-ld [json]="schema"></ngx-json-ld>
+<blog-post-header></blog-post-header>
+<article class="post">
+  <div class="post__container">
+    <div class="post__title"></div>
+    <h1 class="post__title--title">
+      Javascript un must que debes dominar
+    </h1>
+    <h2 class="post__title--subtitle">
+      Razones por las que Javascript es un "must" que debes dominar
+    </h2>
+    <div class="post__title--footer"></div>
+
+    <blog-post-publish-info [publishDate]="publishDate" [postCategories]="postCategories"></blog-post-publish-info>
+
+    <div class="post__image">
+      <img class="post__image--image" src="https://victordeandres.es/assets/images/posts/javascript_ninja.png" alt="javascript un must">
+    </div>
+
+    <p class="post__paragraph">Durante cerca de mis últimos 10 años de vida laboral gran parte de los proyectos en los que he participado tanto como
+      desarrollador como jefe de proyecto han estado relacionados con Internet o han sido escritos para ejecutarse en exploradores.</p>
+
+    <h3 class="post__title--title-paragraph">
+      Retrospectiva
+    </h3>
+
+    <p class="post__paragraph">Si echo la vista atrás los primeros primeros proyectos estaban escrito con Javascript puro, además por su puesto de HTML
+      y CSS. Después en el año 2.006 llegó jQuery que poco a poco se fue introduciendo en nuestros desarrollos. En aquella
+      época también teníamos otras alternativas como ExtJS, Mootools, ProtoType, ect… Posteriormente al principio de esta
+      década empezaron a llegar una nueva serie de librerías y frameworks que modificaban el statu quo hasta entonces como
+      BackboneJS, Ember, AngularJS. React entró con fuerza en el año 2014, y hace aproximadamente hace dos años se liberó
+      la versión 2 de Angular, totalmente diferente a la versión 1. Además están entrando nuevos contendientes en el terreno
+      de juego como VueJS.</p>
+
+    <p class="post__paragraph">Pero esto es sólo una parte. Además tenemos por ejemplo las herramientas de automatización como Grunt, posteriormente
+      llegaron Gulp y ahora WebPack. Los gestores de librerías como Npm, Bower y Yarn. Y por supuesto no nos olvidemos de
+      NodeJs para la parte BackEnd. </p>
+
+    <p class="post__paragraph">Como ves la cantidad de herramientas, librerías y frameworks que ha habido en este tiempo y con las que he podido trabajar
+      es muy amplia.</p>
+
+    <p class="post__paragraph">Cuantos manuales, apis, artículos y libros habré leído sobre estas librerías y frameworks. Horas y horas.</p>
+
+    <h3 class="post__title--title-paragraph">
+      Porqué Javascript.
+    </h3>
+
+    <p class="post__paragraph">Si hacemos un análisis de todas estas herramientas, librerías, frameworks, ect… veremos que lo que subyace en todas ellas
+      es Javascript. De hecho cuanto más Javascript conozco más sencillo me es trabajar con esas herramientas y librerías
+      y por tanto mi curva de aprendizaje es menor que la de otras personas.</p>
+
+    <p class="post__paragraph">Como sabes el desarrollo de programas de informáticos es algo muy dinámico y en constante evolución. Y lo seguirá siendo.
+      Por lo que siempre tenemos que estar abiertos a reinventarnos y adaptarnos a nuevas tecnologías.</p>
+
+    <p class="post__paragraph">Si dominas Javascript tienes unos buenos pilares para construir un gran edificio. Y al cual podrás incorporar nuevas
+      plantas según vaya avanzando el tiempo. </p>
+
+    <p class="post__paragraph">Pero esto es sólo una de las razones por las que creo que Javascript es un
+      <span class="post__paragraph--font-weight">must</span>. </p>
+
+    <p class="post__paragraph">La siguiente es una situación, que los que lleváis un tiempo trabajando seguro que os habéis encontrado en alguna ocasión.
+      Estáis realizando un desarrollo cualquiera y para realizar una determinada funcionalidad os habéis descargado un librería,
+      que en una análisis rápido habéis creído que cubría vuestras necesidades. Pero cuando habéis sobrepasado un punto de
+      no retorno surge una nueva necesidad que esa librería no cubre. Y en este punto tienes varias posibilidades para deshacer
+      este “nudo”.</p>
+
+    <p class="post__paragraph">Buscas una nueva librería que cubra tus nuevas necesidades, y por supuesto las anteriores y haces una refactorización
+      en todas los puntos donde estaba esa librería y modificar los plazos de entrega de la aplicación por el tiempo que
+      esto te llevará. Normalmente esta opción no creo que nadie te la acepte completamente. </p>
+
+    <p class="post__paragraph">También existe la posibilidad de hacer un mix entre ambas librerías para no penalizar los plazos de entrega, o que estos
+      varíen lo menos posible. Y tu desarrollo tendrá un “huevo de pascua” que podrá explotar en cualquier momento. </p>
+
+    <p class="post__paragraph">Pero tienes una tercera posibilidad. Y que pocas veces creo que es explorada cuando este sucede. Una de las ventajas
+      de trabajar con este tipo de librerías es que tienes acceso a sus fuentes. Y están desarrolladas también en Javascript.
+      Si tienes una buena base en Javascript entonces podrás realizar las modificaciones que necesites en esa librería y
+      solventar el problema de una manera bastante sencilla. </p>
+
+    <p class="post__paragraph">Por ello creo que Javascript debe ser un
+      <span class="post__paragraph--font-weight">“must”</span> en cualquier persona que quiera realizar desarrollos orientados a los entornos web. Más que ser un especialista
+      en unos u otros frameworks y/o librerías.</p>
+
+    <h3 class="post__title--title-paragraph">
+      Lecturas recomendadas
+    </h3>
+
+    <p class="post__paragraph">A continuación te adjunto una lista de varios libros de Javascript que deberías leer o tener en tu biblioteca técnica
+      para ser un experto en Javascript</p>
+    <ul>
+      <li>
+        <a href="http://eloquentjavascript.net/" title="Eloquent JavaScript">"Eloquent JavaScript"</a> escrito por Marijn Haverbeke. Este libro te guiará a través de los conceptos esenciales
+        utilizando un lenguaje claro.</li>
+      <br>
+      <li>
+        <a href="http://shop.oreilly.com/product/9780596805531.do" title="JavaScript: The Definitive Guide">"JavaScript: The Definitive Guide"</a> escrito por David Flanagan. La guía definitiva es una exploración profunda
+        de JavaScript y las características API de una web desde la perspectiva de alguien interesado en construir aplicaciones
+        web</li>
+      <br>
+      <li>
+        <a href="https://github.com/getify/You-Dont-Know-JS" title="You Don't Know JS">"You Don't Know JS"</a> escrito por Kyle Simpson. Realmente es una serie de libros, todos similares en estilo y alcance,
+        todos muy buenos. Te ayudaran a obtener una nueva apreciación y una comprensión más profunda de JavaScript.</li>
+      <br>
+      <li>
+        <a href="https://github.com/raganwald/javascript-allonge" title="JavaScript Allongé">"JavaScript Allongé"</a> escrito por Reginald Braithwaite. JavaScript Allongé es un libro de como pensar en funciones.
+        Para crear un software flexible a partir de unidades pequeñas y desacopladas</li>
+    </ul>
+
+    <p class="post__paragraph">Por su puesto hay muchos más libros, pero estos son cuatro de los que yo creo que son imprescindibles.</p>
+
+    <blog-post-footer [titlepost]="titlepost"></blog-post-footer>
+  </div>
+</article>
+<blog-post-comment [idpost]="url"></blog-post-comment>
+
+

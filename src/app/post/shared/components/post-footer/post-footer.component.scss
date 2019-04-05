@@ -1,0 +1,39 @@
+@import './../../../../../assets/styles/__breakpoints.scss';
+@import './../../../../../assets/styles/__colors.scss';
+
+.post__footer--header {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #cecece;
+
+  @include respond-to(movil) {
+    margin: 2em 0 1em 0;
+  }
+
+  @include respond-to(tablet) {
+    margin: 2em 0 1em 0;
+  }
+}
+
+.post__footer--footer {
+  display: block;
+  width: 100%;
+  margin: 2em;
+}
+
+.post__footer--share {
+  color: #7d7c7c;
+  display: flex;
+  justify-content: center;
+
+  &--icon {
+    margin: 2em 0em 1em 0em;
+    border-top-width: 2px;
+    border-top-style: solid;
+    border-color: #cecece;
+    padding-top: 2em;
+    padding-left: 1em;
+    padding: 2em 1em 1em 1em;
+  }
+}

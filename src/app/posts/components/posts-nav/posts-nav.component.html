@@ -1,0 +1,15 @@
+<section class="post_nav__container">
+  <h1><span class="post_nav__title">Blog</span></h1>
+  <h6><span class="post_nav__subtitle">Victor de Andres</span></h6>
+
+  <div class="post_nav__categories" id="categories">
+    Categorias
+  </div>
+  <div *ngFor="let category of categories">
+    <div class="post_nav__categories--category" (click)="selectByCategory(category)">
+      {{category}}
+    </div>
+  </div>
+
+  <br>
+</section>

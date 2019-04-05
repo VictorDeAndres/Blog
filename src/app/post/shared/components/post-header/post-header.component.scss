@@ -1,0 +1,101 @@
+@import './../../../../../assets/styles/__breakpoints.scss';
+@import './../../../../../assets/styles/__colors.scss';
+@import './../../../../../assets/styles/__measures.scss';
+
+.post-header__container {
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  @include respond-to(monitor) {
+    height: 120px;
+  }    
+
+}
+
+.post-header__logo {
+  display: block;
+  @include respond-to(movil) { 
+    width: 100%;
+  }
+}
+
+.post-header__options {
+  color: $ink-blog;
+
+  @include respond-to(monitor) {
+    align-items: center;
+    display: flex;
+    font-size: .8em;
+  }    
+  @include respond-to(tablet) { 
+    align-items: center;
+    display: flex;
+    font-size: .8em;
+  }
+  @include respond-to(movil) { 
+    display: none;
+  }
+
+  &__text {
+    padding-right: 2em;
+  }
+}
+
+.post_header__title {
+  font-family: Roboto;
+  background-color: #000;
+  color: white;
+  margin: 1em;
+
+  @include respond-to(monitor) {
+      font-size: 18px;
+      display: block;
+      text-align: center;
+      padding: 1em 0 0.3em 0;
+      width: 144px;
+  }    
+  @include respond-to(tablet) { 
+      font-size: 14px;
+      display: block;
+      text-align: center;
+      padding: 1em 0.5em 0.3em 0.5em;   
+  }
+  @include respond-to(movil) { 
+      font-size: 14px;
+      display: block;
+      text-align: center;
+      padding: 1em 0.5em 0.3em 0.5em;    
+  }
+
+}
+
+.post_header__subtitle {
+  background-color: #fff;
+  color: black;
+  margin-left: 1em;
+  margin-top: -1em;
+  
+  @include respond-to(monitor) { 
+      font-size: 16px;
+      display: block;
+      text-align: center;
+      padding: 0.2em 0 1em 0;
+      width: 144px;
+  }    
+  @include respond-to(tablet) { 
+      font-size: 12px;
+      display: block;
+      text-align: center;
+      padding: 0.2em 0 1em 0;
+  }
+  @include respond-to(movil) { 
+      font-size: 12px;
+      display: block;
+      text-align: center;
+      padding: 0.2em 0 1em 0;
+  }    
+
+}

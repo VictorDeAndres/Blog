@@ -1,0 +1,28 @@
+<div class="posts__container">
+  <nav class="posts__container__nav">
+    <blog-posts-nav class="posts__menu" 
+      [categories]="categories" 
+      (category)="selectByCategory($event)">
+    </blog-posts-nav>
+  </nav>
+
+  <div class="posts__container__list">
+    <section class="posts__container__list--post">
+      <blog-posts-list 
+      [posts]="posts"
+      (category)="selectByCategory($event)"></blog-posts-list>
+    </section>
+    <section class="posts__container__list--footer">
+      <span 
+        [ngClass] = "{'posts__footer__hide' : initPage}"
+        (click)="movebackward()">
+          <i class="fa fa-backward" aria-hidden="true"></i><span class="posts__container__list--footer--backward">Anterior</span>
+      </span>
+      <span 
+        [ngClass] = "{'posts__footer__hide' : lastPage}"        
+        (click)="moveforward()">
+          <span class="posts__container__list--footer--forward">Siguiente</span><i class="fa fa-forward" aria-hidden="true"></i>
+      </span>
+    </section>
+  </div>
+</div>

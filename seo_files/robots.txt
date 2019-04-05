@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://victordeandres.es/sitemap.xml

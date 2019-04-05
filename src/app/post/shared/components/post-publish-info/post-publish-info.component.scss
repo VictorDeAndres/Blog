@@ -1,0 +1,48 @@
+@import './../../../../../assets/styles/__breakpoints.scss';
+@import './../../../../../assets/styles/__colors.scss';
+@import './../../../../../assets/styles/__measures.scss';
+
+.post-publish-info__title__publishedate,
+.post-publish-info__title__author,
+.post-publish-info__title__category {
+  color: #757D81;
+
+  @include respond-to(monitor) {
+    font-size: 14px;
+  }
+
+  @include respond-to(tablet) {
+    font-size: 14px;
+  }
+
+  @include respond-to(movil) {
+    font-size: 12px;
+  }
+}
+
+.post-publish-info__publishedate,
+.post-publish-info__category {
+  @include respond-to(monitor) {
+    font-size: 14px;
+  }
+
+  @include respond-to(tablet) {
+    font-size: 14px;
+  }
+
+  @include respond-to(movil) {
+    font-size: 12px;
+  }
+}
+
+.post-publish-info__title__category::before {
+  content: "|";
+  padding: 0 .5em;
+}
+
+.post-publish-info__category {
+  &--separator {
+    padding: 0 4px 0 4px;
+    font-size: 12px;
+  }
+}

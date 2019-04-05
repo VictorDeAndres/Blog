@@ -1,0 +1,101 @@
+@import './../../../../assets/styles/__breakpoints.scss';
+@import './../../../../assets/styles/__colors.scss';
+@import './../../../../assets/styles/__measures.scss';
+
+.posts__container {
+
+  @include respond-to(monitor) {
+    flex-direction: row;
+    justify-content: center;
+  }
+  @include respond-to(tablet) {
+    flex-direction: column;
+  }
+  @include respond-to(movil) {
+    flex-direction: column;
+  }
+
+  background-image: url('./../../../../assets/images/struckaxiom.png');
+
+  display: flex;
+
+  width: 100%;
+  min-height: 100%;
+
+  &__nav {
+    @include respond-to(monitor) {
+      display: flex;
+      width: $posts-nav-width;
+    }
+    @include respond-to(tablet) {
+      display: block;
+      margin: 0 2em;
+    }
+    @include respond-to(movil) {
+      display: block;
+      margin: 0 1em;
+    }
+  }
+
+  &__list {
+    @include respond-to(monitor) {
+      width: $posts-width;
+    }
+    @include respond-to(tablet) {
+      margin: 0 4em;
+    }
+    @include respond-to(movil) {
+      margin: 0 2em;
+    }
+
+    display: flex;
+    flex-direction: column;
+
+    &--post {
+    }
+
+    &--footer {
+
+      @include respond-to(monitor) {
+        font-size: 24px;
+      }
+      @include respond-to(tablet) {
+        font-size: 18px;
+      }
+      @include respond-to(movil) {
+        font-size: 14px;
+      }
+
+      color: $ink-blog;
+      margin: 3em 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      &--backward{
+        padding: 0 .5em;
+      }
+      &--forward{
+        padding: 0 .5em; 
+      }
+
+    }
+  }
+
+}
+
+.posts__menu {
+  @include respond-to(monitor) {
+    position: fixed;
+    top: 0;
+    z-index: 3000;
+  }
+}
+
+.post__footer__text {
+  padding: 0 .5em;
+}
+
+.posts__footer__hide{
+  color: transparent !important;
+}

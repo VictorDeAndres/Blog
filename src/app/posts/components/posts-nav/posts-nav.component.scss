@@ -1,0 +1,150 @@
+@import './../../../../assets/styles/__breakpoints.scss';
+@import './../../../../assets/styles/__colors.scss';
+@import './../../../../assets/styles/__measures.scss';
+
+.post_nav__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @include respond-to(monitor) { 
+        width: 375px;
+    }    
+    @include respond-to(tablet) { 
+        width: 100%;
+    }
+    @include respond-to(movil) { 
+        width: 100%;
+    }
+
+}
+
+.post_nav__title {
+    font-family: Roboto;
+    background-color: #000;
+    color: white;
+    @include respond-to(monitor) { 
+        width: $nav-width;
+        display: block;
+        text-align: center;
+        padding: 1em 0 0.3em 0;
+        margin-top: 1em;
+    }    
+    @include respond-to(tablet) { 
+        display: block;
+        text-align: center;
+        padding: 1em 0.5em 0.3em 0.5em;   
+        margin-top: 1em;
+    }
+    @include respond-to(movil) { 
+        display: block;
+        text-align: center;
+        padding: 1em 0.5em 0.3em 0.5em;    
+        margin-top: 1em;
+    }
+
+}
+
+.post_nav__subtitle {
+    background-color: #fff;
+    color: black;
+    margin-top: -2.5em;
+    @include respond-to(monitor) { 
+        width: $nav-width;
+        display: block;
+        text-align: center;
+        padding: 0.5em 0 1em 0;
+    }    
+    @include respond-to(tablet) { 
+        width: 100%;
+        display: block;
+        text-align: center;
+        padding: 0.5em 0 1em 0;
+    }
+    @include respond-to(movil) { 
+        width: 100%;
+        display: block;
+        text-align: center;
+        padding: 0.5em 0 1em 0;
+    }    
+
+}
+
+.post_nav__contact a {
+    @include respond-to(monitor) { 
+        text-decoration: none;
+        display: block;
+        width: $nav-width;
+        text-align: left;
+        color: $ink-blog;
+        padding: 18px 0 18px 0;
+        margin: 6px 0 12px 0em;
+    }
+    @include respond-to(tablet) { 
+        display: none;
+    }    
+    @include respond-to(movil) {
+        display: none;
+    } 
+    &:before{
+        font-family: FontAwesome;
+        content: "\f003";
+        margin-right: 0.8em;
+    }    
+}
+
+.post_nav__categories {
+    @include respond-to(monitor) { 
+        display: block;
+        width: $nav-width;
+        text-align: left;
+        color: $ink-blog;
+        padding: 18px 0 18px 0;
+        margin: 6px 0 12px 0em;
+        border: $ink-blog;
+        border-width: 0px 0 2px 0;
+        border-style: solid;        
+    }    
+    @include respond-to(tablet) { 
+        display: none;    
+    }            
+    @include respond-to(movil) {
+        display: none;
+    } 
+
+}
+
+.post_nav__categories#categories:before {
+    font-family: FontAwesome;
+    content: "\f02c";
+    margin-right: 0.8em;
+}
+
+.post_nav__categories#calendar:before {
+    font-family: FontAwesome;
+    content: "\f133";
+    margin-right: 0.8em;
+}
+
+.post_nav__categories--category {
+    @include respond-to(monitor) { 
+        width: 237px;
+        padding: 8px 0 8px 8px;
+        margin-left: 1em;
+        font-size: 18px;
+    }  
+    @include respond-to(tablet) { 
+        display: none;        
+    }  
+    @include respond-to(movil) {
+        display: none;
+    } 
+  
+}
+
+.post_nav__categories--category:hover {
+    display: block;
+    padding: 8px 0 8px 8px;
+    background-color: $ink-blog;
+    color: #fff;
+    border-radius: 8px;
+}

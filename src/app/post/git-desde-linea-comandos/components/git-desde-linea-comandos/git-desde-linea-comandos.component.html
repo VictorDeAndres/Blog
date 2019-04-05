@@ -1,0 +1,238 @@
+<ngx-json-ld [json]="schema"></ngx-json-ld>
+<blog-post-header></blog-post-header>
+<article class="post">
+  <div class="post__container">
+    <div class="post__title"></div>
+    <h1 class="post__title--title">
+      Git desde la linea de comandos
+    </h1>
+    <h2 class="post__title--subtitle">
+      Comandos básicos para utilizar GIT desde la línea de comandos
+    </h2>
+    <div class="post__title--footer"></div>
+
+    <blog-post-publish-info [publishDate]="publishDate" [postCategories]="postCategories"></blog-post-publish-info>
+
+    <div class="post__image">
+      <img class="post__image--image" src="https://victordeandres.es/assets/images/posts/git_linea_comandos.png" alt="git linea comandos">
+    </div>
+
+    <p class="post__paragraph">En la actualidad cualquier desarrollador en su trabajo habitual utiliza un repositorio de código, si no es así debes empezar inmediatamente. El repositorio de código de facto que se suele utilizar es GIT, a través de servicios web como GitHub, GitLab, Bitbucket o Stash, ect… Aunque también podemos encontrarnos con repositorios de código como Subversion o TFS de Microsoft.</p>
+
+    <p class="post__paragraph">En este post nos vamos a centrar en <span class="post__paragraph--font-weight">GIT</span>. En el veremos unas sencillas reglas o buenas prácticas para hacer un correcto uso de este repositorio de código y los comandos básicos que deberemos utilizar independientemente del servicio web que utilicemos para trabajar habitualmente.</p>
+
+    <h3 class="post__title--title-paragraph">Buenas practicas o GitFlow</h3>
+    
+    <p class="post__paragraph">Nuestro proyecto siempre debe tener 4 ramas claramente diferenciadas, aunque cada equipo de desarrollo puede tener su propia metodología:</p>
+
+    <ul>
+      <li><span class="post__paragraph--font-weight">Master:</span> La rama principal, donde se encuentra el repositorio de producción. Esta rama debe ser siempre estable.</li>
+      <br>
+      <li><span class="post__paragraph--font-weight">Development:</span> Aunque mucha gente da por hecho que es la rama de desarrollo, no es correcto. Development es la rama de integración. En esta rama es donde se deben integrar todos los desarrollos. Y corregir los errores ( en caso de encontrar alguno ) principalmente debido a la integración de distintas partes del desarrollo. Por ello development debería ser una rama estable a partir de la cual poder realizar un merge sobre la rama master.</li>
+      <br>
+      <li><span class="post__paragraph--font-weight">Features:</span> En esta rama es donde deberíamos realizar los desarrollos. Debemos crear una nueva rama Feature para cada una de las partes específicas de la funcionalidad. Esta rama siempre tendrá como origen la rama development. Y una vez se encuentre desarrollada y testada la funcionalidad se realizará un merge sobre development, donde se integrará con el resto de funcionalidades.</li>
+      <br>
+      <li><span class="post__paragraph--font-weight">Hotfix:</span> En esta rama se encontrará el código que solvente los posibles bugs que surgen en producción. Como en esta rama vamos a arreglar bugs del código ya en producción, esta deberá partir de master. Una vez arreglado el error deberemos hacer un merge primero sobre la rama master y posteriormente sobre la rama development para que esta se encuentre actualizada.</li>
+    </ul>
+
+    <h3 class="post__title--title-paragraph">Comandos GIT</h3>
+
+    <p class="post__paragraph">Todos los servicios web que hemos comentado anteriormente tienen sus propios frontend, o podemos tener aplicaciones de escritorio, como por ejemplo SourceTree,  que se conectan a estos servicios web para hacer las tareas habituales para mantener sincronizados nuestro código con el repositorio central.</p>
+    
+    <p class="post__paragraph">Yo prefiero utilizar la consola y hacer esta tarea a través de los comandos ya que de esta manera no dependo de conocer un servicio web u otro.</p>
+
+    <p class="post__paragraph">A continuación iremos viendo uno a uno los comandos más importantes a través de un pequeño ejemplo, que espero que haga que sea un poco más ameno la lectura de este post.</p>
+    
+    <h3 class="post__title--title-paragraph">Comenzemos</h3>
+
+    <p class="post__paragraph">El primer paso que siempre realizaremos será sincronizar nuestra carpeta local con el servidor. Para ello utilizaremos el comando: <span class="post__paragraph--font-weight">cloen</span> &lt;dirección_http_servidor&gt; &lt;directorio_local&gt;</p>
+
+    <p class="post__paragraph">Por ejemplo para bajarnos el repositorio “Test_Git” en la carpeta “Proyectos” de nuestro equipo, deberíamos introducir el siguiente comando:</p>
+
+    <pre>
+      <code highlight class="bash">
+  git clone https://servidorGIT/Test_Git ./proyectos
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Una vez ya tengamos la carpeta “Test_Git” en nuestra carpeta de proyectos comenzaremos a trabajar en nuestro proyecto. Suponemos que ya tenemos creadas las ramas master y develop creadas. Para ello lo primero que vamos a realizar es crear una nueva rama “feature” en la cual escribiremos el código para hacer el login en nuestra nueva aplicación.</p>
+
+    <h3 class="post__title--title-paragraph">Ramas.</h3>
+
+    <p class="post__paragraph">Para crear una rama utilizaremos el comando <span class="post__paragraph--font-weight">brnach</span>. Como la funcionalidad que vamos a escribir es para hacer el login en nuestra aplicación el nombre de la rama será feature/login. Y al ser una rama de desarrollo esta partirá desde develop.</p>
+
+    <pre>
+      <code highlight class="bash">
+  git branch feature/login develop
+      </code>
+    </pre>
+
+    <p class="post__paragraph">En caso de no introducir el nombre de la rama origen, por defecto se creará de la rama en la que nos encontremos en ese momento. </p>
+    
+    <p class="post__paragraph">Para comprobar que se ha creado correctamente la rama, podemos utilizar el comando <span class="post__paragraph--font-weight">branch</span>. Ya que cuando ejecutemos este comando no obtendremos ningún mensaje.</p>
+
+    <pre>
+      <code highlight class="bash">
+  git branch
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Y ahora te preguntaras, pero no hemos utilizado este comando anteriormente para crear la rama. Sí, es verdad. El comando branch crea una nueva rama cuando le indicamos un nombre de una nueva rama, y si no indicamos ningun nombre nos mostrará el listado de ramas de nuestro repositorio.</p>
+
+    <p class="post__paragraph">Que nos mostrará todas las ramas de nuestro repositorio, y en esta lista veremos que tenemos una línea con nuestra nueva rama, feature/login. </p>
+    
+    <p class="post__paragraph">Si algún compañero nuestro ha creado alguna nueva rama, nosotros no la veremos en nuestro listado de ramas. Para solventar esto simplemente deberemos ejecutar el siguiente comando:</p>
+    
+    <pre>
+      <code highlight class="bash">
+  git fetch
+      </code>
+    </pre>
+      
+    <p class="post__paragraph">Que descargara todos los cambios que se hayan realizado en el repositorio central.</p>
+
+    <p class="post__paragraph">Una vez creada y verificada que hemos creado nuestra rama correctamente comenzaremos nuestros trabajo de desarrollo. Para ello lo primero que deberemos realizar será movernos a nuestra rama de desarrollo “feature/login”. Para ello utilizaremos el comando <span class="post__paragraph--font-weight">checkout.</span></p>
+
+    <pre>
+      <code highlight class="bash">
+  git checkout feature/login 
+      </code>
+    </pre>
+
+    <h3 class="post__title--title-paragraph">Subida o push</h3>
+
+    <p class="post__paragraph">Supongamos que ya hemos realizado algunas modificaciones el código de nuestro proyecto. Lo primero que vamos a ver es los fichero que hemos modificado. Para ello utilizaremos el comando <span class="post__paragraph--font-weight">status</span>, el cual nos mostrará una lista de los ficheros que se han creado/modificado y/o borrado.</p>
+
+    <pre>
+      <code highlight class="bash">
+  git status
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Ahora veremos en pantalla todos los ficheros que han sido creados/modificados y/o borrados.</p>
+
+    <p class="post__paragraph">Normalmente siempre subiremos a nuestro repositorio todas las modificaciones que hemos realizado. Para ello utilizaremos el comando <span class="post__paragraph--font-weight">add</span>, con el que marcaremos los ficheros que queremos subir a nuestro repositorio.</p>
+
+    <p class="post__paragraph">Si queremos subir todas las modificaciones que hemos realizado debemos introducir el siguiente comando.</p>
+
+    <pre>
+      <code highlight class="bash">
+  git add --all 
+      </code>
+    </pre>
+  
+    <p class="post__paragraph">Marcara todos los documentos para subirlos al repositorio o</p>
+
+    <pre>
+      <code highlight class="bash">
+  git add .
+      </code>
+    </pre>
+
+    <p class="post__paragraph">que marca todos los documentos que hemos modificado o insertado, excluyendo los borrados.</p>
+
+    <p class="post__paragraph">Pero si quisieramos subir sólo algún fichero(s) en concreto seguimos utilizando el comando <span class="post__paragraph--font-weight">add</span>. En esta ocasión seguido del nombre del fichero(s) que queremos marcar. Por ejemplo:</p>
+
+    <pre>
+      <code highlight class="bash">
+  git add login.html
+      </code>
+    </pre>
+  
+    <p class="post__paragraph">Con lo cual habremos marcado el fichero login.html para posteriormente subirlo al repositorio.</p>
+
+    <p class="post__paragraph">Una vez marcados todos los ficheros que vamos a subir a nuestro repositorio debemos agruparlos en un commit o hacer. Para después subirlos a nuestro repositorio. Una de las ventajas de git es la posibilidad de trabajar offline. Esto nos permite hacer varios commit, que se quedan almacenados en nuestro equipo y posteriormente cuando tengamos conexión subir todas los commits que hemos realizado.</p>
+    
+    <p class="post__paragraph">Para realizar un commit el comando que utilizaremos será <span class="post__paragraph--font-weight">commit</span> seguido de un mensaje para que todo el equipo conozca que hemos subido en este commit.</p>
+
+    <pre>
+      <code highlight class="bash">
+  git commit -m &quot;Añadimos fichero login html&quot;
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Una vez realizado el commit o commits el último paso que tenemos que realizar es subir estos cambios al repositorio central para que estén disponibles para todo el equipo. Para ello utilizaremos el comando <span class="post__paragraph--font-weight">push</span>, que tiene la siguiente sintaxis: git push origin &lt;nombre de la rama origen&gt;</p>
+    
+    <p class="post__paragraph">En nuestro caso como nos encontramos en la rama feature/login el comando sería:</p>
+
+    <pre>
+      <code highlight class="bash">
+  git push origin feature/login
+      </code>
+    </pre>
+
+    <h3 class="post__title--title-paragraph">Integración</h3>
+
+    <p class="post__paragraph">Una vez subido el código al repositorio, y estando ya testado vamos a comenzar con la integración de las distintas ramas.</p>
+
+    <p class="post__paragraph">Siguiendo nuestro ejemplo, donde nosotros hemos creado la rama feature/login, que es la funcionalidad del login de nuestro proyecto, mientras tanto un compañero nuestro ha escrito el menú principal, para lo cual creó la rama feature/mainmenu y lo subió al repositorio central.</p>
+    
+    
+    <p class="post__paragraph">Para realizar la integración nos situaremos en la rama develop,</p>
+
+    <pre>
+      <code highlight class="bash">
+  git checkout develop
+      </code>
+    </pre>
+
+    <p class="post__paragraph">E importamos las modificaciones de ambas ramas en nuestra rama develop. Para ello utilizaremos el comando <span class="post__paragraph--font-weight">merge</span> cuya sintaxis es: merge &lt;nombre de la rama&gt;. Como en nuestro ejemplo ahora mismo tenemos dos ramas sin integrar deberemos realizar este comando en dos ocasiones, una por cada una de las ramas que queremos integrar. </p>
+
+    <pre>
+      <code highlight class="bash">
+  git merge feature/login
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Para integrar la rama feature/login, y a continuación integraremos la rama feature/mainmenu</p>
+
+    <pre>
+      <code highlight class="bash">
+  git merge feature/mainmenu
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Una vez integradas las dos ramas en nuestra rama de desarrollo, realizaremos las pruebas de integración. Y si todo es correcto podremos pasar a nuestra rama principal o master.</p>
+    
+    <p class="post__paragraph">Para ello seguiremos los mismos pasos que hemos seguido hasta el momento para la integración de estas dos ramas.</p>
+
+    <p class="post__paragraph">Primero nos situaremos en la rama master,</p>
+
+    <pre>
+      <code highlight class="bash">
+  git checkout master
+      </code>
+    </pre>
+
+    <p class="post__paragraph">y posteriormente realizaremos la integración de develop en master a través del comando merge.</p>
+
+    <pre>
+      <code highlight class="bash">
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Y hasta aquí los comandos básicos para subir nuestro código a un repositorio. Como has podido leer, no son muchos los comandos y son muy sencillos.</p>
+    
+    <h3 class="post__title--title-paragraph">Sincronización</h3>
+
+    <p class="post__paragraph">Y finalmente vamos a ver un último comando para sincronizar todos los cambios que existen en nuestro repositorio central con nuestro repositorio local.</p>
+    
+    <p class="post__paragraph">Para ello en primer lugar nos situaremos en la rama que deseemos sincronizar con el comando <span class="post__paragraph--font-weight">checkout</span>, como hemos visto anteriormente, y posteriormente ejecutaremos el comando <span class="post__paragraph--font-weight">pull</span></p>
+    
+    <p class="post__paragraph">El cuál nos descargara todas las modificaciones existentes en el repositorio central para de esta forma tener en nuestro equipo el proyecto totalmente actualizado y podamos seguir trabajando con todos los cambios que han realizado nuestros compañeros de equipo.</p>
+    
+    <p class="post__paragraph">Supongamos por ejemplo que queremos seguir desarrollando en la rama mainmenu, que había comenzado nuestro compañero para ello utilizaremos el siguiente comando:</p>
+  
+    <pre>
+      <code highlight class="bash">
+  git pull origin feature/mainmenu
+      </code>
+    </pre>    
+
+    <p class="post__paragraph">En un próximo post seguiremos viendo algunos comandos más de git para nuestro trabajo diario, pero si quieres profundizar en las distintas posibilidades que tienen los comandos que hemos vistos hasta el momento, o ver más comandos puedes ir a la página oficial de git  <a href="https://git-scm.com/" title="git-scm.com">https://git-scm.com/</a> donde tienes una información mucho más extensa. </p>
+    
+    <blog-post-footer [titlepost]="titlepost"></blog-post-footer>
+  </div>
+</article>
+<blog-post-comment [idpost]="url"></blog-post-comment>
+s

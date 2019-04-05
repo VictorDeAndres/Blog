@@ -1,0 +1,185 @@
+<ngx-json-ld [json]="schema"></ngx-json-ld>
+<blog-post-header></blog-post-header>
+<article class="post">
+  <div class="post__container">
+    <div class="post__title"></div>
+    <h1 class="post__title--title">
+      Introduccion a Clean Code
+    </h1>
+    <h2 class="post__title--subtitle">
+      Introducción a Clean Code (I) - Las normas
+    </h2>
+    <div class="post__title--footer"></div>
+
+    <blog-post-publish-info [publishDate]="publishDate" [postCategories]="postCategories"></blog-post-publish-info>
+
+    <div class="post__image">
+      <img class="post__image--image" src="https://victordeandres.es/assets/images/posts/CleanCode.png" alt="clean code">
+    </div>
+
+    <p class="post__paragraph">Todos, o por lo menos la gran mayoría, queremos ser mejores profesionales, y queremos hacer las cosas mejor. El desarrollo
+      del software es un área que avanza muy deprisa. Cada vez con más herramientas y nuevas tecnologías, pero independientemente
+      de las herramientas que utilicemos o el lenguaje o lenguajes que utilizamos siempre tenemos una parte que subyace,
+      el escribir código.</p>
+
+    <p class="post__paragraph">En este artículo y en un próximo artículo haré una breve introducción sobre qué es y cual son los principios y normas
+      del
+      <span class="post__paragraph--font-weight">Clean Code</span>. Las cuales puedes poner en práctica con cualquier lenguaje de programación. Aunque lo que te recomiendo
+      es que leas el libro
+      <a href="https://www.amazon.es/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882" title="Clean Code: A Handbook of Agile Software Craftsmanship">"Clean Code: A Handbook of Agile Software Craftsmanship"</a> de Robert C. Martin. </p>
+
+    <p class="post__paragraph">Tal y como te he comentado antes debido a la extensión de este tema voy a dividir este artículo en dos partes. En esta
+      primera veremos las normas. Y en el siguiente los principios de Clean Code.</p>
+
+    <h3 class="post__title--title-paragraph">
+      Los nombres.
+    </h3>
+
+    <p class="post__paragraph">Vamos a comenzar por la parte más sencilla. Los nombres. Que regla seguir para poner nombre a las variables, funciones,
+      objetos o métodos. Algo que parece muy sencillo pero seguro que si lleváis algún tiempo programando os habréis encontrado
+      nombres de todo tipo. Como por ejemplos nombres de variables como el siguiente ‘sprped’. Seguro que no os dice nada
+      sin un entorno y en ocasiones ni con un entorno sabriais hallar su significado.</p>
+
+    <p class="post__paragraph">Los nombres tienen que tener un significado, cuando los leas tienes que saber inmediatamente a que se refieren. Cuando
+      creó un nuevo nombre me hago la siguientes preguntas. ¿Que hace? y ¿Cual es su propósito?. La respuesta a estas dos
+      preguntas es el nombre que asignare.</p>
+
+    <p class="post__paragraph">Los nombres tienen que estar bien diferenciados unos de otros. Evita los nombres muy similares unos a otros porque te
+      pueden llevar a confusión posteriormente.</p>
+
+    <p class="post__paragraph">Los nombres deben ser pronunciables. Piensa que cuando estés hablando con un compañero de trabajo o cualquier otra persona
+      tiene que comprenderte.</p>
+
+    <p class="post__paragraph">Evita los prefijos y los sufijo en los nombres. Si has cumplido las premisas anteriores nunca utilizaras prefijos o sufijos
+      en tus nombres.</p>
+
+    <p class="post__paragraph">Los nombres de las clases deben ser siempre sustantivos y los nombres los métodos deben ser verbos.</p>
+
+    <h3 class="post__title--title-paragraph">
+      Las funciones.
+    </h3>
+
+    <p class="post__paragraph">Las funciones es una de las partes que más utilizamos en cualquier lenguaje de programación. La longitud de las funciones
+      no debería exceder de las 50 líneas aunque lo ideal es que sean de 20 líneas.</p>
+
+    <p class="post__paragraph">Una función debe hacer sólo una tarea correctamente.</p>
+
+    <p class="post__paragraph">Para que las funciones no superen este límite, una función nunca debe mezclar operaciones de alto nivel, por ejemplo
+      calcular el iva de un producto en una factura, con funciones de bajo nivel, como por ejemplo realizar tareas aritméticas.
+      Si aún así nuestra función supera este número de líneas deberíamos realizar las siguientes acciones:</p>
+
+    <ul>
+      <li>Extract method</li>
+      <br>
+      <li>Move method</li>
+      <br>
+      <li>Descompose Conditional</li>
+    </ul>
+
+    <p class="post__paragraph">Una ejemplo de una función que calcula la tarifa de una línea, con su posible descuento y verificar su disponibilidad
+      en el almacena y si se encuentra descatalogada aplicar un descuento del 15% importe resultante sería algo similar a
+      la siguiente:</p>
+
+    <pre>
+      <code highlight class="typescript">
+  function calculaImporteBrutoLinea(__numProducto) &#123;
+
+    const importeDescuentoDescatalogado = 15;
+    let importeBrutoLinea = tarifaCatalogoProducto(__numProducto);
+
+    if ( productoDisponible(__numProducto) ) &#123;
+      if ( productoDescatalogado(__numProducto) ) &#123;
+        importeBrutoLinea = aplicaDescuentoEspecial(importeBrutoLinea, importeDescuentoDescatalogado);
+      &#125; else &#123;
+        if ( productoTieneDescuento(__numProducto) ) &#123;
+          importeBrutoLinea = aplicaDescuento(__numProducto);
+        &#125;
+      &#125;
+    &#125; else &#123;
+      importeBruto = 0;
+    &#125;
+
+    return importeBrutoLinea;
+
+  &#125;        
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Una función nunca debe recibir más de dos parámetros, en cualquier otro caso los deberíamos unir agrupadas por similitud
+      en un objeto. Si al hacer esta agrupación tenemos varios objetos en entrada es un señal para poder dividir esa función
+      que estamos desarrollando en varias funciones más sencillas.</p>
+
+    <p class="post__paragraph">Una función únicamente debe realizar una tarea y esta tarea tiene que quedar claramente definida en la función. Si una
+      función hace varias tareas a la vez es una función mal escrita.</p>
+
+    <h3 class="post__title--title-paragraph">
+      Comentarios
+    </h3>
+
+    <p class="post__paragraph">"Un comentario es un síntoma de no haber conseguido escribir un código claro". Robert C. Martin</p>
+
+    <p class="post__paragraph">El código que escribes debe ser autoexplicativo. Volvemos al ejemplo anterior, como puedes observar aunque no supieras
+      de programación podrías entender que hace esta función.</p>
+
+    <pre>
+        <code highlight class="typescript">
+    function calculaImporteBrutoLinea(__numProducto) &#123;
+  
+      const importeDescuentoDescatalogado = 15;
+      let importeBrutoLinea = tarifaCatalogoProducto(__numProducto);
+  
+      if ( productoDisponible(__numProducto) ) &#123;
+        if ( productoDescatalogado(__numProducto) ) &#123;
+          importeBrutoLinea = aplicaDescuentoEspecial(importeBrutoLinea, importeDescuentoDescatalogado);
+        &#125; else &#123;
+          if ( productoTieneDescuento(__numProducto) ) &#123;
+            importeBrutoLinea = aplicaDescuento(__numProducto);
+          &#125;
+        &#125;
+      &#125; else &#123;
+        importeBruto = 0;
+      &#125;
+  
+      return importeBrutoLinea;
+  
+    &#125;        
+        </code>
+      </pre>
+
+    <p class="post__paragraph">Si cuando estás escribiendo tu código necesitas un tiempo para escribir un comentario porque no utilizas ese tiempo para
+      refactorizar tu código de tal forma que sea autoexplicativo.</p>
+
+    <p class="post__paragraph">Además los comentarios tienen otro problema añadido. Cuando haces una modificación al código ya comentado normalmente
+      no modificas también el código por lo que en ocasiones el comentario está desincronizado con el código. </p>
+
+    <p class="post__paragraph">Aunque por supuesto hay situaciones en las que es recomendable escribir comentarios</p>
+
+    <h3 class="post__title--title-paragraph">
+      Formato.
+    </h3>
+
+    <p class="post__paragraph">Cuando estás leyendo, lees de izquierda a derecha, y de arriba a abajo. Tu código deberá seguir esa estructura porque
+      esto afecta a la legibilidad de tu código.</p>
+
+    <p class="post__paragraph">Cuando utilices tanto separaciones horizontales como verticales debes realizarlas para agrupar el código en bloques o
+      secciones.</p>
+
+    <p class="post__paragraph">Para esta sección no hay reglas predefinidas, puedes utilizar las que desees. Pero es importante que todos los miembros
+      del equipo utilicen las mismas.</p>
+
+    <p class="post__paragraph">Algunas de las reglas que puedes definir son las siguientes: </p>
+
+    <ul>
+      <li>Densidad vertical. Tienes que definir cuando y porque puedes dejar una línea en blanco dentro de tu código</li>
+      <br>
+      <li>Ubicación de los componentes. Normalmente en una clase lo primero que defines son las variables. Pero a continuación
+        debes definir si escribes los métodos públicos primero y posteriormente las funciones privadas o viceversa.</li>
+    </ul>
+
+    <p class="post__paragraph">Hasta aquí la primera parte de este artículo donde he expuesto las normas de clean code. En un próximo artículo veremos
+      los principios.</p>
+
+    <blog-post-footer [titlepost]="titlepost"></blog-post-footer>
+  </div>
+</article>
+<blog-post-comment [idpost]="url"></blog-post-comment>

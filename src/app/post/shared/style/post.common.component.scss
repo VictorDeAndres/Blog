@@ -1,0 +1,170 @@
+@import './../../../../assets/styles/_breakpoints';
+@import './../../../../assets/styles/__breakpoints.scss';
+@import './../../../../assets/styles/__colors.scss';
+@import './../../../../assets/styles/__measures.scss';
+
+.post {
+  display: flex;
+  justify-content: center;
+  background-image: url('./../../../../assets/images/struckaxiom.png');
+  text-align: justify;
+}
+
+.post__container {
+  @include respond-to(monitor) {
+    margin-top: 48px;
+    width: $post-width;
+  }
+
+  @include respond-to(tablet) {
+    width: 96%;
+    margin: 72px 2em;
+  }
+
+  @include respond-to(movil) {
+    width: 96%;
+    margin: 72px 2em;
+  }
+
+}
+
+.post__title {
+  display: block;
+
+  @include respond-to(monitor) {
+    margin-top: 5em;
+  }
+
+  @include respond-to(tablet) {
+    margin-top: 5em;
+  }
+
+  @include respond-to(movil) {
+    margin-top: 2em;
+  }
+
+}
+
+.post__title--title {
+  font-family: BebasNeue;
+  font-weight: bold;
+  text-decoration: none;
+  color: #000;
+
+  @include respond-to(monitor) {
+    font-size: 70px;
+    line-height: 70px;
+  }
+
+  @include respond-to(tablet) {
+    font-size: 70px;
+    line-height: 70px;
+  }
+
+  @include respond-to(movil) {
+    font-size: 36px;
+    line-height: 36px;
+  }
+
+}
+
+.post__title--subtitle {
+  text-decoration: none;
+  color: #7d7c7c;
+
+  @include respond-to(monitor) {
+    font-size: 24px;
+    line-height: 24px;
+  }
+
+  @include respond-to(tablet) {
+    font-size: 24px;
+    line-height: 24px;
+  }
+
+  @include respond-to(movil) {
+    font-size: 18px;
+    line-height: 18x;
+  }
+
+}
+
+.post__title--title-paragraph {
+  font-family: Montserrat-Bold;
+  margin-top: 1em;
+
+  @include respond-to(monitor) {
+    font-size: 48px;
+    line-height: 48px;
+  }
+
+  @include respond-to(tablet) {
+    font-size: 48px;
+    line-height: 48px;
+  }
+
+  @include respond-to(movil) {
+    font-size: 24px;
+    line-height: 24x;
+  }
+
+}
+
+.post__title--title-index {
+  font-family: Montserrat;
+
+  @include respond-to(monitor) {
+    font-size: 36px;
+    line-height: 36px;
+  }
+
+  @include respond-to(tablet) {
+    font-size: 36x;
+    line-height: 36px;
+  }
+
+  @include respond-to(movil) {
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+}
+
+.post__title--footer {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #cecece;
+  margin: 1em 0 .1em 0;
+}
+
+
+.post__image {
+  display: block;
+  width: 100%;
+  margin: 2em 0 1em 0;
+}
+
+.post__image--image {
+  width: 100%;
+}
+
+.post__paragraph {
+  margin: 2em 0 2em 0;
+  opacity: .8;
+  line-height: 1.5em;
+}
+
+.post__paragraph--font-weight {
+  font-family: Montserrat-Bold;
+}
+
+a {
+  color: $ink-blog;
+  text-decoration: none;
+}
+
+.post__photo {
+  font-size: 12px;
+  text-align: center;
+}

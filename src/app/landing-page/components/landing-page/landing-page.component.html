@@ -1,0 +1,33 @@
+<ngx-json-ld [json]="schema"></ngx-json-ld>
+<!-- Menu -->
+<aside id="sidebarmenu">
+  <input id="hamburger" type="checkbox" class="hamburger-checkbox">
+  <label for="hamburger" class="hamburger-label" role="button" aria-labelledby="menu">&#xf0c9;</label>
+
+  <nav role="navigation" class="sidebar">
+    <div class="barmenu">
+      <div class="menu">
+        <ul>
+          <li><a [routerLink]="['/posts']">Blog</a></li>
+          <li><a [routerLink]="['/contact']">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer">
+        <a href='http://es.linkedin.com/in/vdeandres' class="footer--icon fa fa-linkedin"></a>
+        <a href='https://github.com/VictorDeAndres' class="footer--icon fa fa-github"></a>
+        <a href='https://twitter.com/victor_deandres' class="footer--icon fa fa-twitter"></a>
+      </div>
+    </div>
+  </nav>
+</aside>
+
+<!-- Background -->
+<div class="landing__page__container">
+  <div class="landing__page__container--image">
+    <div class="landing__page__card">
+      <div class="landing__page__card--name">Victor de Andrés</div>
+      <div class="landing__page__card--title">Software Engineering</div>
+      <div class="landing__page__card--subtitle">Full Stack Developer</div>
+    </div>
+  </div>
+</div>

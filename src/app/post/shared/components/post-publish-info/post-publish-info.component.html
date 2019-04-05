@@ -1,0 +1,20 @@
+<span class="post-publish-info__title__publishedate">
+  Publicado el:
+</span>
+<span class="post-publish-info__publishedate">{{publishDate}}</span>
+
+<span class="post-publish-info__title__author">
+  por Victor de Andrés
+</span>
+
+<span class="post-publish-info__title__category">
+  Archivado en:
+</span>
+
+
+<span *ngFor="let category of postCategories; let idx = index">
+  <span *ngIf="idx > 0" class="post-publish-info__category--separator"> | </span>
+  <span class="post-publish-info__category">
+    <span>{{category}}</span>
+  </span>
+</span>

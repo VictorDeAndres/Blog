@@ -1,0 +1,69 @@
+<article class="post">
+  <div class="post__container">
+    <div class="post__title"></div>
+    <h1 class="post__title--title">
+      Webpack en tus proyectos Angular 2+
+    </h1>
+    <h2 class="post__title--subtitle">
+      Habilita webpack en tus proyectos Angular 2+
+    </h2>
+    <div class="post__title--footer"></div>
+
+    <blog-post-publish-info [publishDate]="publishDate" [postCategories]="postCategories"></blog-post-publish-info>
+
+    <div class="post__image">
+      <img class="post__image--image" src="https://victordeandres.es/assets/images/posts/webpack-and-angularjs.png" alt="Angular y webpack">
+    </div>
+
+    <p class="post__paragraph">Angular-cli ha simplificado la vida de muchos desarrolladores, reduciendo el tiempo de inicio de un proyecto y dando
+      la posibilidad de centrarse sólo en el código sin perder tiempo en las configuraciones.</p>
+
+    <p class="post__paragraph">Sin embargo, muchos desarrolladores no han/hemos utilizado angular-cli porque no era posible cambiar la configuración,
+      agregar nuevos complementos o en general utilizar toda la flexibilidad que ofrece webpack.</p>
+
+    <p class="post__paragraph">Pero aquí tienes la solución. Una nueva característica llamada
+      <span class="post__paragraph--font-weight">eject</span> que te permite generar el fichero
+      <span class="post__paragraph--font-weight">webpack.config.js</span> en tu proyecto.</p>
+
+    <h3 class="post__title--title-paragraph">
+      Empecemos desde cero.
+    </h3>
+
+    <p class="post__paragraph">En primer lugar tenemos que instalar angular-cli globalmente (para quien ya lo estaba utilizando recuerda que ha cambio
+      el nombre de angular-cli a @angular/cli):</p>
+
+    <pre>
+      <code class="bash">
+        npm uninstall -g angular-cli @angular/cli
+        npm cache clean
+        npm install -g @angular/cli@latest
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Ya estamos preparados para generar un nuevo proyecto con angular-cli (a mi me gusta scss así que lo usaré):</p>
+
+    <pre>
+      <code class="bash">
+        ng new ng-cli-test --style scss
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Hasta ahora nada nuevo, acabamos de crear un proyecto normal con soporte scss .... </p>
+
+    <h3 class="post__title--title-paragraph">
+      La magia.
+    </h3>
+
+    <pre>
+      <code class="bash">
+        ng eject
+      </code>
+    </pre>
+
+    <p class="post__paragraph">En tu proyecto encontrarás el archivo que buscabas: webpack.config.js ya puedes agregar los complomentos que más te gusten
+      y trabajar con webpack.</p>
+
+    <blog-post-footer [titlepost]="titlepost"></blog-post-footer>
+  </div>
+</article>
+<blog-post-comment [idpost]="url"></blog-post-comment>
