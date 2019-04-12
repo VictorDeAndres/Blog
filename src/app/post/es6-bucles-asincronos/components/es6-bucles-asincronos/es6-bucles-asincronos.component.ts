@@ -30,11 +30,11 @@ export class Es6BuclesAsincronosComponent implements OnInit, AfterViewInit {
     SEO['description'] = 'Desarrollo bucles asíncronos ES6 - EcmaScript 2015';
     SEO['canonical'] = `https://victordeandres.es/post/${this.url}`;
     // Social Tags
-    SEO['og:type'] = SEO['article'];
+    SEO['og:type'] = 'article';
     SEO['og:title'] = SEO['title'];
     SEO['og:url'] = SEO['canonical'];
     SEO['og:image'] = 'https://images.unsplash.com/photo-1531148502260-2920d70c8ed4?q=75&fm=jpg';
-    SEO['og:site_name'] = SEO['Victor de Andrés'];
+    SEO['og:site_name'] = 'Blog Victor de Andrés';
     SEO['og:description'] = SEO['description'];
     this.seoService.addHeaderLabels(SEO);
   }

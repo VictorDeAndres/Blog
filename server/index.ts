@@ -5,6 +5,7 @@ import 'reflect-metadata';
 import { enableProdMode } from '@angular/core';
 import * as express from 'express';
 import { join } from 'path';
+import * as fs from 'fs';
 
 // firebase cloud functions
 import * as firebaseFunctions from 'firebase-functions';
@@ -45,7 +46,28 @@ if ( DISABLE_FIREBASE ) {
 
 // All regular routes use the Universal engine
 app.get('*', (req, res) => {
-  res.render(join(DIST_FOLDER, 'browser', 'index_ssr.html'), {req});
+
+  function checkIfExitsFile(filename) {
+    const path = join(DIST_FOLDER, '/seoHeaders/', `index_${page}.html`);
+    try {
+      if (fs.existsSync(path)) {
+        return true;
+      }
+    } catch (err) {
+      console.error(err);
+      return false;
+    }
+  }
+
+  const page = req.originalUrl.split('/').pop();
+  let renderIndex = 'index_ssr.html';
+  let renderFolder = 'browser';
+  if ( checkIfExitsFile(page) ) { //  Load custom index page
+    renderFolder = 'seoHeaders';
+    renderIndex = `index_${page}.html`;
+  }
+  // const renderFile = `index_${req.originalUrl.split('/').pop()}.html`;
+  res.render(join(DIST_FOLDER, renderFolder, renderIndex), {req});
 });
 
 if ( DISABLE_FIREBASE ) {
