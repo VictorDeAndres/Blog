@@ -27,13 +27,13 @@ export class SeoService {
 
   createLinkForCanonicalURL(canonicalUrl) {
     // Check if canonical url exists. If not exists then create new canonical url else update the existing tag
-    if ( document.querySelector('link[rel=\'canonical\']') === null) {
+    if ( this.doc.querySelector('link[rel=\'canonical\']') === null || this.doc.querySelector('link[rel=\'canonical\']') === undefined ) {
       const link: HTMLLinkElement = this.doc.createElement('link');
       this.doc.head.appendChild(link);
       link.setAttribute('href', canonicalUrl);
       link.setAttribute('rel', 'canonical');
     } else {
-      document.querySelector('link[rel=\'canonical\']').setAttribute('href', canonicalUrl);
+      this.doc.querySelector('link[rel=\'canonical\']').setAttribute('href', canonicalUrl);
     }
 
   }

@@ -2,12 +2,12 @@
 
 @font-face {
   font-family: mohave;
-  src: url('./../../../../assets/fonts/Mohave.otf');
+  src: url('/assets/fonts/Mohave.otf');
 }
 
 @font-face {
   font-family: nevis;
-  src: url('./../../../../assets/fonts/nevis.ttf');
+  src: url('/assets/fonts/nevis.ttf');
 }
 
 #sidebarmenu {
@@ -17,15 +17,15 @@
 .landing__page__container {
 
   @include respond-to(monitor) {
-    background-image: url('./../../../../assets/images/cover_m.jpg');
+    background-image: url('/assets/images/cover_m.jpg');
   }
 
   @include respond-to(tablet) {
-    background-image: url('./../../../../assets/images/cover.jpg');
+    background-image: url('/assets/images/cover.jpg');
   }
 
   @include respond-to(movil) {
-    background-image: url('./../../../../assets/images/cover.jpg');
+    background-image: url('/assets/images/cover.jpg');
   }
 
   width: 100%;
