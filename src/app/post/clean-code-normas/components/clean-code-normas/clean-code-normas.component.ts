@@ -20,8 +20,8 @@ export class CleanCodeNormasComponent implements OnInit, AfterViewInit {
   public postCategories: string[] = ['Fundamentos', 'Buenas Practicas'];
 
   constructor(
-    private eltRef: ElementRef,
-    private seoService: SeoService
+    private _elementRef: ElementRef,
+    private _seoService: SeoService
   ) {
     const SEO = {};
     // Fixed
@@ -40,7 +40,7 @@ export class CleanCodeNormasComponent implements OnInit, AfterViewInit {
     SEO['og:url'] = SEO['canonical'];
     SEO['og:site_name'] = 'Victor de Andrés';
 
-    this.seoService.addHeaderLabels(SEO);
+    this._seoService.addHeaderLabels(SEO);
   }
 
   ngOnInit() {
@@ -76,7 +76,7 @@ export class CleanCodeNormasComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.eltRef.nativeElement.querySelectorAll('pre code').forEach(code => hljs.highlightBlock(code) );
+    this._elementRef.nativeElement.querySelectorAll('pre code').forEach(code => hljs.highlightBlock(code) );
     window.scroll(0, 0);
   }
 }

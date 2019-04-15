@@ -18,8 +18,8 @@ export class TopAngularRouterNavigationComponent implements OnInit, AfterViewIni
   public postCategories: string[] = ['Angular', 'Tips'];
 
   constructor(
-    private eltRef: ElementRef,
-    private seoService: SeoService
+    private _elemenRef: ElementRef,
+    private _seoService: SeoService
   ) {
     const SEO = {};
     SEO['author'] = 'Victor de Andres';
@@ -36,7 +36,7 @@ export class TopAngularRouterNavigationComponent implements OnInit, AfterViewIni
     SEO['og:image'] = 'https://victordeandres.es/assets/images/posts/angulartips.png';
     SEO['og:url'] = SEO['canonical'];
     SEO['og:site_name'] = 'Victor de Andrés';
-    this.seoService.addHeaderLabels(SEO);
+    this._seoService.addHeaderLabels(SEO);
   }
 
   ngOnInit() {
@@ -72,7 +72,7 @@ export class TopAngularRouterNavigationComponent implements OnInit, AfterViewIni
   }
 
   ngAfterViewInit() {
-    this.eltRef.nativeElement.querySelectorAll('pre code').forEach(code => hljs.highlightBlock(code) );
+    this._elemenRef.nativeElement.querySelectorAll('pre code').forEach(code => hljs.highlightBlock(code) );
     window.scroll(0, 0);
   }
 

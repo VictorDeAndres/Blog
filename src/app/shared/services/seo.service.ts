@@ -9,14 +9,14 @@ import ua from 'universal-analytics';
 })
 export class SeoService {
 
-  private visitor;
+  private _visitor;
 
   constructor(
     @Inject(DOCUMENT) private doc,
     private meta: Meta,
     private title: Title,
   ) {
-    this.visitor = ua('UA-111721516-1');
+    this._visitor = ua('UA-111721516-1');
   }
 
   addHeaderLabels(SEO: object) {
@@ -60,7 +60,7 @@ export class SeoService {
     // remove domain from url.
     url = url.replace('https://victordeandres.es/', '');
     // Send page to ua
-    this.visitor.pageview(url).send();
+    this._visitor.pageview(url).send();
 
   }
 }

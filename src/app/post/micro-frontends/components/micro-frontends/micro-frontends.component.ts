@@ -17,8 +17,8 @@ export class MicroFrontendsComponent implements OnInit, AfterViewInit {
   public postCategories: string[] = ['WebApps'];
 
   constructor(
-    private eltRef: ElementRef,
-    private seoService: SeoService
+    private _elemenRefnRef: ElementRef,
+    private _seoService: SeoService
   ) {
     const SEO = {};
     SEO['author'] = 'Victor de Andres';
@@ -36,7 +36,7 @@ export class MicroFrontendsComponent implements OnInit, AfterViewInit {
     SEO['og:url'] = SEO['canonical'];
     SEO['og:site_name'] = 'Victor de Andrés';
 
-    this.seoService.addHeaderLabels(SEO);
+    this._seoService.addHeaderLabels(SEO);
   }
 
   ngOnInit() {
@@ -72,7 +72,7 @@ export class MicroFrontendsComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.eltRef.nativeElement.querySelectorAll('pre code').forEach(code => hljs.highlightBlock(code) );
+    this._elemenRefnRef.nativeElement.querySelectorAll('pre code').forEach(code => hljs.highlightBlock(code) );
     window.scroll(0, 0);
   }
 

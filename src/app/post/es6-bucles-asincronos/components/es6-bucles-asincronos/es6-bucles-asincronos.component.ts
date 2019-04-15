@@ -18,8 +18,8 @@ export class Es6BuclesAsincronosComponent implements OnInit, AfterViewInit {
   public postCategories: string[] =  ['Fundamentos', 'Javascript', 'Tips'];
 
   constructor(
-    private eltRef: ElementRef,
-    private seoService: SeoService
+    private _elemenRef: ElementRef,
+    private _seoService: SeoService
   ) {
     const SEO = {};
     SEO['author'] = 'Victor de Andres';
@@ -36,7 +36,7 @@ export class Es6BuclesAsincronosComponent implements OnInit, AfterViewInit {
     SEO['og:image'] = 'https://images.unsplash.com/photo-1531148502260-2920d70c8ed4?q=75&fm=jpg';
     SEO['og:site_name'] = 'Blog Victor de Andrés';
     SEO['og:description'] = SEO['description'];
-    this.seoService.addHeaderLabels(SEO);
+    this._seoService.addHeaderLabels(SEO);
   }
 
   ngOnInit() {
@@ -72,7 +72,7 @@ export class Es6BuclesAsincronosComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.eltRef.nativeElement.querySelectorAll('pre code').forEach(code => hljs.highlightBlock(code) );
+    this._elemenRef.nativeElement.querySelectorAll('pre code').forEach(code => hljs.highlightBlock(code) );
     window.scroll(0, 0);
   }
 }

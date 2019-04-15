@@ -18,8 +18,8 @@ export class JavascriptScopeComponent implements OnInit, AfterViewInit  {
   public postCategories: string[] = ['Fundamentos', 'Javascript'];
 
   constructor(
-    private eltRef: ElementRef,
-    private seoService: SeoService
+    private _elemenRef: ElementRef,
+    private _seoService: SeoService
   ) {
     const SEO = {};
     SEO['author'] = 'Victor de Andres';
@@ -37,7 +37,7 @@ export class JavascriptScopeComponent implements OnInit, AfterViewInit  {
     SEO['og:url'] = SEO['canonical'];
     SEO['og:site_name'] = 'Victor de Andrés';
 
-    this.seoService.addHeaderLabels(SEO);
+    this._seoService.addHeaderLabels(SEO);
   }
 
   ngOnInit() {
@@ -73,7 +73,7 @@ export class JavascriptScopeComponent implements OnInit, AfterViewInit  {
   }
 
   ngAfterViewInit() {
-    this.eltRef.nativeElement.querySelectorAll('pre code').forEach(code => hljs.highlightBlock(code) );
+    this._elemenRef.nativeElement.querySelectorAll('pre code').forEach(code => hljs.highlightBlock(code) );
     window.scroll(0, 0);
   }
 

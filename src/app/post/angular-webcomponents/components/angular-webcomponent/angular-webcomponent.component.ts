@@ -18,8 +18,8 @@ export class AngularWebcomponentComponent implements OnInit, AfterViewInit {
   public postCategories: string[] = ['Angular', 'Desarrollo', 'WebComponents', 'WebApps'];
 
   constructor(
-    private eltRef: ElementRef,
-    private seoService: SeoService
+    private _elementRef: ElementRef,
+    private _seoService: SeoService
   ) {
     const SEO = {};
     // Fixed
@@ -37,7 +37,7 @@ export class AngularWebcomponentComponent implements OnInit, AfterViewInit {
     SEO['og:image'] = 'https://images.unsplash.com/photo-1426927308491-6380b6a9936f?q=75&fm=jpg';
     SEO['og:url'] = SEO['canonical'];
     SEO['og:site_name'] = 'Victor de Andrés';
-    this.seoService.addHeaderLabels(SEO);
+    this._seoService.addHeaderLabels(SEO);
   }
 
   ngOnInit() {
@@ -73,7 +73,7 @@ export class AngularWebcomponentComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.eltRef.nativeElement.querySelectorAll('pre code').forEach(code => hljs.highlightBlock(code) );
+    this._elementRef.nativeElement.querySelectorAll('pre code').forEach(code => hljs.highlightBlock(code) );
     window.scroll(0, 0);
   }
 }

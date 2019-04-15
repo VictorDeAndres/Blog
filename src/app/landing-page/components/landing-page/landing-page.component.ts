@@ -14,7 +14,7 @@ export class LandingPageComponent implements OnInit {
 public schema;
 
   constructor(
-    private seoService: SeoService
+    private _seoService: SeoService
   ) {
     const SEO = {};
     // Fixed
@@ -26,7 +26,7 @@ public schema;
     SEO['keywords'] = 'victor de andres, blog, team lead, software engineering, front end, developer, fullstack, mean, javascript, angular, python, docker';
     SEO['description'] = 'Blog Victor de Andres. Software Engineering, Full Stack Developer',
     SEO['canonical'] = 'https://victordeandres.es/';
-    this.seoService.addHeaderLabels(SEO);
+    this._seoService.addHeaderLabels(SEO);
   }
 
   ngOnInit() {

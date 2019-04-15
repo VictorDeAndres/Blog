@@ -20,19 +20,19 @@ export class PostsComponent implements OnInit {
   lastPage: boolean;
 
   constructor(
-    private postsService: PostsService,
-    private seoService: SeoService
+    private _postService: PostsService,
+    private _seoService: SeoService
   ) {
     const SEO = {};
     SEO['title'] = 'Blog Victor de Andres';
     SEO['keywords'] = 'angular desarrollo expressjs firebase fundamentos git graphql javascript tips unittest test webcomponents webpack';
     SEO['description'] = 'Blog Victor de Andres',
     SEO['canonical'] = 'https://victordeandres.es/posts';
-    this.seoService.addHeaderLabels(SEO);
+    this._seoService.addHeaderLabels(SEO);
   }
 
   ngOnInit() {
-    this.postsService.getPosts(0)
+    this._postService.getPosts(0)
     .then(responsePromise => {
       this.loadAuxData();
       this.posts = responsePromise;
@@ -42,15 +42,15 @@ export class PostsComponent implements OnInit {
   }
 
   loadAuxData(): void {
-    const INITPAGE = this.postsService.initializeDisplayPage();
+    const INITPAGE = this._postService.initializeDisplayPage();
     this.initPage = INITPAGE.initPage;
     this.lastPage = INITPAGE.lastPage;
-    this.categories = this.postsService.getCategories();
+    this.categories = this._postService.getCategories();
   }
 
   movebackward = () => {
-    const CURRPAGE = this.postsService.prevPage();
-    this.postsService.getPosts(CURRPAGE.currentPage, this.selectCategory)
+    const CURRPAGE = this._postService.prevPage();
+    this._postService.getPosts(CURRPAGE.currentPage, this.selectCategory)
       .then(responsePromise => {
         this.initPage = CURRPAGE.initPage;
         this.lastPage = false;
@@ -62,8 +62,8 @@ export class PostsComponent implements OnInit {
   }
 
   moveforward = () => {
-    const CURRPAGE = this.postsService.nextPage();
-    this.postsService.getPosts(CURRPAGE.currentPage, this.selectCategory)
+    const CURRPAGE = this._postService.nextPage();
+    this._postService.getPosts(CURRPAGE.currentPage, this.selectCategory)
       .then(responsePromise => {
         this.initPage = false;
         this.lastPage = CURRPAGE.lastPage;
@@ -78,9 +78,9 @@ export class PostsComponent implements OnInit {
     if (event !== undefined) {
       this.selectCategory = event;
     }
-    this.postsService.getPosts(0, this.selectCategory)
+    this._postService.getPosts(0, this.selectCategory)
       .then(responsePromise => {
-        const INITPAGE = this.postsService.initializeDisplayPage();
+        const INITPAGE = this._postService.initializeDisplayPage();
         this.initPage = INITPAGE.initPage;
         this.lastPage = INITPAGE.lastPage;
         this.posts = responsePromise;

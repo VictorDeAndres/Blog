@@ -20,8 +20,8 @@ export class GitDesdeLineaComandosComponent implements OnInit, AfterViewInit {
   public postCategories: string[] = ['Git', 'Fudamentos', 'Desarrollo'];
 
   constructor(
-    private eltRef: ElementRef,
-    private seoService: SeoService
+    private _elemenRef: ElementRef,
+    private _seoService: SeoService
   ) {
     const SEO = {};
     SEO['author'] = 'Victor de Andres';
@@ -38,7 +38,7 @@ export class GitDesdeLineaComandosComponent implements OnInit, AfterViewInit {
     SEO['og:image'] = 'https://victordeandres.es/assets/images/posts/git_linea_comandos.png';
     SEO['og:url'] = SEO['canonical'];
     SEO['og:site_name'] = SEO['Victor de Andrés'];
-    this.seoService.addHeaderLabels(SEO);
+    this._seoService.addHeaderLabels(SEO);
   }
 
   ngOnInit() {
@@ -74,7 +74,7 @@ export class GitDesdeLineaComandosComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.eltRef.nativeElement.querySelectorAll('pre code').forEach(code => hljs.highlightBlock(code) );
+    this._elemenRef.nativeElement.querySelectorAll('pre code').forEach(code => hljs.highlightBlock(code) );
     window.scroll(0, 0);
   }
 
