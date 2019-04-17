@@ -75,7 +75,9 @@ export class IntroduccionExpresionesRegularesComponent implements OnInit, AfterV
 
   ngAfterViewInit() {
     this._elemenRefnRef.nativeElement.querySelectorAll('pre code').forEach(code => hljs.highlightBlock(code) );
-    window.scroll(0, 0);
+        if ( typeof navigator !== 'undefined' ) {
+      window.scroll(0, 0);
+    }
   }
 
 }

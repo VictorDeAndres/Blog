@@ -55,7 +55,9 @@ export class PostsComponent implements OnInit {
         this.initPage = CURRPAGE.initPage;
         this.lastPage = false;
         this.posts = responsePromise;
-        window.scroll(0, 0);
+        if ( typeof navigator !== 'undefined' ) {
+          window.scroll(0, 0);
+        }
       },
         () => { console.error('Error carga'); }
       );
@@ -68,7 +70,9 @@ export class PostsComponent implements OnInit {
         this.initPage = false;
         this.lastPage = CURRPAGE.lastPage;
         this.posts = responsePromise;
-        window.scroll(0, 0);
+        if ( typeof navigator !== 'undefined' ) {
+          window.scroll(0, 0);
+        }
       },
         () => { console.error('Error carga'); }
       );

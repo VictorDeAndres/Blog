@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "tsc:server": "tsc -p server/tsconfig.ssr.json",
-    "build:client-and-server-bundles": "ng build --prod && ng run blogssr:server:production",
+    "build:client-and-server-bundles": "ng build --prod --output-hashing none && ng run blogssr:server:production",
     "build:universal": "npm run build:client-and-server-bundles && npm run tsc:server",
     "build:firebase": "npm run build:client-and-server-bundles && cp ./seo_files/* ./dist/browser",
     "serve:universal": "DISABLE_FIREBASE=true node dist/index.js"

@@ -74,7 +74,9 @@ export class HostingExpressjsFirebaseComponent implements OnInit, AfterViewInit 
 
   ngAfterViewInit() {
     this._elemenRef.nativeElement.querySelectorAll('pre code').forEach(code => hljs.highlightBlock(code) );
-    window.scroll(0, 0);
+        if ( typeof navigator !== 'undefined' ) {
+      window.scroll(0, 0);
+    }
   }
 
 }
