@@ -195,8 +195,19 @@ export class PostsService {
           'publisheddate' : '30 de Marzo 2019',
           // tslint:disable-next-line:max-line-length
           'resume' : 'Como ya sabes una de las grandes ventajas de Javascript es que es una programación asíncrona. Pero al igual que es una gran ventaja también puede ser una fuente muy común de errores y confusiones para todo tipo de programadores. En este artículo vamos a ver como poder hacer bucles asíncronos.',
-          'title' : 'ES6 - Bucles Asíncronos',
+          'title' : 'JS - ES6. Bucles Asíncronos',
           'url' : 'post/es6-bucles-asincronos'
+        },
+        '20190420' : {
+          'categories' : {
+            'Fundamentos' : 'Fundamentos',
+            'Javascript' : 'Javascript',
+          },
+          'publisheddate' : '20 de Abril 2019',
+          // tslint:disable-next-line:max-line-length
+          'resume' : 'Como desarrollador seguro que en tu día a día utilizas los Arrays. Desde la llegada de la especificación ECMAScript 15 disponemos de un nuevo tipo de estructura, Set. En este post veremos en las diferencias entre los Arrays y los set. Además los principales métodos para utilizar esta nueva estructura.',
+          'title' : 'JS - ES6. Array VS Set',
+          'url' : 'post/array-vs-set'
         }
       };
 

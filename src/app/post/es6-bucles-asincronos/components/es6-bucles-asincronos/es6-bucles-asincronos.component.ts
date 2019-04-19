@@ -12,7 +12,7 @@ import * as hljs from 'highlight.js';
 export class Es6BuclesAsincronosComponent implements OnInit, AfterViewInit {
 
   public schema;
-  public titlepost = 'ES6 - Bucles Asíncronos';
+  public titlepost = 'JS - ES6. Bucles Asíncronos';
   public publishDate = '30 de Marzo 2019';
   public url = 'es6-bucles-asincronos';
   public postCategories: string[] =  ['Fundamentos', 'Javascript', 'Tips'];
@@ -43,7 +43,7 @@ export class Es6BuclesAsincronosComponent implements OnInit, AfterViewInit {
     this.schema = {
       '@context': 'http://schema.org',
       '@type': 'BlogPosting',
-      'headline': 'ES6 - Bucles Asincronos',
+      'headline': 'JS - ES6. Bucles Asíncronos',
       'alternativeHeadline': 'Desarrollo bucles asíncronos ES6 - EcmaScript 2015',
       'image': 'https://images.unsplash.com/photo-1531148502260-2920d70c8ed4?q=75&fm=jpg',
       'editor': 'Victor de Andres',

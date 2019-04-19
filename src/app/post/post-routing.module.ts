@@ -50,6 +50,9 @@ const routes: Routes = [{
 }, {
   path: 'serverless-que-es',
   loadChildren: './que-es-serverless/que-es-serverless.module#QueEsServerlessModule'
+}, {
+  path: 'array-vs-set',
+  loadChildren: './array-vs-set/array-vs-set.module#ArrayVsSetModule'
 }];
 
 
