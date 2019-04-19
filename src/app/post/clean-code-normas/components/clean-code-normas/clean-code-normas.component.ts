@@ -77,7 +77,7 @@ export class CleanCodeNormasComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this._elementRef.nativeElement.querySelectorAll('pre code').forEach(code => hljs.highlightBlock(code) );
-        if ( typeof navigator !== 'undefined' ) {
+    if ( typeof navigator !== 'undefined' ) {
       window.scroll(0, 0);
     }
   }
