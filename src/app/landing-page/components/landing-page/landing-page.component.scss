@@ -47,6 +47,8 @@
 
     display: flex;
     align-items: center;
+    flex-direction: column;
+    margin: auto;
   }
 
 }
@@ -60,10 +62,6 @@
   color: #fff;
   background-color: rgba(32, 32, 32, 0.2);
   text-align: center;
-
-  @include respond-to(monitor) {
-    margin-top: -34%;
-  }
 
   &--name {
     @include respond-to(monitor) {
@@ -114,4 +112,47 @@
     }
 
   }
+}
+
+
+.landing__page__tech {
+  display: flex;
+  padding: 0.5em;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @include respond-to(monitor) {
+    width: 854px;
+  }
+
+  @include respond-to(tablet) {
+    width: 761px;
+  }
+
+  @include respond-to(movil) {
+    width: 383px;
+  }
+
+  &--tech {
+    display: flex;
+    flex-direction: column;
+    margin: .5em;
+  }
+
+  &__icon {
+    display: flex;
+    height: 2em;
+    padding: .1em;
+  }
+
+  &__text {
+    background-color: white;
+    color:  rgba(0, 0, 0, 0.7);
+    display: block;
+    font-size: 8px;
+    text-align: center;
+    width: 100%;
+    padding: 0 .2em;
+  }
+
 }

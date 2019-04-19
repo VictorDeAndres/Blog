@@ -6,18 +6,18 @@ import { SeoService } from './../../../../shared/services/seo.service';
 import * as hljs from 'highlight.js';
 
 @Component({
-  selector: 'blog-clean-code-normas',
-  templateUrl: './clean-code-normas.component.html',
+  selector: 'blog-array-vs-set',
+  templateUrl: './array-vs-set.component.html',
   styleUrls: ['./../../../shared/style/post.common.component.scss']
 })
 
-export class CleanCodeNormasComponent implements OnInit, AfterViewInit {
+export class ArrayVsSetComponent implements OnInit, AfterViewInit {
 
   public schema;
-  public titlepost = 'Introduccion Clean Code (I)';
-  public publishDate = '07 de Octubre 2017';
-  public url = 'clean-code-normas';
-  public postCategories: string[] = ['Fundamentos', 'Buenas Practicas'];
+  public titlepost = 'JS - ES6. Array VS Set';
+  public publishDate = '20 de Abril 2019';
+  public url = 'array-vs-set';
+  public postCategories: string[] = ['Fundamentos', 'Javascript'];
 
   constructor(
     private _elementRef: ElementRef,
@@ -29,14 +29,14 @@ export class CleanCodeNormasComponent implements OnInit, AfterViewInit {
     SEO['robots'] = 'Index, Follow';
     // Page Tags
     SEO['title'] = this.titlepost;
-    SEO['keywords'] = 'clean code, buenas practicas, fundamentos';
-    SEO['description'] = 'Introduccion al Clean Code. Introducción a las normas';
+    SEO['keywords'] = 'javascript, es6, ecmascript 2015, array, set';
+    SEO['description'] = 'Javascript - ECMAScript 2015. Diferencia entre array y set';
     SEO['canonical'] = `https://victordeandres.es/post/${this.url}`;
     // Social Tags
     SEO['og:type'] = 'article';
     SEO['og:title'] = SEO['title'];
     SEO['og:description'] = SEO['description'];
-    SEO['og:image'] = 'https://victordeandres.es/assets/images/posts/CleanCode.png';
+    SEO['og:image'] = 'https://images.unsplash.com/photo-1534690999400-b6aa76c07fa3?ixlib?q=75&fm=jpg';
     SEO['og:url'] = SEO['canonical'];
     SEO['og:site_name'] = 'Victor de Andrés';
 
@@ -47,18 +47,18 @@ export class CleanCodeNormasComponent implements OnInit, AfterViewInit {
     this.schema = {
       '@context': 'http://schema.org',
       '@type': 'BlogPosting',
-      'headline': 'Introduccion a Clean Code',
-      'alternativeHeadline': 'Introducción a Clean Code - Las normas',
-      'image': 'https://victordeandres.es/assets/images/posts/CleanCode.png',
+      'headline': 'JS - ES6. Array VS Set',
+      'alternativeHeadline': 'Javascript - ECMAScript 2015. Diferencia entre array y set',
+      'image': 'https://images.unsplash.com/photo-1534690999400-b6aa76c07fa3?ixlib?q=75&fm=jpg',
       'editor': 'Victor de Andres',
       'genre': 'front end software development',
-      'keywords': 'clean code, buenas practicas, fundamentos',
-      'wordcount': '1023',
-      'url': 'https://victordeandres.es/post/clean-code-normas',
-      'datePublished': '2017-10-07',
-      'dateCreated': '2017-10-07',
-      'dateModified': '2017-10-07',
-      'description': 'Introduccion al Clean Code. Introducción a las normas',
+      'keywords': 'javascript, es6, ecmascript 2015, array, set',
+      'wordcount': '841',
+      'url': 'https://victordeandres.es/post/array-vs-set',
+      'datePublished': '2019-04-20',
+      'dateCreated': '2017-04-20',
+      'dateModified': '2017-04-20',
+      'description': 'Javascript - ECMAScript 2015. Diferencia entre array y set',
       'author': {
         '@type': 'Person',
         'name': 'Victor de Andres'

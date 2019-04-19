@@ -1,0 +1,171 @@
+<ngx-json-ld [json]="schema"></ngx-json-ld>
+<blog-post-header></blog-post-header>
+<article class="post">
+  <div class="post__container">
+    <div class="post__title"></div>
+    <h1 class="post__title--title">
+        JS - ES6. Array VS Set
+    </h1>
+    <h2 class="post__title--subtitle">
+      Javascript - ES6. Diferencia entre Array y Set
+    </h2>
+    <div class="post__title--footer"></div>
+
+    <blog-post-publish-info [publishDate]="publishDate" [postCategories]="postCategories"></blog-post-publish-info>
+    <div class="post__image">
+      <img class="post__image--image" src="https://images.unsplash.com/photo-1534690999400-b6aa76c07fa3?ixlib?q=75&fm=jpg" alt="Array vs Set">
+      <div class="post__photo">Photo by Paweł Czerwiński on Unsplash</div>
+    </div>
+
+    <p class="post__paragraph">Como desarrollador seguro que en tu día a día utilizas los Arrays. Desde la llegada de la especificación ECMAScript 6 disponemos de un nuevo tipo de estructura, <span class="post__paragraph--font-weight">Set</span>. En este post veremos en las diferencias entre ambos tipos de estructuras los Arrays y los set. Además veremos los principales métodos para utilizar esta nueva estructura.</p>
+
+    <h3 class="post__title--title-paragraph">
+      Array vs Set.
+    </h3>
+
+    <p class="post__paragraph">La gran diferencia entre un array y un set es la siguientes: Los duplicados. En un array podemos almacenar valores duplicados, salvo que tu indiques lo contrario, mientras que en Set no está permitido.</p>
+
+    <p class="post__paragraph">Esta gran diferencia viene dada por la naturaleza del array y del set. Un <span class="post__paragraph--font-weight">Array</span> es una colección de índices y un <span class="post__paragraph--font-weight">Set</span> es una colección de claves.</p>
+
+    <p class="post__paragraph">Un momento que quiero decir con esto, que diferencia existe entre una colección de índices y una colección de claves. Profundicemos en las definiciones de ambos términos. Una colección de índices es una colección de datos que se encuentran ordenados por un índice. Y una colección de claves, es una colección de datos que usa claves, y esas claves contienen elementos con los que podemos iterar en el orden en el que fueron insertados.</p>
+
+    <p class="post__paragraph">¿Cuáles son los principales métodos de Set?</p>
+
+    <h3 class="post__title--title-paragraph">
+      Inicialización.
+    </h3>
+
+    <p class="post__paragraph">Para inicializar un objeto de tipo set siempre deberemos utilizar un objeto iterable como parámetro en el constructor. Veamos unos ejemplos.</p>
+    
+    <pre>
+      <code highlight class="typescript">
+    const mySet = new Set();                    
+    // Se inicializará un set vacío.
+
+    const mySet = new Set([1, 2, 2, 3])       
+    // Se inicializará un set nuevo set con los valores 1,2,3.
+    // Recuerda que un set no permite valores duplicados.
+
+    const  mySet = new Set(1)                   
+    // Error. Siempre debemos utilizar un objeto iterable en el constructor.        
+      </code>
+    </pre>
+
+    <h3 class="post__title--title-paragraph">
+      Añadir elementos. 
+    </h3>
+
+    <p class="post__paragraph">Cuando queramos añadir nuevos elementos a nuestro Set deberemos utilizar el método Add. A diferencia de los Arrays donde podemos indicar si queremos realizar la inserción al principio del array, unshift, o al final del mismo, push. En un Set siempre se almacenarán los nuevos valores al final del mismo.</p>
+
+    <p class="post__paragraph">Y sólo en caso de que el valor a insertar no se encuentre ya en el Set, si el valor que queremos añadir ya existe en nuestro Set, se ignorará la inserción del nuevo valor, e importante no lanzando ningún error.</p>
+
+    <pre>
+      <code highlight class="typescript">
+    const mySet = new Set([1, 2, 3]);
+    mySet.add(4);  
+    // Añade 4 a nuestro set
+
+    console.info(mySet.values());
+    // 1, 2, 3, 4
+
+    mySet.add(3);  
+    // No añade 3 a nuestro set ya que existe anteriormente.
+    // Ignora la inserción y tampoco obtenemos ningún error.
+
+    console.info(mySet.values());	
+    // 1, 2, 3, 4. Seguimos teniendo el mismo set.    
+      </code>
+    </pre>
+
+    <h3 class="post__title--title-paragraph">
+        Borrar elementos.
+    </h3>
+
+    <p class="post__paragraph">Al igual que en la inserción en el momento de borrar elementos en nuestro Set tenemos algunas diferencias respecto a los Array.</p>
+
+    <p class="post__paragraph">Un array nos permite eliminar el último valor del array, pop, borrar el primer valor, shift, o borrar un valor o rango de ellos con el método splice.</p>
+
+    <p class="post__paragraph">Pero en un Set sólo podremos borrar el set completamente, clear, o borrar un único elemento con delete, indicando como parámetro el índice que queremos eliminar.</p>
+    
+    <pre>
+      <code highlight class="typescript">
+    const mySet = new Set([1,2,3]);
+    mySet.delete(2);
+    // Borra el elemento 2
+
+    console.log(mySet.values());
+    // 1,3
+      </code>
+    </pre>
+
+    <h3 class="post__title--title-paragraph">
+      Tamaño Set.
+    </h3>
+
+    <p class="post__paragraph">Si queremos saber el tamaño de nuestro Set utilizaremos el método size. Similar al método length de un array.</p>
+
+    <pre>
+      <code highlight class="typescript">
+    const mySet = new Set([1, 2, 3]);
+    console.log(mySet.size);
+    //3        
+      </code>
+    </pre>    
+
+    <h3 class="post__title--title-paragraph">
+      Acceso elementos.
+    </h3>
+
+    <p class="post__paragraph">A diferencia de los arrays en un objeto Set no podemos acceder directamente a un elemento. Recuerda que un set son una colección de claves. Por ello en un objeto Set sólo podemos iterar a través de todos sus elementos por medio de un loop. Para realizar estos loop podemos utilizar la construcción for … of o forEach.</p>
+
+    <pre>
+      <code highlight class="typescript">
+    const mySet = new Set([1, 2, 3]);
+    for ( let myValue of mySet ) &#123;
+      console.log(myValue); 
+    &#125;
+    // 1, 2, 3          
+      </code>
+    </pre>        
+
+    <p class="post__paragraph">o</p>
+
+    <pre>
+      <code highlight class="typescript">
+    const mySet = new Set([1, 2, 3]);
+    mySet.forEach( myValue => console.log(myValue) );
+    // 1, 2, 3          
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Aunque veas que dispones de la construcción forEach, que es igual a la que puedes utilizar en un array desde un Set no tenemos acceso a los métodos filter, map o reduce. Métodos a los que sí podemos acceder desde un Array.</p>
+
+    <h3 class="post__title--title-paragraph">
+      Buscar elemento.
+    </h3>
+
+    <p class="post__paragraph">Cuando queremos buscar un elemento concreto dentro de nuestro Set utilizaremos el método has, que nos devolverá un true o un false, en función de si existe el valor buscado o no. A diferencia del método Find de un array, que nos devolverá el primer valor dentro del array que coincida con el elemento buscado o -1 en caso de no encontrarse el valor buscado en el Array.</p>
+
+    <pre>
+      <code highlight class="typescript">
+    const mySet = new Set([1, 2, 3]);
+
+    console.log(mySet.has(1));
+    // true
+
+    console.log(myset.has(4));
+    // false      
+      </code>
+    </pre>
+
+    <h3 class="post__title--title-paragraph">
+        Conclusión.
+    </h3>
+
+    <p class="post__paragraph">Como has podido leer los objetos de tipo Set y Arrays son bastante similares, pero en ningún caso excluyentes el uno del otro. Siempre dependerá del uso que quieras hacer será mejor el uso de un tipo u otro.</p>
+
+    <p class="post__paragraph">Por ejemplo, si quieres disponer de un objeto, que puedas hacer lecturas, borrados, o modificaciones muy concretas deberás utilizar un array. En casos de que sólo desees hacer principalmente lecturas usa un Set.</p>
+    <blog-post-footer [titlepost]="titlepost"></blog-post-footer>
+  </div>
+</article>
+<blog-post-comment [idpost]="url"></blog-post-comment>
