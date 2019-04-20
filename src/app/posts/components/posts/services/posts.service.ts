@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AngularFireDatabase } from '@angular/fire/database';
+
 
 import * as _ from 'lodash';
+import * as firebase from 'firebase';
 
 export class PostsService {
 
@@ -13,7 +17,25 @@ export class PostsService {
   TOTALNUMBERPAGE: number;
   results: any;
 
-  constructor() { }
+  constructor(
+    // private db: AngularFireDatabase,
+  ) { }
+
+  public INITIALPOSTS(): any {
+    return {
+      '20190420' : {
+        'categories' : {
+          'Fundamentos' : 'Fundamentos',
+          'Javascript' : 'Javascript',
+        },
+        'publisheddate' : '20 de Abril 2019',
+        // tslint:disable-next-line:max-line-length
+        'resume' : 'Como desarrollador seguro que en tu día a día utilizas los Arrays. Desde la llegada de la especificación ECMAScript 15 disponemos de un nuevo tipo de estructura, Set. En este post veremos en las diferencias entre los Arrays y los set. Además los principales métodos para utilizar esta nueva estructura.',
+        'title' : 'JS - ES6. Array VS Set',
+        'url' : 'post/array-vs-set'
+      }
+    };
+  }
 
   loadPost() {
     const promise = new Promise((resolve, reject) => {
@@ -218,6 +240,21 @@ export class PostsService {
     });
 
     return promise;
+
+
+    // const promise = new Promise((resolve, reject) => {
+    //   this.http.get(`${environment.hostDatabase}/api/documents/posts`)
+    //   .subscribe(responseDataObject => {
+    //     Object.keys(responseDataObject).map(idx => {
+    //       this.posts.push(responseDataObject[idx]);
+    //     });
+    //     resolve(this.posts.length > 0 ? true : false);
+    //   }, error => {
+    //     console.error('Error', error);
+    //   });
+    // });
+
+    // return promise;
   }
 
   loadCategories() {

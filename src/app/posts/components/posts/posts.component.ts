@@ -3,10 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { PostsService } from './services/posts.service';
 import { SeoService } from './../../../shared/services/seo.service';
 
+import { AngularFireDatabase } from '@angular/fire/database';
+
 @Component({
   selector: 'blog-posts',
   templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.scss']
+  styleUrls: ['./posts.component.scss'],
+  providers: [ AngularFireDatabase ]
 })
 
 export class PostsComponent implements OnInit {
@@ -21,7 +24,8 @@ export class PostsComponent implements OnInit {
 
   constructor(
     private _postService: PostsService,
-    private _seoService: SeoService
+    private _seoService: SeoService,
+    private _db: AngularFireDatabase,
   ) {
     const SEO = {};
     SEO['title'] = 'Blog Victor de Andres';
@@ -32,13 +36,33 @@ export class PostsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._postService.getPosts(0)
-    .then(responsePromise => {
-      this.loadAuxData();
-      this.posts = responsePromise;
-    },
-      () => { console.error('Error carga'); }
-    );
+
+    this.posts = this._postService.INITIALPOSTS();
+    // const postsObservable = this._postService.getPosts_();
+    // postsObservable.subscribe( postData => {
+    //     this.posts = postData;
+    // });
+    this.loadAuxData();
+
+    const firebase = this._db.list('posts').valueChanges()
+    .subscribe( data => {
+      this.posts = data;
+      // data.forEach( comment => {
+      //   this.posts.push(comment);
+      // });
+
+      // this.postComments = [];
+      // data.forEach( comment => {
+      //   this.postComments.push(comment);
+      // });
+    });
+    // this._postService.getPosts(0)
+    // .then(responsePromise => {
+    //   this.loadAuxData();
+    //   this.posts = responsePromise;
+    // },
+    //   () => { console.error('Error carga'); }
+    // );
   }
 
   loadAuxData(): void {
