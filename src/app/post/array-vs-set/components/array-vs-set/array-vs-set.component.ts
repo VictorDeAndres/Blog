@@ -14,7 +14,7 @@ import * as hljs from 'highlight.js';
 export class ArrayVsSetComponent implements OnInit, AfterViewInit {
 
   public schema;
-  public titlepost = 'JS - ES6. Array VS Set';
+  public titlepost = 'JavaScript - ES6. Array VS Set';
   public publishDate = '20 de Abril 2019';
   public url = 'array-vs-set';
   public postCategories: string[] = ['Fundamentos', 'Javascript'];

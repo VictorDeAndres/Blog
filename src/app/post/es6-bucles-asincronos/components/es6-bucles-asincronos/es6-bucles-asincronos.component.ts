@@ -12,7 +12,7 @@ import * as hljs from 'highlight.js';
 export class Es6BuclesAsincronosComponent implements OnInit, AfterViewInit {
 
   public schema;
-  public titlepost = 'JS - ES6. Bucles Asíncronos';
+  public titlepost = 'JavaScript - ES6. Bucles Asíncronos';
   public publishDate = '30 de Marzo 2019';
   public url = 'es6-bucles-asincronos';
   public postCategories: string[] =  ['Fundamentos', 'Javascript', 'Tips'];
