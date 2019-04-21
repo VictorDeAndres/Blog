@@ -100,7 +100,7 @@ export class PostsService {
         },
         'publisheddate' : '20 de Abril 2019',
         // tslint:disable-next-line:max-line-length
-        'resume' : 'Como desarrollador seguro que en tu día a día utilizas los Arrays. Desde la llegada de la especificación ECMAScript 15 disponemos de un nuevo tipo de estructura, Set. En este post veremos en las diferencias entre los Arrays y los set. Además los principales métodos para utilizar esta nueva estructura.',
+        'resume' : 'Como desarrollador seguro que en tu día a día utilizas los Arrays. Desde la llegada de la especificación ECMAScript 6 disponemos de un nuevo tipo de estructura, Set. En este post veremos en las diferencias entre los Arrays y los set. Además los principales métodos para utilizar esta nueva estructura.',
         'title' : 'JavaScript - ES6. Array VS Set',
         'url' : 'post/array-vs-set',
         'isEnabled': true
