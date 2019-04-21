@@ -37,24 +37,23 @@ export class PostsComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.posts.push(...this._postService.INITIALPOSTS());
+    this.posts = [...this._postService.INITIALPOSTS().reverse()];
     this._postService.Posts = this.posts;
 
     this.loadAuxData();
     const firebase = this._db.list('/posts', ref => ref.orderByKey().endAt('20180204')).valueChanges()
       .subscribe( data => {
         const restPosts = [];
+        // Add new attribute at all rows
         for ( let idx = 0, lenArray = data.length; idx < lenArray; idx++) {
           const currentElement = data[idx];
           currentElement['isEnabled'] = false;
           restPosts.push(currentElement);
         }
-        this.posts = [...restPosts, ...this.posts];
-        this._postService.Posts = this.posts;
-        this._postService.TotalNumberPage = _.chunk(this.posts, 5).length - 1; // Number of pages
-        // Recall loadAuxData to recalculate values
-        this.loadAuxData();
+        this._postService.Posts = [...restPosts, ...this._postService.INITIALPOSTS()];
+        this._postService.TotalNumberPage = _.chunk([...restPosts, ...this._postService.INITIALPOSTS()], 5).length - 1; // Number of pages
+        // Recalculate
+        // this.loadAuxData();
       }
     );
   }
@@ -72,7 +71,7 @@ export class PostsComponent implements OnInit {
       .then(responsePromise => {
         this.initPage = CURRPAGE.initPage;
         this.lastPage = false;
-        this.posts = responsePromise === [] ? [] : JSON.parse(JSON.stringify(responsePromise)).reverse(); // Convert object to array
+        this.posts = responsePromise; //  === [] ? [] : JSON.parse(JSON.stringify(responsePromise)).reverse(); // Convert object to array
         window.scroll(0, 0);
       },
         () => { console.error('Error carga'); }
@@ -85,7 +84,7 @@ export class PostsComponent implements OnInit {
       .then(responsePromise => {
         this.initPage = false;
         this.lastPage = CURRPAGE.lastPage;
-        this.posts = responsePromise === [] ? [] : JSON.parse(JSON.stringify(responsePromise)).reverse(); // Convert object to array
+        this.posts = responsePromise; // === [] ? [] : JSON.parse(JSON.stringify(responsePromise)).reverse(); // Convert object to array
         window.scroll(0, 0);
       },
         () => { console.error('Error carga'); }
@@ -101,7 +100,7 @@ export class PostsComponent implements OnInit {
         const INITPAGE = this._postService.initializeDisplayPage();
         this.initPage = INITPAGE.initPage;
         this.lastPage = INITPAGE.lastPage;
-        this.posts = responsePromise === [] ? [] : JSON.parse(JSON.stringify(responsePromise)).reverse(); // Convert object to array
+        this.posts = responsePromise; // === [] ? [] : JSON.parse(JSON.stringify(responsePromise)).reverse(); // Convert object to array
       },
         () => { console.error('Error carga'); }
       );
