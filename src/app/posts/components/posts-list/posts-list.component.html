@@ -1,5 +1,5 @@
-<div *ngFor="let post of posts | toArrayValue">
-  <div class="posts__resume__post">
+<div *ngFor="let post of posts.reverse()">
+  <div *ngIf="post.isEnabled" class="posts__resume__post">
       <div class="posts__resume__header"></div> 
       <div class="posts__resume__title">
           <div class="posts__resume__title--star"></div>
