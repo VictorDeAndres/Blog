@@ -5,6 +5,7 @@ import { SeoService } from './../../../shared/services/seo.service';
 
 import { AngularFireDatabase } from '@angular/fire/database';
 
+import * as _ from 'lodash';
 @Component({
   selector: 'blog-posts',
   templateUrl: './posts.component.html',
@@ -16,7 +17,7 @@ export class PostsComponent implements OnInit {
 
   selectArchive: string = undefined;
   selectCategory: string = undefined;
-  posts: Object = {};
+  posts: any = [];
   categories: Object[] = [];
   showPage = 0;
   initPage: boolean;
@@ -37,32 +38,25 @@ export class PostsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.posts = this._postService.INITIALPOSTS();
-    // const postsObservable = this._postService.getPosts_();
-    // postsObservable.subscribe( postData => {
-    //     this.posts = postData;
-    // });
+    this.posts.push(...this._postService.INITIALPOSTS());
+    this._postService.Posts = this.posts;
+
     this.loadAuxData();
-
-    const firebase = this._db.list('posts').valueChanges()
-    .subscribe( data => {
-      this.posts = data;
-      // data.forEach( comment => {
-      //   this.posts.push(comment);
-      // });
-
-      // this.postComments = [];
-      // data.forEach( comment => {
-      //   this.postComments.push(comment);
-      // });
-    });
-    // this._postService.getPosts(0)
-    // .then(responsePromise => {
-    //   this.loadAuxData();
-    //   this.posts = responsePromise;
-    // },
-    //   () => { console.error('Error carga'); }
-    // );
+    const firebase = this._db.list('/posts', ref => ref.orderByKey().endAt('20180204')).valueChanges()
+      .subscribe( data => {
+        const restPosts = [];
+        for ( let idx = 0, lenArray = data.length; idx < lenArray; idx++) {
+          const currentElement = data[idx];
+          currentElement['isEnabled'] = false;
+          restPosts.push(currentElement);
+        }
+        this.posts = [...restPosts, ...this.posts];
+        this._postService.Posts = this.posts;
+        this._postService.TotalNumberPage = _.chunk(this.posts, 5).length - 1; // Number of pages
+        // Recall loadAuxData to recalculate values
+        this.loadAuxData();
+      }
+    );
   }
 
   loadAuxData(): void {
@@ -74,14 +68,12 @@ export class PostsComponent implements OnInit {
 
   movebackward = () => {
     const CURRPAGE = this._postService.prevPage();
-    this._postService.getPosts(CURRPAGE.currentPage, this.selectCategory)
+    this._postService.getPosts(CURRPAGE._currentPage, this.selectCategory)
       .then(responsePromise => {
         this.initPage = CURRPAGE.initPage;
         this.lastPage = false;
-        this.posts = responsePromise;
-        if ( typeof navigator !== 'undefined' ) {
-          window.scroll(0, 0);
-        }
+        this.posts = responsePromise === [] ? [] : JSON.parse(JSON.stringify(responsePromise)).reverse(); // Convert object to array
+        window.scroll(0, 0);
       },
         () => { console.error('Error carga'); }
       );
@@ -89,14 +81,12 @@ export class PostsComponent implements OnInit {
 
   moveforward = () => {
     const CURRPAGE = this._postService.nextPage();
-    this._postService.getPosts(CURRPAGE.currentPage, this.selectCategory)
+    this._postService.getPosts(CURRPAGE._currentPage, this.selectCategory)
       .then(responsePromise => {
         this.initPage = false;
         this.lastPage = CURRPAGE.lastPage;
-        this.posts = responsePromise;
-        if ( typeof navigator !== 'undefined' ) {
-          window.scroll(0, 0);
-        }
+        this.posts = responsePromise === [] ? [] : JSON.parse(JSON.stringify(responsePromise)).reverse(); // Convert object to array
+        window.scroll(0, 0);
       },
         () => { console.error('Error carga'); }
       );
@@ -111,7 +101,7 @@ export class PostsComponent implements OnInit {
         const INITPAGE = this._postService.initializeDisplayPage();
         this.initPage = INITPAGE.initPage;
         this.lastPage = INITPAGE.lastPage;
-        this.posts = responsePromise;
+        this.posts = responsePromise === [] ? [] : JSON.parse(JSON.stringify(responsePromise)).reverse(); // Convert object to array
       },
         () => { console.error('Error carga'); }
       );
