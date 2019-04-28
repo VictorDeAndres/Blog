@@ -28,7 +28,8 @@ export class HostingExpressjsFirebaseComponent implements OnInit, AfterViewInit 
     // Page Tags
     SEO['title'] = this.titlepost;
     SEO['keywords'] = 'angular, firebase, hosting, express, nodejs';
-    SEO['description'] = 'Manual para realizar hosting de una aplicacion desarrollada en nodeJs con Express en firebase';
+    // tslint:disable-next-line:max-line-length
+    SEO['description'] = 'Con la nueva funcionalidad de Firebase, Cloud Functions o funciones dinámicas, podremos tener alojada un página web dinámica desarrollada con NodeJS y Express. A continuación veremos paso a paso cómo utilizar estas funciones de firebase para alojar nuestras aplicaciones.';
     SEO['canonical'] = `https://victordeandres.es/post/${this.url}`;
     // Social Tags
     SEO['og:type'] = SEO['article'];
@@ -55,7 +56,8 @@ export class HostingExpressjsFirebaseComponent implements OnInit, AfterViewInit 
       'datePublished': '2017-08-11',
       'dateCreated': '2017-08-11',
       'dateModified': '2017-08-11',
-      'description': 'Manual para realizar hosting de una aplicacion desarrollada en nodeJs con Express en firebase',
+      // tslint:disable-next-line:max-line-length
+      'description': 'Con la nueva funcionalidad de Firebase, Cloud Functions o funciones dinámicas, podremos tener alojada un página web dinámica desarrollada con NodeJS y Express. A continuación veremos paso a paso cómo utilizar estas funciones de firebase para alojar nuestras aplicaciones.',
       'author': {
         '@type': 'Person',
         'name': 'Victor de Andres'

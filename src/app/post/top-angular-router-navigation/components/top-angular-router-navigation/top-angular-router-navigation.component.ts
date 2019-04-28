@@ -27,7 +27,8 @@ export class TopAngularRouterNavigationComponent implements OnInit, AfterViewIni
     // Page Tags
     SEO['title'] = this.titlepost;
     SEO['keywords'] = 'angular tips webapp posicion pagina spa';
-    SEO['description'] = 'Angular tip para situar la pagina al inico de pantalla cuando se cambia de ruta';
+    // tslint:disable-next-line:max-line-length
+    SEO['description'] = 'Un motivo para comenzar este blog era practicar nuevas tecnologías, para a medida que avanzaba en ellas mejorar mis conocimientos como desarrollador. En este post veremos cómo posicionar el cursor al principio de la ventana cada vez que abramos una nueva ventana en angular.';
     SEO['canonical'] = `https://victordeandres.es/post/${this.url}`;
     // Social Tags
     SEO['og:type'] = 'article';
@@ -54,7 +55,8 @@ export class TopAngularRouterNavigationComponent implements OnInit, AfterViewIni
       'datePublished': '2017-08-26',
       'dateCreated': '2017-08-26',
       'dateModified': '2017-08-26',
-      'description': 'Angular tip para situar la pagina al inico de pantalla cuando se cambia de ruta',
+      // tslint:disable-next-line:max-line-length
+      'description': 'Un motivo para comenzar este blog era practicar nuevas tecnologías, para a medida que avanzaba en ellas mejorar mis conocimientos como desarrollador. En este post veremos cómo posicionar el cursor al principio de la ventana cada vez que abramos una nueva ventana en angular.',
       'author': {
         '@type': 'Person',
         'name': 'Victor de Andres'

@@ -28,7 +28,8 @@ export class IntroduccionExpresionesRegularesComponent implements OnInit, AfterV
     // Page Tags
     SEO['title'] = this.titlepost;
     SEO['keywords'] = 'expresiones regulares, regex, js, javascript';
-    SEO['description'] = 'Introduccion a las expresiones regulares regex en javascript';
+    // tslint:disable-next-line:max-line-length
+    SEO['description'] = 'En este post voy a realizar una introducción a las expresiones regulares desde el punto de vista para un desarrollador de Javascript. Esas expresiones que parecen algo incomprensibles y complicadas pero que nos pueden ayudar ahorrar mucho tiempo si sabemos utilizarlas.';
     SEO['canonical'] = `https://victordeandres.es/post/${this.url}`;
     // Social Tags
     SEO['og:type'] = 'article';
@@ -56,7 +57,8 @@ export class IntroduccionExpresionesRegularesComponent implements OnInit, AfterV
       'datePublished': '2018-02-04',
       'dateCreated': '2018-02-04',
       'dateModified': '2018-02-04',
-      'description': 'Introduccion a las expresiones regulares regex en javascript',
+      // tslint:disable-next-line:max-line-length
+      'description': 'En este post voy a realizar una introducción a las expresiones regulares desde el punto de vista para un desarrollador de Javascript. Esas expresiones que parecen algo incomprensibles y complicadas pero que nos pueden ayudar ahorrar mucho tiempo si sabemos utilizarlas.',
       'author': {
         '@type': 'Person',
         'name': 'Victor de Andres'

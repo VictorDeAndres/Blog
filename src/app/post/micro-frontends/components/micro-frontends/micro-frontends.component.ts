@@ -14,7 +14,7 @@ export class MicroFrontendsComponent implements OnInit, AfterViewInit {
   public titlepost = 'Micro FrontEnds';
   public publishDate = '24 de Julio 2017';
   public url = 'micro-frontends';
-  public postCategories: string[] = ['WebApps'];
+  public postCategories: string[] = ['Arquitectura', 'WebApps'];
 
   constructor(
     private _elemenRefnRef: ElementRef,
@@ -26,7 +26,8 @@ export class MicroFrontendsComponent implements OnInit, AfterViewInit {
     // Page Tags
     SEO['title'] = this.titlepost;
     SEO['keywords'] = 'angular, webapp, micro frontend, microfrontend, microservicio, react, jquery, vuejs, vue, spa';
-    SEO['description'] = 'Introduccion a desarrollo de aplicaciones web con micro frontends';
+    // tslint:disable-next-line:max-line-length
+    SEO['description'] = 'En la actualidad las aplicaciones web se están volviendo cada vez más grandes y complejas. Por ello debemos utilizar distintas librerías o frameworks. Para ayudarnos podemos utilizar la arquitectura de micro-frontends. Un nuevo paradigma que nos ayudará a desarrollar nuestras aplicaciones.';
     SEO['canonical'] = `https://victordeandres.es/post/${this.url}`;
     // Social Tags
     SEO['og:type'] = 'article';
@@ -54,7 +55,8 @@ export class MicroFrontendsComponent implements OnInit, AfterViewInit {
       'datePublished': '2017-07-24',
       'dateCreated': '2017-07-24',
       'dateModified': '2017-07-24',
-      'description': 'Introduccion a desarrollo de aplicaciones web con micro frontends',
+      // tslint:disable-next-line:max-line-length
+      'description': 'En la actualidad las aplicaciones web se están volviendo cada vez más grandes y complejas. Por ello debemos utilizar distintas librerías o frameworks. Para ayudarnos podemos utilizar la arquitectura de micro-frontends. Un nuevo paradigma que nos ayudará a desarrollar nuestras aplicaciones.',
       'author': {
         '@type': 'Person',
         'name': 'Victor de Andres'

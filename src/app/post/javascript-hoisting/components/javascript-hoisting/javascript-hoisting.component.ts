@@ -27,7 +27,8 @@ export class JavascriptHoistingComponent implements OnInit, AfterViewInit {
     // Page Tags
     SEO['title'] = this.titlepost;
     SEO['keywords'] = 'javascript, js, fundamentos, introduccion, hoisting';
-    SEO['description'] = 'Fundamentos de JavaScript. Definicion e introduccion hoisting';
+    // tslint:disable-next-line:max-line-length
+    SEO['description'] = 'En este artículo voy a seguir escribiendo sobre los conceptos básicos que todo desarrollador de Javascript debe dominar para ser un auténtico Javascript ninja. En esta ocasión vamos a ver el concepto Hoisting.';
     SEO['canonical'] = `https://victordeandres.es/post/${this.url}`;
     // Social Tags
     SEO['og:type'] = 'article';
@@ -54,7 +55,8 @@ export class JavascriptHoistingComponent implements OnInit, AfterViewInit {
       'datePublished': '2017-07-08',
       'dateCreated': '2017-07-08',
       'dateModified': '2017-07-08',
-      'description': 'Fundamentos de JavaScript. Definicion e introduccion hoisting',
+      // tslint:disable-next-line:max-line-length
+      'description': 'En este artículo voy a seguir escribiendo sobre los conceptos básicos que todo desarrollador de Javascript debe dominar para ser un auténtico Javascript ninja. En esta ocasión vamos a ver el concepto Hoisting.',
       'author': {
         '@type': 'Person',
         'name': 'Victor de Andres'

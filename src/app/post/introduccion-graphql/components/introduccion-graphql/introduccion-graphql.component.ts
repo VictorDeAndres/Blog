@@ -28,7 +28,8 @@ export class IntroduccionGraphqlComponent implements OnInit , AfterViewInit {
     // Page Tags
     SEO['title'] = this.titlepost;
     SEO['keywords'] = 'api, rest, graphql, spa';
-    SEO['description'] = 'Introduccion a Graphql para realizar consultas sustituyendo a api rest';
+    // tslint:disable-next-line:max-line-length
+    SEO['description'] = 'Cuando estás desarrollando habitualmente en la parte front end de un proyecto y utilizas habitualmente una rest api para establecer las comunicaciones con tu base de datos tal vez en algún momento habrás realizado la siguiente pregunta. ¿ Como organizo mis json de respuesta ?. Con GraphQL';
     SEO['canonical'] = `https://victordeandres.es/post/${this.url}`;
     // Social Tags
     SEO['og:type'] = 'article';
@@ -56,7 +57,8 @@ export class IntroduccionGraphqlComponent implements OnInit , AfterViewInit {
       'datePublished': '2017-09-09',
       'dateCreated': '2017-09-09',
       'dateModified': '2017-09-09',
-      'description': 'Introduccion a Graphql para realizar consultas sustituyendo a api rest',
+      // tslint:disable-next-line:max-line-length
+      'description': 'Cuando estás desarrollando habitualmente en la parte front end de un proyecto y utilizas habitualmente una rest api para establecer las comunicaciones con tu base de datos tal vez en algún momento habrás realizado la siguiente pregunta. ¿ Como organizo mis json de respuesta ?. Con GraphQL',
       'author': {
         '@type': 'Person',
         'name': 'Victor de Andres'

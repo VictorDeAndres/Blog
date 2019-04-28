@@ -26,7 +26,8 @@ export class JavascriptUnMustComponent implements OnInit, AfterViewInit {
     // Page Tags
     SEO['title'] = this.titlepost;
     SEO['keywords'] = 'javascript, JS';
-    SEO['description'] = 'Web Developer: Javascript un must que todo desarrollodor web debe dominar';
+    // tslint:disable-next-line:max-line-length
+    SEO['description'] = 'Durante cerca de mis últimos 10 años de vida laboral gran parte de los proyectos en los que he participado tanto como desarrollador como jefe de proyecto han estado relacionados con Internet o han sido escritos para ejecutarse en exploradores por ello creo que Javascript es un “MUST” que debes dominar.';
     SEO['canonical'] = `https://victordeandres.es/post/${this.url}`;
     // Social Tags
     SEO['og:type'] = 'article';
@@ -53,7 +54,8 @@ export class JavascriptUnMustComponent implements OnInit, AfterViewInit {
       'datePublished': '2017-09-23',
       'dateCreated': '2017-09-23',
       'dateModified': '2017-09-233',
-      'description': 'Web Developer: Javascript un must que todo desarrollodor web debe dominar',
+      // tslint:disable-next-line:max-line-length
+      'description': 'Durante cerca de mis últimos 10 años de vida laboral gran parte de los proyectos en los que he participado tanto como desarrollador como jefe de proyecto han estado relacionados con Internet o han sido escritos para ejecutarse en exploradores por ello creo que Javascript es un “MUST” que debes dominar.',
       'author': {
         '@type': 'Person',
         'name': 'Victor de Andres'

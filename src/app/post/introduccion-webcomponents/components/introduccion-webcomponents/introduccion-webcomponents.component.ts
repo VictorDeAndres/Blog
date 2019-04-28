@@ -28,7 +28,8 @@ export class IntroduccionWebcomponentsComponent implements OnInit, AfterViewInit
     // Page Tags
     SEO['title'] = this.titlepost;
     SEO['keywords'] = 'webcomponents, webapp, polymer, x-tag';
-    SEO['description'] = 'Introduccion a webcomponents';
+    // tslint:disable-next-line:max-line-length
+    SEO['description'] = 'En este post voy a realizar una introducción a los WebComponents, un conjunto de características aún en desarrollo por parte de la W3C que unidas a las especificaciones actuales de HTML y DOM nos permitirá desarrollar widgets o componentes reutilizables tanto para páginas como aplicaciones web.';
     SEO['canonical'] = `https://victordeandres.es/post/${this.url}`;
     // Social Tags
     SEO['og:type'] = 'article';
@@ -55,7 +56,8 @@ export class IntroduccionWebcomponentsComponent implements OnInit, AfterViewInit
       'datePublished': '2018-03-03',
       'dateCreated': '2018-03-03',
       'dateModified': '2018-03-03',
-      'description': 'Introduccion y principales caracteristicas de los webcomponents',
+      // tslint:disable-next-line:max-line-length
+      'description': 'En este post voy a realizar una introducción a los WebComponents, un conjunto de características aún en desarrollo por parte de la W3C que unidas a las especificaciones actuales de HTML y DOM nos permitirá desarrollar widgets o componentes reutilizables tanto para páginas como aplicaciones web.',
       'author': {
         '@type': 'Person',
         'name': 'Victor de Andres'

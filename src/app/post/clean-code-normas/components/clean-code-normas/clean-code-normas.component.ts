@@ -30,7 +30,7 @@ export class CleanCodeNormasComponent implements OnInit, AfterViewInit {
     // Page Tags
     SEO['title'] = this.titlepost;
     SEO['keywords'] = 'clean code, buenas practicas, fundamentos';
-    SEO['description'] = 'Introduccion al Clean Code. Introducción a las normas';
+    SEO['description'] = 'Todos, o por lo menos la gran mayoría, queremos ser mejores profesionales, y queremos hacer las cosas mejor. El desarrollo del software es un área que avanza muy deprisa. Cada vez con más herramientas y nuevas tecnologías, pero independientemente de las herramientas que utilicemos o el lenguaje o lenguajes que utilizamos siempre tenemos una parte que subyace, el escribir código.';
     SEO['canonical'] = `https://victordeandres.es/post/${this.url}`;
     // Social Tags
     SEO['og:type'] = 'article';
@@ -58,7 +58,7 @@ export class CleanCodeNormasComponent implements OnInit, AfterViewInit {
       'datePublished': '2017-10-07',
       'dateCreated': '2017-10-07',
       'dateModified': '2017-10-07',
-      'description': 'Introduccion al Clean Code. Introducción a las normas',
+      'description': 'Todos, o por lo menos la gran mayoría, queremos ser mejores profesionales, y queremos hacer las cosas mejor. El desarrollo del software es un área que avanza muy deprisa. Cada vez con más herramientas y nuevas tecnologías, pero independientemente de las herramientas que utilicemos o el lenguaje o lenguajes que utilizamos siempre tenemos una parte que subyace, el escribir código.',
       'author': {
         '@type': 'Person',
         'name': 'Victor de Andres'

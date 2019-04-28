@@ -27,7 +27,8 @@ export class ImportanciaTestUnitariosComponent implements OnInit, AfterViewInit 
     // Page Tags
     SEO['title'] = this.titlepost;
     SEO['keywords'] = 'clean code, buenas practicas, test unitarios, unit test, test';
-    SEO['description'] = 'La importancia de realizar test unitarios. Ventajas de realizar test unitarios en los desarrollos';
+    // tslint:disable-next-line:max-line-length
+    SEO['description'] = 'Cada vez desarrollamos programas más complejos y grandes, cada vez interactúan más con otros sistemas, y normalmente suele haber cambios en los requisitos durante la fase del desarrollo. Para poder desarrollar unos programas sólidos y escalables son recomendables los test unitarios.';
     SEO['canonical'] = `https://victordeandres.es/post/${this.url}`;
     // Social Tags
     SEO['og:type'] = SEO['article'];
@@ -54,7 +55,8 @@ export class ImportanciaTestUnitariosComponent implements OnInit, AfterViewInit 
       'datePublished': '2017-10-27',
       'dateCreated': '2017-10-27',
       'dateModified': '2017-10-27',
-      'description': 'La importancia de realizar test unitarios. Ventajas de realizar test unitarios en los desarrollos',
+      // tslint:disable-next-line:max-line-length
+      'description': 'Cada vez desarrollamos programas más complejos y grandes, cada vez interactúan más con otros sistemas, y normalmente suele haber cambios en los requisitos durante la fase del desarrollo. Para poder desarrollar unos programas sólidos y escalables son recomendables los test unitarios.',
       'author': {
         '@type': 'Person',
         'name': 'Victor de Andres'

@@ -27,7 +27,8 @@ export class Es6BuclesAsincronosComponent implements OnInit, AfterViewInit {
     // Page Tags
     SEO['title'] = this.titlepost;
     SEO['keywords'] = 'es6, javascript, bucles, asincronos, loop, async, ecmascript 2015';
-    SEO['description'] = 'Desarrollo bucles asíncronos ES6 - EcmaScript 2015';
+    // tslint:disable-next-line:max-line-length
+    SEO['description'] = 'Como ya sabes una de las grandes ventajas de Javascript es que es una programación asíncrona. Pero al igual que es una gran ventaja también puede ser una fuente muy común de errores y confusiones para todo tipo de programadores. En este artículo vamos a ver como poder hacer bucles asíncronos.';
     SEO['canonical'] = `https://victordeandres.es/post/${this.url}`;
     // Social Tags
     SEO['og:type'] = 'article';
@@ -54,7 +55,8 @@ export class Es6BuclesAsincronosComponent implements OnInit, AfterViewInit {
       'datePublished': '2019-03-30',
       'dateCreated': '2019-03-30',
       'dateModified': '2019-03-30',
-      'description': 'Desarrollo bucles asincronos ES6 - EcmaScript 2015',
+      // tslint:disable-next-line:max-line-length
+      'description': 'Como ya sabes una de las grandes ventajas de Javascript es que es una programación asíncrona. Pero al igual que es una gran ventaja también puede ser una fuente muy común de errores y confusiones para todo tipo de programadores. En este artículo vamos a ver como poder hacer bucles asíncronos.',
       'author': {
         '@type': 'Person',
         'name': 'Victor de Andres'

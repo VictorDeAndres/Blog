@@ -28,7 +28,8 @@ export class QueEsServerlessComponent implements OnInit, AfterViewInit {
     SEO['title'] = this.titlepost;
     // tslint:disable-next-line:max-line-length
     SEO['keywords'] = 'serverless, arquitectura, programacion, desarrollo, Amazon AWS Lamda, Google Cloud Functions, Microsoft Azure Functions, IBM OpenWhisk Actions, Iron Functions, OpenStack Picasso, Fission';
-    SEO['description'] = 'Serverless. ¿Qué es?',
+    // tslint:disable-next-line:max-line-length
+    SEO['description'] = 'Tal vez hayas oído hablar de la arquitectura Serverless o Fass ( functions as a service ). En este post explicaré brevemente en qué consiste esta arquitectura. Conoce sus ventajas y desventajas.',
     SEO['canonical'] = `https://victordeandres.es/post/${this.url}`;
     // Social Tags
     SEO['og:type'] = 'article';
@@ -57,7 +58,8 @@ export class QueEsServerlessComponent implements OnInit, AfterViewInit {
       'datePublished': '2019-03-09',
       'dateCreated': '2019-03-09',
       'dateModified': '2019-03-09',
-      'description': 'Conoce la arquitectura serverless. Sus ventajas y desventajas',
+      // tslint:disable-next-line:max-line-length
+      'description': 'Tal vez hayas oído hablar de la arquitectura Serverless o Fass ( functions as a service ). En este post explicaré brevemente en qué consiste esta arquitectura. Conoce sus ventajas y desventajas.',
       'author': {
         '@type': 'Person',
         'name': 'Victor de Andres'
