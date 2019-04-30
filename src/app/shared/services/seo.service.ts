@@ -46,6 +46,11 @@ export class SeoService {
 
   writeMetaTags(tag, value) {
     if ( tag.substring(0, 2) === 'og' ) {
+      // Remove old metaTags
+      if ( this.meta.getTag(`name="${tag.substring(3)}"`)) {
+        this.meta.removeTag(`name="${tag.substring(3)}"`);
+      }
+      // Update or add metaTags
       this.meta.getTag(`property="${tag}"`)
         ? this.meta.updateTag({ property: tag, content: value })
         : this.meta.addTag( { property: tag, content: value }, true);
