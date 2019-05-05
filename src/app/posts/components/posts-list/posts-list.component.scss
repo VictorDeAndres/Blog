@@ -140,15 +140,15 @@ a.post__resume__categories--separator:hover {
     font-family: sans-serif;
     font-weight: 500;
     @include respond-to(monitor) { 
-        font-size: 26px;
+        font-size: 24px;
         line-height: 36px;   
     }
     @include respond-to(tablet) { 
-        font-size: 26px;
+        font-size: 24px;
         line-height: 36px;   
     }        
     @include respond-to(movil) { 
-        font-size: 18px;     
+        font-size: 16px;     
         line-height: 24px;   
     }      
 }

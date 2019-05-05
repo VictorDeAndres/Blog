@@ -233,6 +233,26 @@
     <p class="post__paragraph">Como has podido ver las reglas básicas son muy sencillas, sólo hay que practicar un poco para obtener toda las ventajas de trabajar con las expresiones regulares. Si quieres practicar te recomiendo la siguiente página: <a href="https://regex101.com/" title="regex101">https://regex101.com/</a> donde podrás practicar el uso de las expresiones regulares además de obtener explicación de todas las reglas que estas utilizando. Una página muy útil para comprobar que tus patrones son correctos.</p>
 
     <blog-post-footer [titlepost]="titlepost"></blog-post-footer>
+
+    <blog-link-post
+      [idLink] = "'IntroWebComponents'"
+      [sourcePhoto] = "'https://victordeandres.es/assets/images/posts/webcomponents.png'"
+      [postTitle] = "'Introducción a los WebComponents'"
+      [postSubTitle] = "'Breve introducción y caracteristicas de los WebComponents'"
+      [postPublishInfo] = "'03 de Marzo 2018'"
+      postLink = "post/introduccion-webcomponents">
+    </blog-link-post>
+
+    <blog-link-post
+      [idLink] = "'GraphQL'"
+      [sourcePhoto] = "'https://victordeandres.es/assets/images/posts/graphql.png'"
+      [postTitle] = "'Introducción a GraphQL'"
+      [postSubTitle] = "'Introducción a GrapghQL. Un lenguaje de consultas para tu API Rest'"
+      [postPublishInfo] = "'09 de Septiembre 2017'"
+      postLink = "post/introduccion-graphql">
+    </blog-link-post>
+
+
   </div>
 </article>
 <blog-post-comment [idpost]="url"></blog-post-comment>

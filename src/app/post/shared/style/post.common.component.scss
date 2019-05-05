@@ -94,13 +94,13 @@
   margin-top: 1em;
 
   @include respond-to(monitor) {
-    font-size: 48px;
-    line-height: 48px;
+    font-size: 36px;
+    line-height: 36px;
   }
 
   @include respond-to(tablet) {
-    font-size: 48px;
-    line-height: 48px;
+    font-size: 36px;
+    line-height: 36px;
   }
 
   @include respond-to(movil) {
@@ -152,7 +152,7 @@
 .post__paragraph {
   margin: 2em 0 2em 0;
   opacity: .8;
-  line-height: 1.5em;
+  line-height: 1.8em;
 }
 
 .post__paragraph--font-weight {
