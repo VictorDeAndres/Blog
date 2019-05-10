@@ -26,7 +26,8 @@ export class WebPackEnTusProyectosAngularComponent implements OnInit, AfterViewI
     // Page Tags
     SEO['title'] = this.titlepost;
     SEO['keywords'] = 'angular angularjs webapp webpack eject spa angular-cli';
-    SEO['description'] = 'Angular tip para utilizar webpack en los aplicativos angular generados desde el asistente angular-cli';
+    // tslint:disable-next-line:max-line-length
+    SEO['description'] = 'Angular-cli ha simplificado la vida de muchos desarrolladores, reduciendo el tiempo de inicio de un proyecto y dando la posibilidad de centrarse sólo en el código sin perder tiempo en las configuraciones.';
     SEO['canonical'] = `https://victordeandres.es/post/${this.url}`;
     // Social Tags
     SEO['og:type'] = 'article';
@@ -53,7 +54,8 @@ export class WebPackEnTusProyectosAngularComponent implements OnInit, AfterViewI
       'datePublished': '2017-07-08',
       'dateCreated': '2017-07-08',
       'dateModified': '2017-07-08',
-      'description': 'Angular tip para utilizar webpack en los aplicativos angular generados desde el asistente angular-cli',
+      // tslint:disable-next-line:max-line-length
+      'description': 'Angular-cli ha simplificado la vida de muchos desarrolladores, reduciendo el tiempo de inicio de un proyecto y dando la posibilidad de centrarse sólo en el código sin perder tiempo en las configuraciones.',
       'author': {
         '@type': 'Person',
         'name': 'Victor de Andres'

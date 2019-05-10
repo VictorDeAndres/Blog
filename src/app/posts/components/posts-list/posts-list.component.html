@@ -1,5 +1,5 @@
-<div *ngFor="let post of posts | toArrayValue">
-  <div class="posts__resume__post">
+<div *ngFor="let post of posts">
+  <div *ngIf="post.isEnabled" class="posts__resume__post">
       <div class="posts__resume__header"></div> 
       <div class="posts__resume__title">
           <div class="posts__resume__title--star"></div>
@@ -14,7 +14,7 @@
           </span>
           <span class="posts__resume__publishedate">{{post.publisheddate}}</span>
       <div>
-          <h6 class="posts__resume__text">{{post.resume}}</h6>
+          <p class="posts__resume__text">{{post.resume}}</p>
           <a [routerLink]="'/' + post.url" class="posts__resume__link">Leer mas</a>
       </div>
       <br>

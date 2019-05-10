@@ -27,7 +27,8 @@ export class JavascriptScopeComponent implements OnInit, AfterViewInit  {
     // Page Tags
     SEO['title'] = this.titlepost;
     SEO['keywords'] = 'javascript, js,, fundamento,s introduccion, definicion, scope';
-    SEO['description'] = 'Fundamentos de JavaScript. Definicion y tipos scope. Global, local, function, lexical, block statments';
+    // tslint:disable-next-line:max-line-length
+    SEO['description'] = 'En un post anterior, JavaScript un "must" que debes dominar, escribí sobre las razones por las que Javascript es un "must". Siguiendo aquel post voy a continuar escribiendo una serie de post sobre los conceptos básicos de Javascript. En este primer post veremos el concepto scope o ámbito.';
     SEO['canonical'] = `https://victordeandres.es/post/${this.url}`;
     // Social Tags
     SEO['og:type'] = 'article';
@@ -55,7 +56,8 @@ export class JavascriptScopeComponent implements OnInit, AfterViewInit  {
       'datePublished': '2017-11-10',
       'dateCreated': '2017-11-10',
       'dateModified': '2017-11-10',
-      'description': 'Fundamentos de JavaScript. Definicion y tipos scope. Global, local, function, lexical, block statments',
+      // tslint:disable-next-line:max-line-length
+      'description': 'En un post anterior, JavaScript un "must" que debes dominar, escribí sobre las razones por las que Javascript es un "must". Siguiendo aquel post voy a continuar escribiendo una serie de post sobre los conceptos básicos de Javascript. En este primer post veremos el concepto scope o ámbito.',
       'author': {
         '@type': 'Person',
         'name': 'Victor de Andres'

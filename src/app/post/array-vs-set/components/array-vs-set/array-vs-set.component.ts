@@ -14,7 +14,7 @@ import * as hljs from 'highlight.js';
 export class ArrayVsSetComponent implements OnInit, AfterViewInit {
 
   public schema;
-  public titlepost = 'JS - ES6. Array VS Set';
+  public titlepost = 'JavaScript - ES6. Array VS Set';
   public publishDate = '20 de Abril 2019';
   public url = 'array-vs-set';
   public postCategories: string[] = ['Fundamentos', 'Javascript'];
@@ -30,7 +30,8 @@ export class ArrayVsSetComponent implements OnInit, AfterViewInit {
     // Page Tags
     SEO['title'] = this.titlepost;
     SEO['keywords'] = 'javascript, es6, ecmascript 2015, array, set';
-    SEO['description'] = 'Javascript - ECMAScript 2015. Diferencia entre array y set';
+    // tslint:disable-next-line:max-line-length
+    SEO['description'] = 'Como desarrollador seguro que en tu día a día utilizas los Arrays. Desde la llegada de la especificación ECMAScript 6 disponemos de un nuevo tipo de estructura, Set. En este post veremos en las diferencias entre los Arrays y los Set. Además los principales métodos para utilizar esta nueva estructura.';
     SEO['canonical'] = `https://victordeandres.es/post/${this.url}`;
     // Social Tags
     SEO['og:type'] = 'article';
@@ -58,7 +59,8 @@ export class ArrayVsSetComponent implements OnInit, AfterViewInit {
       'datePublished': '2019-04-20',
       'dateCreated': '2017-04-20',
       'dateModified': '2017-04-20',
-      'description': 'Javascript - ECMAScript 2015. Diferencia entre array y set',
+      // tslint:disable-next-line:max-line-length
+      'description': 'Como desarrollador seguro que en tu día a día utilizas los Arrays. Desde la llegada de la especificación ECMAScript 6 disponemos de un nuevo tipo de estructura, Set. En este post veremos en las diferencias entre los Arrays y los Set. Además los principales métodos para utilizar esta nueva estructura.',
       'author': {
         '@type': 'Person',
         'name': 'Victor de Andres'

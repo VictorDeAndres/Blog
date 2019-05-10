@@ -1,0 +1,52 @@
+@import './../../../../../assets/styles/__breakpoints.scss';
+@import './../../../../../assets/styles/__colors.scss';
+
+.link__post {
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  display: flex;
+  height: 144px;
+  margin: 1em 0;
+  width: 100%;  
+}
+
+.link__post__photo {
+  display: block;
+  width: 192px;
+}
+
+.link__post__title {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: .5em;
+
+  &__title {
+    align-items: flex-end;
+    display: flex;
+    flex: 3;
+    font-size: 36px;
+    font-weight: 700;
+    padding: 0 36px;
+  }
+
+  &__subTitle {
+    align-items: flex-start;
+    color: #7d7c7c;
+    display: flex;
+    flex: 2;
+    font-size: 24px;
+    font-weight: 700;
+    padding: 0 36px;
+  }
+
+  &__publishInfo {
+    align-items: center;
+    color: $ink-blog;
+    display: flex;
+    flex: 1;
+    font-size: 12px;
+    padding: 0 36px;
+  }
+}
+

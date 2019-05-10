@@ -28,7 +28,8 @@ export class AngularWebcomponentComponent implements OnInit, AfterViewInit {
     // Page Tags
     SEO['title'] = this.titlepost;
     SEO['keywords'] = 'desarrollo, webcomponents, angular, @angular/elements, pollyfills';
-    SEO['description'] = 'Desarrollo paso a paso de webcomponets con @angular/elements';
+    // tslint:disable-next-line:max-line-length
+    SEO['description'] = 'Los WebComponents son un conjunto de características que permite desarrollar widgets o componentes reutilizables tanto para páginas como aplicaciones web. En este post veremos cómo crear nuestros propios WebComponenets con una funcionalidad disponible de la versión 6 de Angular, los @angular/elements.';
     SEO['canonical'] = `https://victordeandres.es/post/${this.url}`;
     // Social Tags
     SEO['og:type'] = 'article';
@@ -55,7 +56,8 @@ export class AngularWebcomponentComponent implements OnInit, AfterViewInit {
       'datePublished': '2018-11-17',
       'dateCreated': '2018-11-17',
       'dateModified': '2018-11-17',
-      'description': 'Desarrollo paso a paso de webcomponets con @angular/elements',
+      // tslint:disable-next-line:max-line-length
+      'description': 'Los WebComponents son un conjunto de características que permite desarrollar widgets o componentes reutilizables tanto para páginas como aplicaciones web. En este post veremos cómo crear nuestros propios WebComponenets con una funcionalidad disponible de la versión 6 de Angular, los @angular/elements.',
       'author': {
         '@type': 'Person',
         'name': 'Victor de Andres'

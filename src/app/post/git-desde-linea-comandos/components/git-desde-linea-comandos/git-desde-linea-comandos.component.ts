@@ -29,15 +29,16 @@ export class GitDesdeLineaComandosComponent implements OnInit, AfterViewInit {
     // Page Tags
     SEO['title'] = this.titlepost;
     SEO['keywords'] = 'comandos, git, push, pull, branch, clone, fetch, checkout';
-    SEO['description'] = 'Lista de comandos basicos para utilizar git desde la linea de comandos';
+    // tslint:disable-next-line:max-line-length
+    SEO['description'] = 'En la actualidad cualquier desarrollador en su trabajo habitual utiliza un repositorio de código, si no es así debes empezar inmediatamente. El repositorio de código de facto es GIT. En este artículo veremos los principales comandos de git para utilizar esta herramienta desde cualquier terminal.';
     SEO['canonical'] = 'https://victordeandres.es/post/' + this.url;
     // Social Tags
-    SEO['og:type'] = SEO['article'];
+    SEO['og:type'] = 'article';
     SEO['og:title'] = SEO['title'];
     SEO['og:description'] = SEO['description'];
     SEO['og:image'] = 'https://victordeandres.es/assets/images/posts/git_linea_comandos.png';
     SEO['og:url'] = SEO['canonical'];
-    SEO['og:site_name'] = SEO['Victor de Andrés'];
+    SEO['og:site_name'] = 'Victor de Andrés';
     this._seoService.addHeaderLabels(SEO);
   }
 
@@ -56,7 +57,8 @@ export class GitDesdeLineaComandosComponent implements OnInit, AfterViewInit {
       'datePublished': '2018-01-20',
       'dateCreated': '2018-01-20',
       'dateModified': '2018-01-20',
-      'description': 'Lista de comandos basicos para utilizar git desde la linea de comandos',
+      // tslint:disable-next-line:max-line-length
+      'description': 'En la actualidad cualquier desarrollador en su trabajo habitual utiliza un repositorio de código, si no es así debes empezar inmediatamente. El repositorio de código de facto es GIT. En este artículo veremos los principales comandos de git para utilizar esta herramienta desde cualquier terminal.',
       'author': {
         '@type': 'Person',
         'name': 'Victor de Andres'

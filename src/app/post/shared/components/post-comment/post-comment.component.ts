@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Commentform } from './../../../../shared/classes/commentform';
 
 import { AngularFireDatabase } from '@angular/fire/database';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpResponse } from '@angular/common/http';
+// import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 

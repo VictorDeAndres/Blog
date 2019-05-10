@@ -35,10 +35,10 @@ body {
 
 body {
     @include respond-to(monitor) { 
-        font-size: 24px;        
+        font-size: 20px;        
     }
     @include respond-to(tablet) { 
-        font-size: 24px;        
+        font-size: 18px;        
     }   
     @include respond-to(movil) { 
         font-size: 16px;

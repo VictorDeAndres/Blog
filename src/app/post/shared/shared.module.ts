@@ -8,13 +8,15 @@ import { PostPublishInfoComponent } from './../shared/components/post-publish-in
 import { PostFooterComponent } from './../shared/components/post-footer/post-footer.component';
 import { PostCommentComponent } from './../shared/components/post-comment/post-comment.component';
 import { PostHeaderComponent } from './components/post-header/post-header.component';
+import { LinkPostComponent } from './components/link-post/link-post.component';
 
 @NgModule({
   declarations: [
     PostPublishInfoComponent,
     PostFooterComponent,
     PostCommentComponent,
-    PostHeaderComponent
+    PostHeaderComponent,
+    LinkPostComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { PostHeaderComponent } from './components/post-header/post-header.compon
     PostPublishInfoComponent,
     PostFooterComponent,
     PostCommentComponent,
-    PostHeaderComponent
+    PostHeaderComponent,
+    LinkPostComponent
   ]
 })
 export class SharedPostModule { }

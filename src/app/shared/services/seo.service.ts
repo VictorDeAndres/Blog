@@ -21,8 +21,8 @@ export class SeoService {
 
   addHeaderLabels(SEO: object) {
     this.sendPageAnalytics(SEO['canonical']);
-    this.createLinkForCanonicalURL(SEO['canonical']);
     this.createMetaTags(SEO);
+    this.createLinkForCanonicalURL(SEO['canonical']);
   }
 
   createLinkForCanonicalURL(canonicalUrl) {
@@ -40,12 +40,20 @@ export class SeoService {
 
   createMetaTags(SEO: object) {
     for ( const label of Object.entries(SEO) ) {
-      this.writeMetaTags(label[0], label[1]);
+      // Exclude canonical MetaTag
+      if ( label[0] !== 'canonical') {
+        this.writeMetaTags(label[0], label[1]);
+      }
     }
   }
 
   writeMetaTags(tag, value) {
-    if ( tag.substring(0, 2) === 'og' ) {
+    if ( tag.substring(0, 2) === 'og' && value) {
+      // Remove old metaTags
+      if ( this.meta.getTag(`name="${tag.substring(3)}"`)) {
+        this.meta.removeTag(`name="${tag.substring(3)}"`);
+      }
+      // Update or add metaTags
       this.meta.getTag(`property="${tag}"`)
         ? this.meta.updateTag({ property: tag, content: value })
         : this.meta.addTag( { property: tag, content: value }, true);
