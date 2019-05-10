@@ -31,12 +31,12 @@ export class ImportanciaTestUnitariosComponent implements OnInit, AfterViewInit 
     SEO['description'] = 'Cada vez desarrollamos programas más complejos y grandes, cada vez interactúan más con otros sistemas, y normalmente suele haber cambios en los requisitos durante la fase del desarrollo. Para poder desarrollar unos programas sólidos y escalables son recomendables los test unitarios.';
     SEO['canonical'] = `https://victordeandres.es/post/${this.url}`;
     // Social Tags
-    SEO['og:type'] = SEO['article'];
+    SEO['og:type'] = 'article';
     SEO['og:title'] = SEO['title'];
     SEO['og:description'] = SEO['description'];
     SEO['og:image'] = 'https://victordeandres.es/assets/images/posts/units_test.png';
     SEO['og:url'] = SEO['canonical'];
-    SEO['og:site_name'] = SEO['Victor de Andrés'];
+    SEO['og:site_name'] = 'Victor de Andrés';
     this._seoService.addHeaderLabels(SEO);
   }
 

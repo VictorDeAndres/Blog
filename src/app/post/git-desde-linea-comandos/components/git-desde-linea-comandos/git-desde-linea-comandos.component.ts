@@ -33,12 +33,12 @@ export class GitDesdeLineaComandosComponent implements OnInit, AfterViewInit {
     SEO['description'] = 'En la actualidad cualquier desarrollador en su trabajo habitual utiliza un repositorio de código, si no es así debes empezar inmediatamente. El repositorio de código de facto es GIT. En este artículo veremos los principales comandos de git para utilizar esta herramienta desde cualquier terminal.';
     SEO['canonical'] = 'https://victordeandres.es/post/' + this.url;
     // Social Tags
-    SEO['og:type'] = SEO['article'];
+    SEO['og:type'] = 'article';
     SEO['og:title'] = SEO['title'];
     SEO['og:description'] = SEO['description'];
     SEO['og:image'] = 'https://victordeandres.es/assets/images/posts/git_linea_comandos.png';
     SEO['og:url'] = SEO['canonical'];
-    SEO['og:site_name'] = SEO['Victor de Andrés'];
+    SEO['og:site_name'] = 'Victor de Andrés';
     this._seoService.addHeaderLabels(SEO);
   }
 

@@ -32,12 +32,12 @@ export class HostingExpressjsFirebaseComponent implements OnInit, AfterViewInit 
     SEO['description'] = 'Con la nueva funcionalidad de Firebase, Cloud Functions o funciones dinámicas, podremos tener alojada un página web dinámica desarrollada con NodeJS y Express. A continuación veremos paso a paso cómo utilizar estas funciones de firebase para alojar nuestras aplicaciones.';
     SEO['canonical'] = `https://victordeandres.es/post/${this.url}`;
     // Social Tags
-    SEO['og:type'] = SEO['article'];
+    SEO['og:type'] = 'article';
     SEO['og:title'] = SEO['title'];
     SEO['og:description'] = SEO['description'];
     SEO['og:image'] = 'https://victordeandres.es/assets/images/posts/firebase_express.png';
     SEO['og:url'] = SEO['canonical'];
-    SEO['og:site_name'] = SEO['Victor de Andrés'];
+    SEO['og:site_name'] = 'Victor de Andrés';
     this._seoService.addHeaderLabels(SEO);
   }
 
