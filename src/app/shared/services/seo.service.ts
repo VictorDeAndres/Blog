@@ -10,6 +10,7 @@ import ua from 'universal-analytics';
 export class SeoService {
 
   private _visitor;
+  private _seoTags = [];
 
   constructor(
     @Inject(DOCUMENT) private doc,
@@ -20,8 +21,22 @@ export class SeoService {
   }
 
   addHeaderLabels(SEO: object) {
+
+    // Fix Error Object Entries at old webbrowsers
+    function _fixErrorEntries(obj) {
+      const ownProps = Object.keys( obj );
+      let i = ownProps.length;
+      const resArray = new Array(i); // preallocate the Array
+      while (i--) {
+        resArray[i] = [ownProps[i], obj[ownProps[i]]];
+      }
+      return resArray;
+    }
+
+    this._seoTags = _fixErrorEntries(SEO);
+
     this.sendPageAnalytics(SEO['canonical']);
-    this.createMetaTags(SEO);
+    this.createMetaTags(this._seoTags);
     this.createLinkForCanonicalURL(SEO['canonical']);
   }
 
@@ -38,11 +53,14 @@ export class SeoService {
 
   }
 
-  createMetaTags(SEO: object) {
-    for ( const label of Object.entries(SEO) ) {
-      // Exclude canonical MetaTag
-      if ( label[0] !== 'canonical') {
-        this.writeMetaTags(label[0], label[1]);
+  createMetaTags(SEO) {
+    const lengthArray = SEO.length;
+    for ( let idx = 0; idx < lengthArray; idx++) {
+     // Exclude canonical MetaTag
+      if ( SEO[idx][0] !== 'canonical') {
+        if ( SEO[idx][0] && SEO[idx][1] ) {
+          this.writeMetaTags(SEO[idx][0], SEO[idx][1]);
+        }
       }
     }
   }
