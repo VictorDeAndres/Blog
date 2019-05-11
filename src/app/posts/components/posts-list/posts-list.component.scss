@@ -139,6 +139,8 @@ a.post__resume__categories--separator:hover {
     padding-top: 1em;
     font-family: sans-serif;
     font-weight: 500;
+    line-height: 1.3em !important;
+    
     @include respond-to(monitor) { 
         font-size: 24px;
         line-height: 36px;   

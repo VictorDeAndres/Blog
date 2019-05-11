@@ -47,17 +47,6 @@ export class PostsService {
   public INITIALPOSTS(): any {
     return [{
         'categories' : {
-          'WebApps' : 'WebApps',
-          'WebComponents' : 'WebComponents'
-        },
-        'publisheddate' : '03 de Marzo 2018',
-        // tslint:disable-next-line:max-line-length
-        'resume' : 'En este post voy a realizar una introducción a los WebComponents, un conjunto de caracteristicas aún en desarrollo por parte de la W3C que unidas a las especificaciones actuales de HTML y DOM nos permitirá desarrollar widgets o componentes reutilizables tanto para páginas como aplicaciones web. Este modelo de componentes nos permite realizar tanto la encapsulación como la interoperabilidad de nuestros componentes con otros',
-        'title' : 'Introducción a los WebComponents',
-        'url' : 'post/introduccion-webcomponents',
-        'isEnabled': true
-      }, {
-        'categories' : {
           'Angular' : 'Angular',
           'Desarrollo' : 'Desarrollo',
           'WebApps' : 'WebApps',
@@ -103,6 +92,18 @@ export class PostsService {
         'resume' : 'Como desarrollador seguro que en tu día a día utilizas los Arrays. Desde la llegada de la especificación ECMAScript 6 disponemos de un nuevo tipo de estructura, Set. En este post veremos en las diferencias entre los Arrays y los set. Además los principales métodos para utilizar esta nueva estructura.',
         'title' : 'JavaScript - ES6. Array VS Set',
         'url' : 'post/array-vs-set',
+        'isEnabled': true
+      }, {
+        'categories' : {
+          'Angular': 'Angular',
+          'Desarrollo': 'Desarrollo',
+          'WebApps': 'WebApps'
+        },
+        'publisheddate' : '12 de Mayo 2019',
+        // tslint:disable-next-line:max-line-length
+        'resume' : 'Estamos acostumbrados a recibir notificaciones de nuestro calendario, correo, ect, … tanto en nuestros smartphones, como en nuestros ordenadores. En este post veremos cómo implementar esta tecnología en una página web desarrollada con Angular.',
+        'title' : 'Implementación de notificaciones push en Angular',
+        'url' : 'post/angular-push-notifications',
         'isEnabled': true
       }
     ];
