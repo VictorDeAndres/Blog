@@ -1,3 +1,260 @@
-<p>
-  angular-push-notifications works!
-</p>
+<ngx-json-ld [json]="schema"></ngx-json-ld>
+<blog-post-header></blog-post-header>
+<article class="post">
+  <div class="post__container">
+    <div class="post__title"></div>
+    <h1 class="post__title--title">
+      Implementación de notificaciones push en Angular
+    </h1>
+    <h2 class="post__title--subtitle">
+      Tutorial para la implantación de notificaciones push en Angular
+    </h2>
+    <div class="post__title--footer"></div>
+
+    <blog-post-publish-info [publishDate]="publishDate" [postCategories]="postCategories"></blog-post-publish-info>
+    <div class="post__image">
+      <img class="post__image--image" src="https://images.unsplash.com/photo-1464621922360-27f3bf0eca75?q=75&fm=jpg" alt="angular-push-notifications">
+      <div class="post__photo">Photo by Tony Webster on Unsplash</div>
+    </div>
+   
+    <p class="post__paragraph">Estamos acostumbrados a recibir notificaciones de nuestro calendario, correo, ect, … tanto en nuestros smartphones, como en nuestros ordenadores. En este post veremos cómo implementar esta tecnología en una página web desarrollada con Angular.</p>
+
+    <p class="post__paragraph">Este post se va a dividir en dos partes. En esta primera parte desarrollaremos una página web con angular que incluirá la posibilidad de recibir notificaciones push, y en la segunda parte desarrollaremos un servidor web que será el encargado de emitir las notificaciones.</p>
+
+    <h3 class="post__title--title-paragraph">Comencemos.</h3>
+
+    <p class="post__paragraph">Antes de comenzar con este nuevo proyecto debemos conocer la clave pública con la cual nos conectaremos a nuestro servidor de notificaciones. Cómo obtener esta clave pública lo veremos en el siguiente artículo, dedicado a la parte del servidor. O desde la siguiente página <a href="https://web-push-codelab.glitch.me/" title="webcomponents">web</a>, puedes generar tus claves. Una vez tengamos nuestra clave podremos comenzar con el desarrollo de nuestro cliente web. </p>
+
+    <h3 class="post__title--title-paragraph">Cliente Web.</h3>
+
+    <p class="post__paragraph">Lo primero que haremos, como es habitual en un proyecto angular será crear nuestro nuevo proyecto.</p>
+
+    <pre>
+      <code highlight class="bash">
+  ng new angular-push-notifications --prefix ang-pn
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Una vez hemos creado nuestro proyecto el primer paso que vamos a realizar es crear un servicio para encapsular nuestro código.</p>
+
+    <pre>
+      <code highlight class="bash">
+  ng genarate service ./services/webPushNotifications
+      </code>
+    </pre>
+
+    <h3 class="post__title--title-paragraph">Inicialización del servicio.</h3>
+
+    <p class="post__paragraph">Lo primero que deberemos será definir el constructor de nuestro servicio y inicializar las variables que vamos a utilizar en el servicio.</p>
+
+    <pre>
+      <code highlight class="typescript">
+    private _swRegistration;
+    private _isSubscribed: boolean;
+  
+    private applicationServerPublicKey: string;
+  
+    constructor (
+      private httpClient: HttpClient
+    ) &#123;
+      this.applicationServerPublicKey = 'nuestra clave privada';
+    &#125;
+      </code>
+    </pre>
+  
+    <h3 class="post__title--title-paragraph">Chequeo web browser.</h3>
+
+    <p class="post__paragraph">En este servicio crearemos los siguientes métodos:</p>
+
+    <pre>
+      <code highlight class="typescript">
+    private checkServiceWorkerPushEnabled(): boolean &#123;
+      return ('serviceWorker' in navigator && 'PushManager' in window);
+      &#125;
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Este primer método nos devolverá un valor booleano indicando si el navegador web que está utilizando el cliente soporta la funcionalidades Service Workers y Notificaciones Push.</p>
+
+    <p class="post__paragraph">Sí el navegador de nuestro cliente soporta ambas funcionalidades el siguiente paso que debemos realizar es registrar nuestro Service Worker.</p>  
+
+    <pre>
+      <code highlight class="typescript">
+    private enableServiceWorker(): void &#123;
+      navigator.serviceWorker.register('/app/serviceWorker/sw.js', &#123;scope: '/app/serviceWorker/'&#125;)
+      .then( swReg => &#123;
+        console.info('Service Worker esta registrado', swReg);
+        this.swRegistration = swReg;
+        this.initialiseUI();
+      &#125;)
+      .catch(function(error) &#123;
+        console.error('Service Worker Error', error);
+      &#125;);
+    &#125;
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Veamos en detalle esta función.</p>
+
+    <p class="post__paragraph">Lo primero que realizamos es registrar el fichero sw.js, que en este ejemplo he ubicado en la carpeta ‘/app/serviceWorker/’ del proyecto y que será donde se encuentre la lógica de nuestro Service Worker. Este fichero lo escribiremos posteriormente.</p>
+
+    <p class="post__paragraph">Una vez registrado con éxito nuestros fichero procederemos a llamar a a la función <span class="post__paragraph--font-weight">initialiseUI</span> en la cual verificaremos si el usuario nos ha habilitado para enviarle notificaciones en cuyo caso estableceremos la comunicación con el servidor, o en caso contrario le pediremos permiso para enviarle notificaciones. </p>
+
+    <pre>
+      <code highlight class="typescript">
+    private initialiseUI(): void &#123;
+      // Set the initial subscription value
+      this.swRegistration.pushManager.getSubscription()
+      .then( subscription => &#123;
+        this.isSubscribed = !(subscription === null);
+    
+        if (this.isSubscribed) &#123;
+          this.sendSubcriptionObject(subscription);
+        &#125; else &#123;
+          console.log('Usuario NO esta registrado');
+          this.subscribeUser();
+        &#125;
+      &#125;);
+    &#125;
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Como he comentado anteriormente en esta función chequeamos si el usuario ya nos dio permiso para enviarle notificaciones y estableceremos la conexión con el servidor, para ello invocamos a la función <span class="post__paragraph--font-weight">sendSubcriptionObject</span> o solicitaremos permiso al usuario, función <span class="post__paragraph--font-weight">subscribeUser</span> para poder enviarle notificaciones.</p>
+
+    <h3 class="post__title--title-paragraph">Solicitar permiso al usuario.</h3>
+
+    <p class="post__paragraph">Con esta función solicitaremos permiso al usuario para enviarle notificaciones. Si el usuario nos da permiso para enviarle notificaciones el siguiente paso que deberemos dar será establecer la comunicación entre el cliente y el servidor.</p>
+
+    <pre>
+      <code highlight class="typescript">
+    private subscribeUser(): void &#123;
+      const applicationServerKey = this.urlB64ToUint8Array(this.applicationServerPublicKey);
+      this.swRegistration.pushManager.subscribe(&#123;
+        userVisibleOnly: true,
+        applicationServerKey: applicationServerKey
+      &#125;)
+      .then(function(subscription) &#123;
+        console.log('Usuario suscritó: ', subscription);
+        this.isSubscribed = true;
+      &#125;)
+      .catch(function(err) &#123;
+        console.log('Fallo al realizar la suscripción: ', err);
+      &#125;);
+    &#125;
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Antes de comenzar deberemos convertir la clave pública con la cual debemos conectarnos al servidor al formato UInt8Array, que es el formato esperado por llamada de la suscripción. </p>
+
+    <p class="post__paragraph">A continuación llamamos a subscribe que es una  promesa que se resolverá correctamente si el usuario nos otorga permiso para recibir notificaciones y el navegador a enviado una solicitud a un servicio push, o en caso contrario mostraremos un mensaje de log por la consola.</p>
+
+    <h3 class="post__title--title-paragraph">Notificación al servidor.</h3>
+
+    <p class="post__paragraph">Una vez obtenido el permiso para recibir las notificaciones, o en caso de tener ya permiso para recibirlas enviaremos al servidor la información necesaria para recibir las notificaciones. Para ello llamaremos a nuestra última función <span class="post__paragraph--font-weight">sendSubcriptionObject</span>.</p>
+
+    <pre>
+      <code highlight class="typescript">
+    private sendSubcriptionObject(subscription): void &#123;
+      const apiUrl = `$&#123;environment.apiRoot&#125;/subscribe`;
+      this.httpClient.post(apiUrl, subscription).subscribe();
+    &#125;   
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Esta función enviará a nuestro servidor el objeto subcription que entre otra información lleva almacenado el endpoint de nuestro dispositivo que posteriormente necesitaremos para enviar las notificaciones.</p>
+
+    <p class="post__paragraph">Nota: En esta parte del ejemplo deberemos comentar esta parte del código ya que aún no hemos desarrollado nuestro servidor de notificaciones. O indicar la ruta de nuestro servidor de notificaciones.</p>
+
+    <h3 class="post__title--title-paragraph">Las notificaciones.</h3>
+
+    <p class="post__paragraph">Una vez hemos desarrollado la conexión con nuestro servidor, el siguiente paso que vamos a realizar es el tratamiento de las notificaciones. Al principio del artículo al comienzo del desarrollo escribimos el siguiente código.</p>
+
+    <pre>
+      <code highlight class="typescript">
+    ...
+    navigator.serviceWorker.register('app/serviceWorker/sw.js', &#123;scope: '/app/serviceWorker/'&#125;)
+    .then( swReg => &#123;
+    ...   
+      </code>
+    </pre>
+
+    <p class="post__paragraph">En este código registramos el fichero sw.js que es el fichero donde se vamos a escribir el listener de las notificaciones enviadas desde el servidor.</p>
+
+    <pre>
+      <code highlight class="javascript">
+    'use strict';
+
+    self.addEventListener('push', function(event) &#123;
+      const title = 'Comunicacion Ejemplo Push Notificaction';
+      const options = &#123;
+        body: event.data.text()
+      &#125;;
+    
+      event.waitUntil(self.registration.showNotification(title, options));
+    &#125;);
+      </code>
+    </pre>
+
+    <h3 class="post__title--title-paragraph">Compilación.</h3>
+
+    <p class="post__paragraph">Si ahora construimos nuestra aplicación web y la ejecutamos obtendremos un error similar al siguiente:</p>
+
+    <p class="post__paragraph" style="color: red;">A bad HTTP response code (404) was received when fetching the script.</p>
+
+    <p class="post__paragraph" style="color: red;">Error Service Worker TypeError: Failed to register a ServiceWorker: A bad HTTP response code (404) was received when fetching the script.</p>
+
+    <p class="post__paragraph">Esto es debido a que al realizar la construcción de nuestra aplicación todo el código de la misma se une en un único fichero. Por ello al intentar registrar el listener de las notificaciones el sistema no encontrará ese fichero.</p>
+
+    <p class="post__paragraph">Para excluir este fichero de nuestro proceso de construcción simplemente deberemos ir nuestro fichero de configuración del proyecto y añadir la siguiente línea.</p>
+
+    <pre>
+      <code highlight class="bash">
+    ...  
+    "assets": [
+        "src/favicon.ico",
+        "src/assets",
+        "src/app/serviceWorker"
+    ],
+    ...
+      </code>
+    </pre>
+
+    <p class="post__paragraph">De esta manera al construir nuestro proyecto no se incluirá nuestro listener y nuestro desarrollo funcionará correctamente.</p>
+
+    <h3 class="post__title--title-paragraph">La prueba.</h3>
+
+    <p class="post__paragraph">Una vez ya hemos corregido el error de registro y hemos ejecutado nuestra página web sin problema es tiempo de enviar una notificación para comprobar que nuestra aplicación funciona correctamente.</p>
+
+    <p class="post__paragraph">Dado que aún no hemos creado nuestro propio servidor de notificaciones vamos a hacer la prueba desde la consola de depuración de nuestro navegador. Yo normalmente trabajo con Chrome, así que los pasos que voy a indicar son los necesarios para para este navegador.</p>
+
+    <p class="post__paragraph">Lo primero es acceder a la opción Application de la barra de opciones y seleccionar la opción “Service Workers” de las opciones del menú de Application. Esto nos mostrará una pantalla similar a la siguiente:</p>
+
+    <div class="post__image">
+      <img class="post__image--image" src="./../assets/images/posts/test_angular_push_notifications.png"
+        alt="test angular web push">
+    </div>
+
+    <p class="post__paragraph">Si pulsamos el botón push enviaremos el mensaje a nuestra aplicación web, la cual hemos habilitado para recibir notificaciones push. Sí todo funciona correctamente veremos una notificación con el mensaje que hayamos enviado.</p>
+
+    <h3 class="post__title--title-paragraph">Punto y aparte.</h3>
+
+    <p class="post__paragraph">Hasta aquí la primera parte de este artículo donde hemos visto cómo desarrollar nuestro cliente con notificaciones push con Angular. Dispones de todo el código de este proyecto en el siguiente repositorio <a href="https://github.com/VictorDeAndres/Angular_PushNotifications" title="webcomponents">https://github.com/VictorDeAndres/Angular_PushNotifications</a>.</p>
+
+    <p class="post__paragraph">En la siguiente parte de este artículo veremos cómo crear nuestro propio servidor de notificaciones con NodeJs y Express.</p>
+    
+    <blog-post-footer [titlepost]="titlepost"></blog-post-footer>
+
+    <blog-link-post
+      [idLink] = "'AngularWebComponents'"
+      [sourcePhoto] = "'https://images.unsplash.com/photo-1426927308491-6380b6a9936f?q=75&fm=jpg'"
+      [postTitle] = "'Desarrollo de WebComponents con Angular, @angular/elements'"
+      [postSubTitle] = "'Tutorial para desarrollar webComponents con @angular/elements'"
+      [postPublishInfo] = "'17 de Noviembre 2018'"
+      postLink = "post/angular-webcomponents">
+    </blog-link-post> 
+
+  </div>
+</article>
+<blog-post-comment [idpost]="url"></blog-post-comment>
+
+

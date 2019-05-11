@@ -53,6 +53,9 @@ const routes: Routes = [{
 }, {
   path: 'array-vs-set',
   loadChildren: './array-vs-set/array-vs-set.module#ArrayVsSetModule'
+}, {
+  path: 'angular-push-notifications',
+  loadChildren: './angular-push-notification/angular-push-notification.module#AngularPushNotificationModule'
 }];
 
 
