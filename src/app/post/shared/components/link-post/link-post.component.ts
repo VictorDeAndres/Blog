@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'blog-link-post',
   templateUrl: './link-post.component.html',
@@ -16,22 +15,25 @@ export class LinkPostComponent implements OnInit {
   @Input() idLink: string;
 
   constructor(
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit() {
     setTimeout(() => {
-      if ( this.sourcePhoto ) {
-        document.querySelector(`.link__post__photo#${this.idLink}`)['src'] = this.sourcePhoto;
-      }
-      if ( this.postTitle ) {
-        document.querySelector(`.link__post__title__title#${this.idLink}`).innerHTML = this.postTitle;
-      }
-      if ( this.postSubTitle ) {
-        document.querySelector(`.link__post__title__subTitle#${this.idLink}`).innerHTML = this.postSubTitle;
-      }
-      if ( this.postPublishInfo ) {
-        document.querySelector(`.link__post__title__publishInfo#${this.idLink}`).innerHTML = this.postPublishInfo;
+      // Before find element check isn't ssr
+      if ( typeof navigator !== 'undefined' ) {
+        if ( this.sourcePhoto ) {
+          document.querySelector(`.link__post__photo#${this.idLink}`)['src'] = this.sourcePhoto;
+        }
+        if ( this.postTitle ) {
+          document.querySelector(`.link__post__title__title#${this.idLink}`).innerHTML = this.postTitle;
+        }
+        if ( this.postSubTitle ) {
+          document.querySelector(`.link__post__title__subTitle#${this.idLink}`).innerHTML = this.postSubTitle;
+        }
+        if ( this.postPublishInfo ) {
+          document.querySelector(`.link__post__title__publishInfo#${this.idLink}`).innerHTML = this.postPublishInfo;
+        }
       }
     }, 0);
   }

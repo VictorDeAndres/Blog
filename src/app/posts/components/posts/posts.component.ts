@@ -34,6 +34,9 @@ export class PostsComponent implements OnInit {
     SEO['description'] = 'Blog Victor de Andres',
     SEO['canonical'] = 'https://victordeandres.es/posts';
     this._seoService.addHeaderLabels(SEO);
+
+    this.initPage = false;
+    this.lastPage = false;
   }
 
   ngOnInit() {

@@ -76,7 +76,7 @@
 
     <p class="post__paragraph">Este primer método nos devolverá un valor booleano indicando si el navegador web que está utilizando el cliente soporta la funcionalidades Service Workers y Notificaciones Push.</p>
 
-    <p class="post__paragraph">Sí el navegador de nuestro cliente soporta ambas funcionalidades el siguiente paso que debemos realizar es registrar nuestro Service Worker.</p>  
+    <p class="post__paragraph">Si el navegador de nuestro cliente soporta ambas funcionalidades el siguiente paso que debemos realizar es registrar nuestro Service Worker.</p>  
 
     <pre>
       <code highlight class="typescript">
@@ -134,7 +134,7 @@
         applicationServerKey: applicationServerKey
       &#125;)
       .then(function(subscription) &#123;
-        console.log('Usuario suscritó: ', subscription);
+        console.log('Usuario suscrito: ', subscription);
         this.isSubscribed = true;
       &#125;)
       .catch(function(err) &#123;
@@ -234,7 +234,7 @@
         alt="test angular web push">
     </div>
 
-    <p class="post__paragraph">Si pulsamos el botón push enviaremos el mensaje a nuestra aplicación web, la cual hemos habilitado para recibir notificaciones push. Sí todo funciona correctamente veremos una notificación con el mensaje que hayamos enviado.</p>
+    <p class="post__paragraph">Si pulsamos el botón push enviaremos el mensaje a nuestra aplicación web, la cual hemos habilitado para recibir notificaciones push. Si todo funciona correctamente veremos una notificación con el mensaje que hayamos enviado.</p>
 
     <h3 class="post__title--title-paragraph">Punto y aparte.</h3>
 

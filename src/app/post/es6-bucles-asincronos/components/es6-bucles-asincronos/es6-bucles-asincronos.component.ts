@@ -15,7 +15,7 @@ export class Es6BuclesAsincronosComponent implements OnInit, AfterViewInit {
   public titlepost = 'JavaScript - ES6. Bucles Asíncronos';
   public publishDate = '30 de Marzo 2019';
   public url = 'es6-bucles-asincronos';
-  public postCategories: string[] =  ['Fundamentos', 'Javascript', 'Tips'];
+  public postCategories: string[] = ['Fundamentos', 'Javascript', 'Tips'];
 
   constructor(
     private _elemenRef: ElementRef,

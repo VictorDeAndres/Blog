@@ -16,7 +16,7 @@ export class JavascriptScopeComponent implements OnInit, AfterViewInit  {
   public publishDate = '10 de Noviembre 2017';
   public url = 'javascript-scope';
   public postCategories: string[] = ['Fundamentos', 'Javascript'];
-
+  
   constructor(
     private _elemenRef: ElementRef,
     private _seoService: SeoService
@@ -76,7 +76,7 @@ export class JavascriptScopeComponent implements OnInit, AfterViewInit  {
 
   ngAfterViewInit() {
     this._elemenRef.nativeElement.querySelectorAll('pre code').forEach(code => hljs.highlightBlock(code) );
-        if ( typeof navigator !== 'undefined' ) {
+    if ( typeof navigator !== 'undefined' ) {
       window.scroll(0, 0);
     }
   }

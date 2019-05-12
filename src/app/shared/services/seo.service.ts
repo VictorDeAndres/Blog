@@ -37,7 +37,9 @@ export class SeoService {
 
     this.sendPageAnalytics(SEO['canonical']);
     this.createMetaTags(this._seoTags);
-    this.createLinkForCanonicalURL(SEO['canonical']);
+    if ( this.doc !== undefined) {
+      this.createLinkForCanonicalURL(SEO['canonical']);
+    }
   }
 
   createLinkForCanonicalURL(canonicalUrl) {
