@@ -1,0 +1,82 @@
+import { Component, OnInit } from '@angular/core';
+import { ElementRef, AfterViewInit} from '@angular/core';
+import { SeoService } from './../../../../../shared/services/seo.service';
+
+import * as hljs from 'highlight.js';
+@Component({
+  selector: 'blog-web-pack-en-tus-proyectos-angular',
+  templateUrl: './web-pack-en-tus-proyectos-angular.component.html',
+ styleUrls: ['./../../../../shared/style/post.common.component.scss']
+})
+export class WebPackEnTusProyectosAngularComponent implements OnInit, AfterViewInit {
+
+  public schema;
+  public titlepost = 'Webpack en tus proyectos Angular';
+  public publishDate = '08 de Julio 2017';
+  public url = 'webpack-en-tus-proyectos-angular';
+  public postCategories: string[] = ['Angular', 'Webpack'];
+
+  constructor(
+    private _elemenRef: ElementRef,
+    private _seoService: SeoService
+  ) {
+    const SEO = {};
+    SEO['author'] = 'Victor de Andres';
+    SEO['robots'] = 'Index, Follow';
+    // Page Tags
+    SEO['title'] = this.titlepost;
+    SEO['keywords'] = 'angular angularjs webapp webpack eject spa angular-cli';
+    // tslint:disable-next-line:max-line-length
+    SEO['description'] = 'Angular-cli ha simplificado la vida de muchos desarrolladores, reduciendo el tiempo de inicio de un proyecto y dando la posibilidad de centrarse sólo en el código sin perder tiempo en las configuraciones.';
+    SEO['canonical'] = `https://victordeandres.es/post/${this.url}`;
+    // Social Tags
+    SEO['og:type'] = 'article';
+    SEO['og:title'] = SEO['title'];
+    SEO['og:description'] = SEO['description'];
+    SEO['og:image'] = 'https://victordeandres.es/assets/images/posts/webpack-and-angularjs.png';
+    SEO['og:url'] = SEO['canonical'];
+    SEO['og:site_name'] = 'Victor de Andrés';
+    this._seoService.addHeaderLabels(SEO);
+  }
+
+  ngOnInit() {
+    this.schema = {
+      '@context': 'http://schema.org',
+      '@type': 'BlogPosting',
+      'headline': 'Webpack en tus proyectos Angular',
+      'alternativeHeadline': 'Habilita webpack en tus proyectos Angular 2+',
+      'image': 'https://victordeandres.es/assets/images/posts/webpack-and-angularjs.png',
+      'editor': 'Victor de Andres',
+      'genre': 'front end software development',
+      'keywords': 'angular angularjs webapp webpack eject spa angular-cli',
+      'wordcount': '231',
+      'url': 'https://victordeandres.es/post/webpack-en-tus-proyectos-angular',
+      'datePublished': '2017-07-08',
+      'dateCreated': '2017-07-08',
+      'dateModified': '2017-07-08',
+      // tslint:disable-next-line:max-line-length
+      'description': 'Angular-cli ha simplificado la vida de muchos desarrolladores, reduciendo el tiempo de inicio de un proyecto y dando la posibilidad de centrarse sólo en el código sin perder tiempo en las configuraciones.',
+      'author': {
+        '@type': 'Person',
+        'name': 'Victor de Andres'
+      },
+      'publisher': {
+        '@type': 'Organization',
+        'name': 'Victor de Andres',
+        'logo': {
+        '@type': 'imageObject',
+        'url': 'https://victordeandres.es/assets/images/LogoFondoBlanco.png'
+        }
+      },
+      'mainEntityOfPage': 'https://victordeandres.es/post'
+    };
+  }
+
+  ngAfterViewInit() {
+    this._elemenRef.nativeElement.querySelectorAll('pre code').forEach(code => hljs.highlightBlock(code) );
+        if ( typeof navigator !== 'undefined' ) {
+      window.scroll(0, 0);
+    }
+  }
+
+}

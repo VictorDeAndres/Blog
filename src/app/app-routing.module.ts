@@ -9,10 +9,10 @@ const routes: Routes = [{
   loadChildren: './contact/contact.module#ContactModule',
 }, {
   path: 'posts',
-  loadChildren: './posts/posts.module#PostsModule'
+  loadChildren: './postIndex/posts.module#PostsModule'
 }, {
   path: 'post',
-  loadChildren: './post/post.module#PostModule'
+  loadChildren: './posts/post.module#PostModule'
 }];
 
 @NgModule({

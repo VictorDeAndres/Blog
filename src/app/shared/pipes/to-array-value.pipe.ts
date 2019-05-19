@@ -6,15 +6,17 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ToArrayValuePipe implements PipeTransform {
 
   transform(value, args: string[]): any {
-    const keys = [];
-    // tslint:disable-next-line:forin
-    for (const key in value) {
-      keys.push(value[key]);
+    if ( Array.isArray(value)) {
+      return value;
+    } else {
+      const keys = [];
+      // tslint:disable-next-line:forin
+      for (const key in value) {
+        keys.push(value[key]);
+      }
+      return keys;
     }
-    return keys;
-
   }
-
 }
 
 
