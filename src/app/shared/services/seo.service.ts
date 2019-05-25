@@ -21,7 +21,6 @@ export class SeoService {
   }
 
   addHeaderLabels(SEO: object) {
-
     // Fix Error Object Entries at old webbrowsers
     function _fixErrorEntries(obj) {
       const ownProps = Object.keys( obj );
@@ -70,8 +69,8 @@ export class SeoService {
   writeMetaTags(tag, value) {
     if ( tag.substring(0, 2) === 'og' && value) {
       // Remove old metaTags
-      if ( this.meta.getTag(`name="${tag.substring(3)}"`)) {
-        this.meta.removeTag(`name="${tag.substring(3)}"`);
+      if ( this.meta.getTag(`name="${tag}"`)) {
+        this.meta.removeTag(`name="${tag}"`);
       }
       // Update or add metaTags
       this.meta.getTag(`property="${tag}"`)

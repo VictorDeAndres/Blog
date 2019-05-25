@@ -12,7 +12,7 @@ import * as hljs from 'highlight.js';
 export class AngularPushNotificationsComponent implements OnInit, AfterViewInit {
 
   public schema;
-  public titlepost = 'Implementación de notificaciones push en Angular';
+  public titlepost = 'Tutorial implementación de notificaciones push en Angular';
   public publishDate = '12 de Mayo 2019';
   public url = 'angular-push-notifications';
   public postCategories: string[] = ['Angular', 'Desarrollo', 'WebApps'];
@@ -27,7 +27,7 @@ export class AngularPushNotificationsComponent implements OnInit, AfterViewInit 
     SEO['robots'] = 'Index, Follow';
     // Page Tags
     SEO['title'] = this.titlepost;
-    SEO['keywords'] = 'desarrollo, push notifications, angular';
+    SEO['keywords'] = 'tutorial, desarrollo, push notifications, angular';
     // tslint:disable-next-line:max-line-length
     SEO['description'] = 'Estamos acostumbrados a recibir notificaciones de nuestro calendario, correo, ect, … tanto en nuestros smartphones, como en nuestros ordenadores. En este post veremos cómo implementar las notificaciones push en una página web desarrolladas con Angular.';
     SEO['canonical'] = `https://victordeandres.es/post/${this.url}`;
