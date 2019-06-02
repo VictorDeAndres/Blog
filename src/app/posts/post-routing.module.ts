@@ -56,6 +56,9 @@ const routes: Routes = [{
 }, {
   path: 'angular-push-notifications',
   loadChildren: './post/angular-push-notification/angular-push-notification.module#AngularPushNotificationModule'
+}, {
+  path: 'javascript-symbols',
+  loadChildren: './post/javascript-symbols/javascript-symbols.module#JavascriptSymbolsModule'
 }];
 
 

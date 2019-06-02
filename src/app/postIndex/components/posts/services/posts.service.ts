@@ -47,19 +47,6 @@ export class PostsService {
   public INITIALPOSTS(): any {
     return [{
         'categories' : {
-          'Angular' : 'Angular',
-          'Desarrollo' : 'Desarrollo',
-          'WebApps' : 'WebApps',
-          'WebComponents' : 'WebComponents'
-        },
-        'publisheddate' : '17 de Noviembre 2018',
-        // tslint:disable-next-line:max-line-length
-        'resume' : 'Hace ya un tiempo escribí un post introductorio a los webcomponents. Al final de aquel post indicaba varias librerías con las cuales podríamos diseñar nuestros propios webcomponents. Hoy, como continuación a aquel post vamos a añadir una nueva librería para realizar nuestros webcomponents. En esta ocasión vamos a utilizar una nueva funcionalidad disponible desde la versión 6 de angular, los @angular/elements',
-        'title' : 'Desarrollo de WebComponents con Angular, @angular/elements',
-        'url' : 'post/angular-webcomponents',
-        'isEnabled': true
-      }, {
-        'categories' : {
           'Arquitectura': 'Arquitectura',
           'Desarrollo' : 'Desarrollo',
         },
@@ -104,6 +91,17 @@ export class PostsService {
         'resume' : 'Estamos acostumbrados a recibir notificaciones de nuestro calendario, correo, ect, … tanto en nuestros smartphones, como en nuestros ordenadores. En este post veremos cómo implementar esta tecnología en una página web desarrollada con Angular.',
         'title' : 'Implementación de notificaciones push en Angular',
         'url' : 'post/angular-push-notifications',
+        'isEnabled': true
+      }, {
+        'categories' : {
+          'Fundamentos' : 'Fundamentos',
+          'Javascript' : 'Javascript'
+        },
+        'publisheddate' : '02 de Junio 2019',
+        // tslint:disable-next-line:max-line-length
+        'resume' : 'Una de las novedades de ES6 – ECMAScript2015 fue añadir un nuevo tipo de dato, symbol. Es verdad que desde el lanzamiento de este nuevo standard de javascript allá por Junio de 2015 ha pasado bastante tiempo, pero al igual que otras características de ES6 las cuales utilizamos habitualmente. Por ejemplo las arrow functions, los template strings, o el uso de let y const para definir variables, por poner sólo alguno de los ejemplos, el uso de symbol es residual por no decir inexistente.',
+        'title' : 'Javascript - ES6. Symbols',
+        'url' : 'post/javascript-symbols',
         'isEnabled': true
       }
     ];

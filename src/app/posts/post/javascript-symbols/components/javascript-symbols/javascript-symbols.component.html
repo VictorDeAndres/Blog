@@ -1,0 +1,277 @@
+<ngx-json-ld [json]="schema"></ngx-json-ld>
+<blog-post-header></blog-post-header>
+<article class="post">
+  <div class="post__container">
+    <div class="post__title"></div>
+    <h1 class="post__title--title">
+        JavaScript - ES6. Array VS Set
+    </h1>
+    <h2 class="post__title--subtitle">
+      Javascript - ES6. Diferencia entre Array y Set
+    </h2>
+    <div class="post__title--footer"></div>
+
+    <blog-post-publish-info [publishDate]="publishDate" [postCategories]="postCategories"></blog-post-publish-info>
+    <div class="post__image">
+      <img class="post__image--image" src="https://images.unsplash.com/photo-1509822429293-98a3c3fe6bee?ixlib?q=75&fm=jpg" alt="Javascript Symbols">
+      <div class="post__photo">Photo by Matthew Brodeur on Unsplash</div>
+    </div>
+
+    <p class="post__paragraph">
+      Una de las novedades de ES6 – ECMAScript2015 fue añadir un nuevo tipo de dato, symbol. Es verdad que desde el lanzamiento de este nuevo standard de javascript allá por Junio de 2015 ha pasado bastante tiempo, pero al igual que otras características de ES6 las cuales utilizamos habitualmente. Por ejemplo las arrow functions, los template strings, o el uso de let y const para definir variables, por poner sólo algunos ejemplos, el uso de symbol es residual por no decir inexistente.
+    </p>
+    
+    <h3 class="post__title--title-paragraph">
+      ¿Qué es Symbol?
+    </h3>
+
+    <p class="post__paragraph">
+      Lo primero que debemos es saber qué es symbol. Symbol es nuevo tipo de dato de JavaScript que se engloba dentro de los tipos primitivos, que son aquellos tipos de datos que son inmutables. Recuerda, en javascript los tipos inmutables son: boolean, null, undefined, number, string y por supuesto symbol, que acabamos de incluir en esta lista de tipos.
+    </p>
+
+    <p class="post__paragraph">
+      Otra característica de este nuevo tipo es además de ser inmutable es que siempre es un tipo único. 
+    </p>
+
+    <p class="post__paragraph">
+      Cuando definamos un nuevo valor de tipo symbol podremos asociar un valor de tipo string o undefined que nos servirá únicamente como descripción.
+    </p>
+
+    <pre>
+        <code highlight class="typescript">
+  const variable = Symbol(‘test’);
+      </code>
+    </pre>
+    <p class="post__paragraph">
+      La función Symbol() no es un constructor por ello si utilizamos la siguiente sintaxis para crear una nueva variable de tipo symbol obtendremos un error.
+    </p>
+
+    <pre>
+      <code highlight class="typescript">
+  const variable = new Symbol(‘test’);  // output: TypeErrpor        
+      </code>
+    </pre>
+
+    <h3 class="post__title--title-paragraph">
+      Un ejemplo sencillo.
+    </h3>
+
+    <p class="post__paragraph">
+      Si definimos dos variables con el mismo valor y las comparamos obtendremos true como respuesta.
+    </p>
+
+    <pre>
+      <code highlight class="typescript">
+    const valor_1 = ‘test’;
+    const valor_2 = ‘test’;
+    console.log(valor_1 === valor_2 );       	// output: true          
+      </code>
+    </pre>
+
+    <p class="post__paragraph">
+      En cambio, realizando esta misma operación definiendo las variables como de tipo symbol obtendremos false.
+    </p>
+
+    <pre>
+      <code highlight class="typescript">
+    const valor_1s = Symbol(‘test’);
+    const valor_2s = Symbol(‘test’);
+    console.log(valor_1s === valor_2s);    	// output: false          
+      </code>
+    </pre>
+
+    <p class="post__paragraph">
+      Recuerda que anteriormente he indicado que al tipo symbol podemos asociar un tipo string como descripción, en este ejemplo ‘test’ es una descripción para ambas variables.
+    </p>
+
+    <p class="post__paragraph">
+      Sí mostramos por la consola el valor que tenemos almacenado en la variable valor_1s obtendremos los siguiente:
+    </p>
+
+    <pre>
+      <code highlight class="typescript">
+  console.log(valor_1s);              	// output: Symbol(test)        
+      </code>
+    </pre>
+
+    <h3 class="post__title--title-paragraph">
+      Cómo nos puede ayudar symbol.  
+    </h3>
+
+    <p class="post__paragraph">
+      Ya hemos descrito como es el nuevo tipo de dato symbol, y sus características. A continuación, veamos algunas situaciones donde symbol nos puede ayudar.
+    </p>
+
+    <h3 class="post__title--title-paragraph">
+      Evitar duplicaciones.  
+    </h3>
+
+    <p class="post__paragraph">
+      Dado que las variables de tipo symbol son únicas e inmutables nos puede ayudar a evitar las duplicaciones al extender funcionalidades de objetos y clases.
+    </p>
+
+    <p class="post__paragraph">
+      Veámoslo con un ejemplo. Supongamos que tenemos el siguiente objeto.
+    </p>
+
+    <pre>
+      <code highlight class="typescript">
+    const vehiculo = &#123;
+      motor: ‘combustion’,
+      cv: 150,
+      puertas: 3
+    &#125;
+      </code>
+    </pre>
+
+    <p class="post__paragraph">
+      Si quisiéramos añadir un nuevo motor eléctrico a nuestro vehículo, para hacerlo híbrido.
+    </p>
+
+    <pre>
+      <code highlight class="typescript">
+  vehiculo.motor = ‘electrico’;        
+      </code>
+    </pre>
+
+    <p class="post__paragraph">
+      Cuando fuéramos a leer las propiedades de nuestro vehículo. Pensaríamos que el vehículo es eléctrico no híbrido.
+    </p>
+
+    <pre>
+      <code highlight class="typescript">
+    Console.log(vehiculo);
+    // output: &#123; motor: ‘electrico’, 
+    //           cv: ‘150’,
+    //           puertas: 3
+    // &#125;      
+      </code>
+    </pre>
+
+    <p class="post__paragraph">
+      Pero si partimos del objeto inicial y creamos una nueva propiedad de tipo symbol con el identificador motor y se la añadimos a nuestro objeto vehículo.
+    </p>
+
+    <pre>
+      <code highlight class="typescript">
+    const motor = Symbol(‘motor’);
+    vehiculo[motor] = ‘electrico’;          
+      </code>
+    </pre>
+    <p class="post__paragraph">
+      Al ver las propiedades del objeto obtendremos la siguiente respuesta.
+    </p>
+
+    <pre>
+      <code highlight class="typescript">
+  console.log(vehiculo);
+  // output: &#123;
+  //            motor: ‘combustion’,
+  //            cv: ‘150’,
+  //            puertas: 3,
+  //            Symbol(motor): ‘electrico’ 
+  // &#125;       
+      </code>
+    </pre>
+
+    <h3 class="post__title--title-paragraph">
+      Simular propiedades/métodos privados.
+    </h3>
+
+    <p class="post__paragraph">
+      Otra característica de symbols es que son no-enumerables, por ello los hacen inaccesibles cuando hacemos un loop, for … in, o utilizamos el método Object.getOwnPropertyNames().
+    </p>
+
+    <p class="post__paragraph">
+      Si hacemos un loop para ver las propiedades de nuestro objecto el resultado que obtenemos es el siguiente:
+    </p>
+
+    <pre>
+      <code highlight class="typescript">
+  for ( características in vehiculo ) &#123;
+    console.log(`$&#123;caracteristicas &#125;: $&#123; vehiculo[caracteristicas]&#125; `);
+  &#125;
+  // output
+  // motor: combustion
+  // cv: 150
+  // puertas: 3      
+      </code>
+    </pre>
+
+    <p class="post__paragraph">
+      Podemos observar sólo hemos obtenido las propiedades, motor, cv y puertas. No vemos el valor de la propiedad Symbol(motor).
+    </p>
+
+    <p class="post__paragraph">
+      A la vista del resultado anterior y al ser no-enumerables puedes pensar que en un objeto o clase puedes hacer propiedades o métodos privados. Pero no es así.
+    </p>
+
+    <p class="post__paragraph">
+      Podríamos definir a estas propiedades o métodos como semiprivados ya que, si tenemos acceso a ellos, haciendo un acceso directo a ellas.
+    </p>
+
+    <pre>
+      <code highlight class="typescript">
+  console.log(vehiculo[motor]); // output: electrico          
+      </code>
+    </pre>
+
+    <p class="post__paragraph">
+      O podemos enumerar todas las propiedades de tipo symbol en nuestro objeto si utilizamos el método Object.getOwnPropertySymbols()
+    </p>
+
+    <pre>
+      <code highlight class="typescript">
+  console.log(Object.getOwnPropertySymbols(vehiculo)); // [Symbol(motor)]        
+      </code>
+    </pre>
+
+    <p class="post__paragraph">
+      Es más, si quisiéramos obtener todas las propiedades de nuestro objeto o métodos de nuestra clase, independientemente de que sean o no de tipo symbol sin hacer un join de ambos métodos Object.getOwnPropertyNames() y Object.getOwnPropertySymbols(). Podemos utilizar el método ownKeys del objeto Reflect que nos devolverá un array con todos los valores.
+    </p>
+
+    <pre>
+      <code highlight class="typescript">
+  console.log(Reflect.ownKeys(vehiculo)); 
+  // output: [motor, cv, puertas, Symbol(‘motor’)]          
+      </code>
+    </pre>
+
+    <h3 class="post__title--title-paragraph">
+      Conclusión.
+    </h3>
+
+    <p class="post__paragraph">
+      Tal vez la utilización de este funcionalidad de Javascript no sea aún muy extendida, ya que las ocasiones en la que puedes hacer un uso de este tipo de datos es muy concreto. Sin embargo entiendo que es importante conocer las características y uso de este tipo datos para conocer más en profundidad este lenguaje y aprovechas todas las funcionalidades que nos aporta para hacer un código mejor y más legible.
+    </p>
+
+    <blog-post-footer [titlepost]="titlepost"></blog-post-footer>
+
+    <blog-link-post
+    [idLink] = "'BuclesAsincronos'"
+      [sourcePhoto] = "'https://images.unsplash.com/photo-1534690999400-b6aa76c07fa3?ixlib?q=75&fm=jpg'"
+      [postTitle] = "'JavaScript - ES6. Array VS Set'"
+      [postSubTitle] = "'Javascript - ES6. Diferencia entre Array y Set'"
+      [postPublishInfo] = "'20 de Abril 2019'"
+      postLink = "post/array-vs-set">
+    </blog-link-post>
+
+    <blog-link-post
+      [idLink] = "'BuclesAsincronos'"
+      [sourcePhoto] = "'https://images.unsplash.com/photo-1531148502260-2920d70c8ed4?q=75&fm=jpg'"
+      [postTitle] = "'JavaScript - ES6. Bucles Asíncronos'"
+      [postSubTitle] = "'Desarrollo bucles asíncronos ES6 - EcmaScript 2015'"
+      [postPublishInfo] = "'30 de Marzo 2019'"
+      postLink = "post/es6-bucles-asincronos">
+    </blog-link-post>
+
+  </div>
+</article>
+<blog-post-comment [idpost]="url"></blog-post-comment>
+
+
+
+<pre>
+  <code highlight class="typescript">
+  </code>
+</pre>
