@@ -54,7 +54,7 @@ export class JavascriptSymbolsComponent implements OnInit, AfterViewInit  {
       'genre': 'front end software development',
       'keywords': 'javascript, js, fundamentos, ecmascript 2015, es6, symbols',
       'wordcount': '1275',
-      'url': 'https://victordeandres.es/post/jjavascript-symbols',
+      'url': 'https://victordeandres.es/post/javascript-symbols',
       'datePublished': '2019-06-02',
       'dateCreated': '2019-06-02',
       'dateModified': '2019-06-02',
