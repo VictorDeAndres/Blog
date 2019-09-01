@@ -47,17 +47,6 @@ export class PostsService {
   public INITIALPOSTS(): any {
     return [{
         'categories' : {
-          'Arquitectura': 'Arquitectura',
-          'Desarrollo' : 'Desarrollo',
-        },
-        'publisheddate' : '09 de Marzo 2019',
-        // tslint:disable-next-line:max-line-length
-        'resume' : 'Tal vez hayas oído hablar de la arquitectura Serverless o Fass ( functions as a service ). En este post explicaré brevemente en qué consiste esta arquitectura.',
-        'title' : 'Serverless. ¿Qué es?',
-        'url' : 'post/serverless-que-es',
-        'isEnabled': true
-      }, {
-        'categories' : {
           'Fundamentos' : 'Fundamentos',
           'Javascript' : 'Javascript',
           'Tips': 'Tips'
@@ -100,8 +89,19 @@ export class PostsService {
         'publisheddate' : '02 de Junio 2019',
         // tslint:disable-next-line:max-line-length
         'resume' : 'Una de las novedades de ES6 – ECMAScript2015 fue añadir un nuevo tipo de dato, symbol. Es verdad que desde el lanzamiento de este nuevo standard de javascript allá por Junio de 2015 ha pasado bastante tiempo, pero al igual que otras características de ES6 las cuales utilizamos habitualmente. Por ejemplo las arrow functions, los template strings, o el uso de let y const para definir variables, por poner sólo alguno de los ejemplos, el uso de symbol es residual por no decir inexistente.',
-        'title' : 'Javascript - ES6. Symbols',
+        'title' : 'Fundamentos Javascript - ES6 - Symbols',
         'url' : 'post/javascript-symbols',
+        'isEnabled': true
+      }, {
+        'categories' : {
+          'Fundamentos' : 'Fundamentos',
+          'Javascript' : 'Javascript'
+        },
+        'publisheddate' : '07 de Septiembre 2019',
+        // tslint:disable-next-line:max-line-length
+        'resume' : 'Por definición una función es un procedimiento, un conjunto de sentencias que realizan una tarea o calculan un valor. En Javascript este es uno de los conceptos más importantes y versátiles de este lenguaje de programación.',
+        'title' : 'Funciones en Javascript',
+        'url' : 'post/javascript-functions',
         'isEnabled': true
       }
     ];

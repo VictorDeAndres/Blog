@@ -1,0 +1,448 @@
+<ngx-json-ld [json]="schema"></ngx-json-ld>
+<blog-post-header></blog-post-header>
+<article class="post">
+  <div class="post__container">
+    <div class="post__title"></div>
+    <h1 class="post__title--title">
+      Funciones en Javascript
+    </h1>
+    <h2 class="post__title--subtitle">
+      Fundamentos Javascript (IV) - 7 formas de declarar una función en Javascript
+    </h2>
+    <div class="post__title--footer"></div>
+
+    <blog-post-publish-info [publishDate]="publishDate" [postCategories]="postCategories"></blog-post-publish-info>
+
+    <div class="post__image">
+        <img class="post__image--image" src="https://images.unsplash.com/photo-1513521398155-5487a36efe86?ixlib?q=75&fm=jpg" alt="Javascript Functions">
+        <div class="post__photo">Photo by Samuel Zeller on Unsplash</div>
+      </div>
+   
+    <p class="post__paragraph">Por definición una función es un procedimiento, un conjunto de sentencias que realizan una tarea o calculan un valor. En Javascript este es uno de los conceptos más importantes y versátiles de este lenguaje de programación.</p>
+
+    <p class="post__paragraph">Una de las características más importantes de las funciones en Javascript es su versatilidad. En Javascript las funciones son diferentes a las funciones de otros lenguajes de programación. En Javascript las funciones son un objeto. Por ello se les puede asignar variables, arrays u otros objetos. La forma en la cual hallamos definido nuestra función, definirá el comportamiento de la misma. Siendo los tipos de función que podemos crear en Javascript los siguientes:</p>
+
+    <ul>
+      <li>Function declaration</li>
+      <br>
+      <li>Function expression</li>
+      <br>
+      <li>IIFE (Immediately Invoked Function Expression)</li>
+      <br>
+      <li>Shorthand method definition</li>
+      <br>
+      <li>Arrow function</li>
+      <br>
+      <li>Generator function</li>
+      <br>
+      <li>Function constructor</li>
+    </ul>
+
+    <p class="post__paragraph post__paragraph--cursive">En este ocasión dejaré los títulos en inglés para un mejor reconocimiento posterior. Por si lees otros artículos y/o manuales y puedas distinguirlas fácilmente.</p>
+
+    <p class="post__title--title-paragraph">Function declaration.</p>
+
+    <p class="post__paragraph">Comenzaremos por la más sencilla de todas, la "Function declaration".</p>
+
+    <p class="post__paragraph">Este tipo de función se creará con la palabra reservada <span class="post__paragraph--font-weight">function</span>, seguido obligatoriamente por un nombre, que identificará a nuestra función, una lista de parámetros entre paréntesis, y el símbolo de las llaves &#123;&#125;. Qué será el que delimite el contenido de nuestro conjunto de sentencias.</p>
+
+    <p class="post__paragraph">La lista de parámetros cuando creamos una función no es obligatoria, podemos definir una función sin parámetros.</p>
+
+    <p class="post__paragraph post__paragraph--cursive">Cuando estemos trabajando con funciones es importante que diferencies entre parámetro y argumento. Un parámetro es/son la/s variables que definimos cuando creamos la función. Y los argumentos son los datos que pasamos a la función cuando la invoquemos. Serán los valores de los parámetros de la función.</p>
+
+    <p class="post__paragraph">Una vez hemos visto cómo definir nuestra función en Javascript, realicemos un simple ejemplo.</p>
+
+    <pre>
+      <code highlight class="javascript">
+  function hola(nombre)&#123;
+    console.log(`Hola $&#123;nombre&#125;.`)
+  &#125;
+     
+  hola('Victor');    // => Hola Victor
+      </code>
+    </pre>
+
+    <p class="post__paragraph">En este ejemplo definimos nuestra función <span class="post__paragraph--font-weight">hola</span> con un parámetro "nombre" y escribirá por consola hola y el nombre con el que hayamos invocado nuestra función.</p>
+
+    <p class="post__paragraph">Otra característica es que por defecto las funciones devuelven el valor "undefined". Si queremos que nuestra función devuelva algún valor debemos utilizar la instrucción <span class="post__paragraph--font-weight">return</span> en nuestro bloque. </p> 
+
+    <pre>
+      <code highlight class="javascript">
+  function respuesta()&#123; &#125;
+  
+  console.log(respuesta());    // => undefined
+  
+  function respuesta2()&#123;
+        return 'Hola';
+  &#125;
+  
+  console.log(respuesta2());   // => Hola
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Además este tipo de funciones son compatibles con el <span class="post__paragraph--font-weight">hoisting</span>. El hoisting es una característica de Javascript por la cual las definiciones se ejecutan al principio de la ejecución del código.</p>
+
+    <p class="post__paragraph">Si por ejemplo escribimos el siguiente código.</p> 
+
+    <pre>
+      <code highlight class="javascript">
+  hola('Victor');      // => Hola Victor
+
+  function hola(nombre) &#123;
+      console.log(`Hola $&#123;nombre&#125;.`)
+  &#125;
+      </code>
+    </pre>
+
+    <p class="post__paragraph">No obtendremos error al invocar la función <span class="post__paragraph--font-weight">hola</span>, que aún no ha sido creada, ya que Javascript lo habrá ejecutado de la siguiente forma:</p>
+
+    <pre>
+      <code highlight class="javascript">
+  function hola(nombre)&#123;
+    console.log(`Hola $&#123;nombre&#125;.`)
+  &#125;
+
+  hola('Victor');    // => Hola Victor
+      </code>
+    </pre>
+
+    <h3 class="post__title--title-paragraph">Function expression.</h3>  
+
+    <p class="post__paragraph">La siguiente forma de declarar una nueva función que vamos a ver es muy similar al tipo de anterior, "Function Declaration". La sintaxis para crear estas funciones es similar a la anterior. La única diferencia es que la definición de nuestra nueva función no comienza por instrucción <span class="post__paragraph--font-weight">function</span> y el nombre de la función es opcional.</p> 
+
+    <p class="post__paragraph">Este tipo de funciones las podemos almacenar en una variable. Lo cual nos permite utilizarlas en algunos de los siguientes ejemplos.</p>
+
+    <pre>
+      <code highlight class="javascript">
+  // Asignarla a una variable como un objeto
+  const ejemplo = function(...) &#123; ... &#125;
+  
+  // Crear un método en un objecto
+  &#123;
+      ...
+      'suma': function(...) &#123; ... &#125;,
+      ...
+  &#125;
+  
+  // Utilizar la función como un callback
+  .cb(function(...) &#123; ... &#125;)
+      </code>
+    </pre>
+
+    <p class="post__paragraph">A continuación vamos a ver cómo crear una función que sumará dos al argumento que enviemos a la función.</p>
+
+    <pre>
+      <code highlight class="javascript">
+  const SUMADOS = function sumaDos(valor) &#123;
+      return valor + 2;
+  &#125;
+  
+  console.log(SUMADOS(5));    // => 7
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Si al crear nuestra nueva función no utilizamos un identificador estaremos creando una función anónima.</p>
+
+    <p class="post__paragraph">Veámoslo con el mismo ejemplo.</p>
+
+    <pre>
+      <code highlight class="javascript">
+  const SUMADOS = function(valor) &#123;
+    return valor + 2;
+  &#125;
+     
+  console.log(SUMADOS(5));    // => 7
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Como puedes ver el resultado es el mismo.</p>
+
+    <p class="post__paragraph">Un diferencia con las "Function Declaration" es que estas no son compatibles con el hoisting. Por ello si invocas una de estas funciones antes de su declaración antes de su definición obtendrás un error.</p>
+
+
+    <pre>
+      <code highlight class="javascript">
+  hola('Victor')
+  // ReferenceError: hola is not defined
+  
+  
+  const hola = function hola(nombre) &#123;
+      console.log(`Hola $&#123;nombre&#125;.`)
+  &#125;        
+      </code>
+    </pre>
+
+    <h3 class="post__title--title-paragraph">IIFE (Immediately Invoked Function Expression)</h3>
+
+    <p class="post__paragraph">Normalmente cuando definimos una función es porque la vamos a llamar en varias ocasiones, pero y sí sólo queremos llamar a la función en una sola ocasión y obtener un resultado. Para ello podemos utilizar la funciones IIFE. Este tipo de funciones se ejecutan inmediatamente y no son accesibles posteriormente.</p>
+
+    <p class="post__paragraph">Para crear una función de este tipo deberemos crearla en un operador de agrupación (). Seguido de (), lo que posibilitará el interpretado directamente en el motor de JavaScript.</p> 
+
+    <p class="post__paragraph">Veámoslo con un pequeño ejemplo.</p>
+
+    <pre>
+      <code highlight class="javascript">
+  ( function () &#123;
+      let nombre = 'Victor'
+      return `Hola $&#123;nombre&#125;`
+  &#125;)()
+      </code>
+    </pre>
+
+      <p class="post__paragraph">Al definir nuestra función dentro de un operador de agrupación no permitimos acceder a variables fuera del IIFE, así como no "contaminar" el scope global.</p>
+
+    <pre>
+      <code highlight class="javascript">
+  (function () &#123; 
+      var nombre = "Victor";
+  &#125;)();
+  
+  console.log(nombre);        // Uncaught ReferenceError: nombre is not defined
+      </code>
+    </pre>
+
+    <h3 class="post__title--title-paragraph">Shorthand method definition.</h3>
+
+    <p class="post__paragraph">El cuarto tipo de definición que vamos a ver es el "Shorthand method". Este forma de crear las funciones puede ser utilizado como método en la declaración de un objeto o en las clases de ES6.</p> 
+
+    <p class="post__paragraph">Para crear este tipo de función debemos asignar un nombre de función seguido de una lista de parámetros entre paréntesis y los símbolos de llaves para delimitar el cuerpo de las instrucciones.</p> 
+
+    <p class="post__paragraph">Lo veremos mejor con un ejemplo.</p>
+
+    <pre>
+      <code highlight class="javascript">
+  const poblacion = &#123;
+    personas: [],
+    add(...personas) &#123;
+      this.personas.push(...personas);
+    &#125;,
+    saluda(index) &#123;
+      return `Hola soy $&#123;this.personas[index]&#125;`;
+    &#125;
+  &#125;;
+  
+  poblacion.add('Luis', 'Jesus', 'Victor');
+  poblacion.saluda(1) // => 'Hola soy Jesus'        
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Veamos en detalle este ejemplo. Add() y saluda() son dos métodos de la clase poblacion que hemos definido con el método "Shorthand". A continuación hemos invocados los dos métodos de la clase. En primer lugar poblacion.add para añadir tres personas, Luis, Jesus y Victor. Y posteriormente hemos invocado al método saluda, enviando como parámetro 1 que nos devuelve un saludo de la persona número 1, en nuestro ejemplo Jesús.</p> 
+
+    <p class="post__paragraph">Como puedes observar esta sintaxis es muy sencilla, si escribiéramos esta misma función de una manera clásica sería como a continuación.</p> 
+
+    <pre>
+      <code highlight class="javascript">
+  const poblacion = &#123;
+    personas: [],
+    add: function(...personas) &#123;
+      this.personas.push(...personas);
+    &#125;,
+    saluda: function(index) &#123;
+      return `Hola soy $&#123;this.personas[index]&#125;`;
+    &#125;
+  &#125;;
+  
+  poblacion.add('Luis', 'Jesus', 'Victor');
+  poblacion.saluda(1); // => 'Hola soy Jesus'      
+      </code>
+    </pre>
+
+
+    <h3 class="post__title--title-paragraph">Arrow function.</h3>
+
+    <p class="post__paragraph">Otra de las novedades de ES6 son las "Arrow function". La forma de crear estas funciones es la siguiente: Primero definiremos la lista de parámetros, en caso de ser necesario, entre paréntesis seguido del símbolo => y las &#123;&#125; para indicar las instrucciones que se van a realizar.</p> 
+
+    <p class="post__paragraph">Además de la sintaxis que es diferente a las anteriores este tipo de funciones tienen las siguientes características.</p> 
+
+    <ul>
+      <li>Las "arrow function" no crean su propio contexto al ejecutarse. Al contrario que las "function expression" o las "function declaration" que crea su propio contexto.</li>
+      <br>
+      <li>Las "arrow function" son anónimas.</li>
+      <br>
+      <li>El objeto <span class="post__paragraph--font-weight">arguments</span> no se encuentra en el contexto de la función.</li>
+      <br>
+      <li> Si al definir la función no utilizamos el símbolo de las llaves. La función devolverá como resultado de la función el resultado de la ejecución de la instrucción que hayamos indicado.</li>
+    </ul>
+
+    <p class="post__paragraph">Como en las demás ocasiones vamos a verlo con un pequeño ejemplo.</p>
+  
+    <pre>
+      <code highlight class="javascript">
+  const saluda = (nombre) => &#123;
+    return `Hola $&#123;nombre&#125;`;
+  &#125;
+  
+  console.log(saluda('Victor'))   // => Hola Victor
+  
+  // Vamos a compactar un poco más el código.
+  const saluda2 = (nombre) => `Hola $&#123;nombre&#125;`;
+  
+  console.log(saluda2('Victor'));  // => Hola Victor
+      </code>
+    </pre>
+
+    <p class="post__paragraph">En estos dos ejemplos hemos escrito una "arrow function" a la cuál le enviamos como parámetro un nombre y nos devuelve la cadena de texto "Hola &#60;nombre&#62;". Ambas funciones son iguales, pero en el segundo ejemplo podemos observar como las "arrow function" nos han devuelto un cadena de texto sin utilizar la instrucción return.</p>
+
+    <h3 class="post__title--title-paragraph">Generator function.</h3>
+
+    <p class="post__paragraph">Hasta el momento todas las funciones que hemos visto se ejecutan completamente, y no se paran hasta la última línea de la función Si queremos salir con antelación de una función debemos ejecutar un return, o lanzar un error. Por lo que las instrucciones que se encuentren a continuación del return o el error no se ejecutarán.</p>
+
+    <p class="post__paragraph">Pero la característica más significativa de estas funciones es que nos permite parar o salir de la función en un punto dentro del conjunto de instrucciones que forman nuestra función y retornar posteriormente la ejecución desde el punto en el que paramos anteriormente.</p>
+
+    <p class="post__paragraph">La sintaxis de estas funciones es igual a las "function declaration" o "function expression". Sólo debemos utilizar el símbolo * al comienzo de la definición de nuestra función.</p> 
+
+    <p class="post__paragraph">Otra diferencia de estas funciones es que siempre retorna un objeto con la siguiente estructura cada vez que invoquemos a la función next().</p>
+
+    <pre>
+      <code highlight class="javascript">
+  &#123;
+    value: any,
+    done: true|false
+  &#125;
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Como puedes observar el objeto tiene dos propiedades. Values, qué es el valor actual del objeto y done que nos indica si la función a finalizado o no.</p>
+
+    <p class="post__paragraph">Pero ahora mismo te estarás preguntando cómo debo salir de la función y cómo vuelvo después a ella, y se sigue ejecutando desde el punto en que salí.</p>
+
+    <p class="post__paragraph">Veámoslo con un simple ejemplo donde lo explicaré detalladamente y será más sencillo comprender el funcionamiento de este tipo de funciones.</p>
+
+    <pre>
+      <code highlight class="javascript">
+  function *generatorFunction()
+  &#123; 
+    console.log('Ejemplo generator Function.');
+    // yield. Salimos de la función.
+    // La propiedad value es igual a 'Un kit kat'
+    yield 'Un kit kat';  
+    
+    console.log(' ¿ Continuamos ?');  
+    // yield. Volvemos a salir de la función.
+    // La propiedad value es igual a 'Fin del ejemplo'
+    yield 'Fin del ejemplo';
+    
+  &#125;
+  
+  const gen = generatorFunction();
+  
+  console.log(gen.next().value);                    
+  console.log('La función se encuentra pausada');        
+  console.log(gen.next().value);
+  console.log(gen.next().value);
+  
+  // El resultado de la ejecución sería el siguiente: 
+  
+  // => Ejemplo generator Function.
+  // => Un kit kat
+  // => La función se encuentra pausada
+  // => ¿ Continuamos ?
+  // => Fin del ejemplo
+  // => undefined          
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Lo primero que hemos realizado en este ejemplo ha sido crear la función <span class="post__paragraph--font-weight">generatorFunction</span>. Posteriormente hemos asignado a la constante gen nuestra función. Una vez realizada la tarea de asignación de nuestra función a una variable la invocamos por primera vez.</p> 
+
+    <pre>
+      <code highlight class="javascript">
+  console.log(gen.next().value);         
+      </code>
+    </pre>
+
+    <p class="post__paragraph">De esta forma comienza la ejecución de nuestra función. Donde la primera instrucción muestra en la consola el mensaje "Ejemplo generator Function". La siguiente instrucción es:</p>
+
+    <pre>
+      <code highlight class="javascript">
+  yield 'Un kit kat';  
+      </code>
+    </pre>
+
+    <p class="post__paragraph">La instrucción yield nos retorna un objeto, como ya vimos anteriormente. Cuyas propiedades son el texto que enviamos 'Un kit kat' en value, y false en la propiedad done. </p>
+
+    <p class="post__paragraph">Ahora ya estamos fuera de la función, podemos ejecutar las instrucciones que deseemos, mientras nuestra función se encuentra en pausa. En nuestro ejemplo mostramos por consola el mensaje "La función se encuentra pausada".</p>
+
+    <p class="post__paragraph">Una vez ejecutada(s) nuestra(s) instrucción(es) invocamos de nuevo a nuestra función que se encontraba en pausa.</p>
+
+    <pre>
+      <code highlight class="javascript">
+  console.log(gen.next().value);
+      </code>
+    </pre>    
+
+    <p class="post__paragraph">Que nos mostrará por consola el siguiente mensaje "¿ Continuamos ?". Y finalizará nuestra función con el siguiente mensaje por consola "Fin del ejemplo".</p>
+
+    <h3 class="post__title--title-paragraph">Function constructor.</h3>
+
+    <p class="post__paragraph">Y finalmente la "Function constructor". Es una forma bastante inusual de declarar las funciones pero vamos a verla también. Tal vez no sea útil en algún momento.</p>
+
+    <p class="post__paragraph">En Javascript las funciones son objetos de "primera clase". Esto quiere decir que se pueden crear nuevas funciones durante la ejecución del programa. Veamos más en detalle cómo crear esta tipo de funciones.</p>
+
+    <p class="post__paragraph">Las funciones en Javascript, son funciones, y poseen el constructor Function. Por ello podremos crear una variable que invoque a un objeto Function. Cuando invoquemos a este objeto podremos enviar todos los argumentos que deseemos. Los primeros n argumentos serán los parámetros de nuestra función y el último argumento será el código de nuestra función.</p>
+
+    <p class="post__paragraph">Veámoslo en detalle con el siguiente ejemplo. Imaginad que necesitamos crear una función que sume dos valores en tiempo de ejecución.</p>
+
+    <pre>
+      <code highlight class="javascript">
+  const sumaFunction = new Function('numero_1', 'numero_2', 
+    'return numero_1 + numero_2'
+  );        
+
+  // Ejecutamos nuestra función.
+  console.log(sumaFunction(10, 15)) // => 25
+      </code>
+    </pre> 
+
+    <p class="post__paragraph">En este ejemplo hemos creado la constante sumaFunction que crea una nueva instancia del objeto Function al cual le enviamos tres argumentos. Los dos primeros argumentos, 'numero_1' y 'numero_2' serán los parámetros de nuestra nueva función y el tercer parámetro será el cuerpo de nuestra función.</p>
+
+    <p class="post__paragraph">Esta forma de definir esta función es equivalente a la siguiente:</p>
+
+    <pre>
+      <code highlight class="javascript">
+  const sumaFunction = function(numero_1, numero_2) &#123;
+      return numero_1 + numero_2
+  &#125;
+  
+  // Ejecutamos nuestra función.
+  console.log(sumaFunction(10, 15)) // => 25        
+      </code>
+    </pre> 
+
+    <h3 class="post__title--title-paragraph">Conclusión.</h3>
+
+    <p class="post__paragraph">En este artículo hemos visto 7 formas diferentes de definir funciones en Javascript. No podemos decir que hay una forma mejor que otras. En función de la situación en la que nos encontremos o el problema que queramos resolver será mejor utilizar unas u otra.</p>
+
+    <p class="post__paragraph">Espero que con este artículo conozcas un poco mejor la versatilidad y la potencia de las funciones en Javascript.</p>
+
+    <blog-post-footer [titlepost]="titlepost"></blog-post-footer>
+
+    <blog-link-post
+      [idLink] = "'Symbols'"
+      [sourcePhoto] = "'https://images.unsplash.com/photo-1509822429293-98a3c3fe6bee?ixlib?q=75&fm=jpg'"
+      [postTitle] = "'Fundamentos Javascript - ES6 - Symbols'"
+      [postSubTitle] = "'Fundamentos Javascript (III) - Introducción a Symbols'"
+      [postPublishInfo] = "'02 de Junio 2019'"
+      postLink = "post/javascript-symbols">
+    </blog-link-post>
+
+    <blog-link-post
+      [idLink] = "'Hoisting'"
+      [sourcePhoto] = "'https://victordeandres.es/assets/images/posts/javascript_scope.png'"
+      [postTitle] = "'Fundamentos Javascript - Hoisting'"
+      [postSubTitle] = "'Fundamentos Javascript (II) - Definición Hoisting'"
+      [postPublishInfo] = "'03 de Enero 2018'"
+      postLink = "post/javascript-scope">
+    </blog-link-post>
+
+    <blog-link-post
+      [idLink] = "'Scope'"
+      [sourcePhoto] = "'https://victordeandres.es/assets/images/posts/javascript_scope.png'"
+      [postTitle] = "'Fundamentos Javascript - Scope'"
+      [postSubTitle] = "'Fundamentos Javascript (I) - Definición y tipos de Scope'"
+      [postPublishInfo] = "'10 de Noviembre 2017'"
+      postLink = "post/javascript-scope">
+    </blog-link-post>
+
+  </div>
+</article>
+<blog-post-comment [idpost]="url"></blog-post-comment>

@@ -59,6 +59,9 @@ const routes: Routes = [{
 }, {
   path: 'javascript-symbols',
   loadChildren: './post/javascript-symbols/javascript-symbols.module#JavascriptSymbolsModule'
+}, {
+  path: 'javascript-functions',
+  loadChildren: './../posts/post/javascript-functions/javascript-functions.module#JavascriptFunctionsModule'
 }];
 
 

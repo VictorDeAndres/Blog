@@ -14,7 +14,7 @@ import * as hljs from 'highlight.js';
 export class JavascriptSymbolsComponent implements OnInit, AfterViewInit  {
 
   public schema;
-  public titlepost = 'Javascript - ES6. Symbols.';
+  public titlepost = 'Fundamentos Javascript - ES6 - Symbols';
   public publishDate = '2 de Junio 2019';
   public url = 'javascript-symbols';
   public postCategories: string[] = ['Fundamentos', 'Javascript'];
@@ -47,8 +47,8 @@ export class JavascriptSymbolsComponent implements OnInit, AfterViewInit  {
     this.schema = {
       '@context': 'http://schema.org',
       '@type': 'BlogPosting',
-      'headline': 'Javascript - ES6. Symbols.',
-      'alternativeHeadline': 'Javascritp ES6 - Introducción a Symbols.',
+      'headline': 'Fundamentos Javascript - ES6 - Symbols',
+      'alternativeHeadline': 'Fundamentos Javascript (III) - Introducción a Symbols',
       'image': 'https://images.unsplash.com/pphoto-1509822429293-98a3c3fe6bee?ixlib?q=75&fm=jpg',
       'editor': 'Victor de Andres',
       'genre': 'front end software development',
