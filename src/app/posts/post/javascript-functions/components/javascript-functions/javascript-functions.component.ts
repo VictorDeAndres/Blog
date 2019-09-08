@@ -29,7 +29,7 @@ export class JavascriptFunctionsComponent implements OnInit, AfterViewInit {
     SEO['title'] = this.titlepost;
     SEO['keywords'] = 'Fundamentos, Javascript, Function, javascript, function';
     // tslint:disable-next-line:max-line-length
-    SEO['description'] = 'En Javascript las funciones es uno de los conceptos más importantes y versátiles de este lenguaje. Pudiendo definir los siguientes tipos de functiones: Function declaration, Function expression, IIFE, Shorthand method definition, Arrow function, Generator function, Function constructor.';
+    SEO['description'] = 'En Javascript las funciones es uno de los conceptos más importantes y versátiles de este lenguaje. Pudiendo definir los siguientes tipos de funciones: Function declaration, Function expression, IIFE, Shorthand method definition, Arrow function, Generator function, Function constructor.';
     SEO['canonical'] = `https://victordeandres.es/post/${this.url}`;
     // Social Tags
     SEO['og:type'] = 'article';
@@ -57,7 +57,7 @@ export class JavascriptFunctionsComponent implements OnInit, AfterViewInit {
       'dateCreated': '2018-09-07',
       'dateModified': '2018-09-07',
       // tslint:disable-next-line:max-line-length
-      'description': 'En Javascript las funciones es uno de los conceptos más importantes y versátiles de este lenguaje. Pudiendo definir los siguientes tipos de functiones: Function declaration, Function expression, IIFE, Shorthand method definition, Arrow function, Generator function, Function constructor.',
+      'description': 'En Javascript las funciones es uno de los conceptos más importantes y versátiles de este lenguaje. Pudiendo definir los siguientes tipos de funciones: Function declaration, Function expression, IIFE, Shorthand method definition, Arrow function, Generator function, Function constructor.',
       'author': {
         '@type': 'Person',
         'name': 'Victor de Andres'
