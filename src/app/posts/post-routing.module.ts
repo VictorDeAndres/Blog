@@ -62,6 +62,9 @@ const routes: Routes = [{
 }, {
   path: 'javascript-functions',
   loadChildren: './../posts/post/javascript-functions/javascript-functions.module#JavascriptFunctionsModule'
+}, {
+  path: 'servidor-push-notifications',
+  loadChildren: './../posts/post/servidor-push-notifications/servidor-push-notifications.module#ServidorPushNotificationsModule'
 }];
 
 

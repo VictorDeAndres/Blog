@@ -1,0 +1,166 @@
+<ngx-json-ld [json]="schema"></ngx-json-ld>
+<blog-post-header></blog-post-header>
+<article class="post">
+  <div class="post__container">
+    <div class="post__title"></div>
+    <h1 class="post__title--title">
+      Tutorial. Crea tu propio servidor notificaciones push.
+    </h1>
+    <h2 class="post__title--subtitle">
+      Tutorial paso a paso para la creacion de un servidor notificaciones push en NodeJS.
+    </h2>
+    <div class="post__title--footer"></div>
+
+    <blog-post-publish-info [publishDate]="publishDate" [postCategories]="postCategories"></blog-post-publish-info>
+    <div class="post__image">
+      <img class="post__image--image" src="https://images.unsplash.com/photo-1545690546-061847e1105e?q=75&fm=jpg" alt="server-push-notifications">
+      <!-- <div class="post__photo">Photo by Tony Webster on Unsplash</div> -->
+    </div>
+   
+    <p class="post__paragraph">Esta es la segunda parte del post anterior, Tutorial implementación de notificaciones push en Angular, en el cual creamos un cliente con Angular para recibir notificaciones push. En este nuevo post vamos a desarrollar un servidor web para emitir nuestras notificaciones.</p>
+
+    <h3 class="post__title--title-paragraph">Comencemos.</h3>
+
+    <p class="post__paragraph">En esta ocasión para desarrollar nuestro servidor web, voy a utilizar Express como servidor web y la siguiente librería: <a href="https://github.com/web-push-libs/web-push#readme" title="web-push">web-push</a>, que nos ayudara a enviar nuestros mensajes a los suscriptores según el protocolo Web Push.</p>
+
+    <h3 class="post__title--title-paragraph">Credenciales.</h3>
+
+    <p class="post__paragraph">Antes de comenzar propiamente a desarrollar nuestro servidor de notificaciones debemos crear unas credenciales VAPID. </p>
+
+    <p class="post__paragraph" style="font-style: italic;">VAPID es un protocolo que permite restringir la validez de una suscripción a un servidor de aplicaciones específico. Es decir, al usar VAPID solo un servidor podrá enviar notificaciones a su suscriptor. Además al utilizar este protocolo agregamos más información a las notificaciones push. De esta forma el operador del servicio push sabrá quien le está enviando las notificaciones.</p>
+    
+    <p class="post__paragraph">Una de las ventajas de utilizar la librería web-push es que no permite crear unas nuevas credenciales VAPID para nuestro servidor.</p>
+    
+    <p class="post__paragraph">Para ello utilizaremos el siguiente comando:</p>    
+
+    <pre>
+      <code highlight class="bash">
+  ./node_modules/.bin/web-push generate-vapid-keys
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Que nos generará tanto la clave pública como privada para utilizar nuestro servidor de notificaciones.</p>
+
+    <pre>
+      <code highlight class="bash">
+  =======================================
+
+  Public Key:
+  BJIi33DcIJFfrrvao9CKgRW-dc2W14C6ZLCSoI1UgAd9b-0gA2odF496J7_iNWFkyiBtM8Hhi3fjmcGqjqwDPNg
+  
+  Private Key:
+  VIH2GywYhfj85evbo-rES1MgygmJCRi9zGbSU16PxbQ
+  
+  =======================================
+      </code>
+    </pre>
+
+  <p class="post__paragraph">Una vez hemos creado nuestras credenciales comenzaremos a desarrollar nuestro servidor web.</p>
+
+  <h3 class="post__title--title-paragraph">Servidor.</h3>
+
+  <p class="post__paragraph">Como he comentado anteriormente vamos a utilizar express como servidor web, que será el encargado de enviar las notificaciones a los clientes suscritos.</p>
+  
+  <p class="post__paragraph">Lo primero será instalar el paquete de express, si no lo hemos instalado con anterioridad. Además deberemos añadir el módulo body-parser de express que nos permitirá recuperar los datos de un formulario HTML.</p>
+  
+  <p class="post__paragraph">Doy por hecho que ya conoces express y el módulo body-parser por lo que no voy a entrar en más detalle de cómo instalar ambos paquetes. En esta ocasión me centraré en el código para crear nuestro servidor de notificaciones.</p>   
+
+  <h3 class="post__title--title-paragraph">Suscriptores.</h3>  
+  
+  <p class="post__paragraph">Nuestro servidor tendrá dos partes. Una donde se deberán dar de alta nuestros suscriptores para recibir nuestros mensajes, y un segunda parte que será la encarga de emitir los mensajes a nuestros suscriptores.</p>
+  
+  <p class="post__paragraph">Para nuestra primera parte crearemos un nuevo endpoint, en el cual recibiremos las peticiones de los suscriptores con nuestra clave pública. Si recuerdas el artículo <a href="https://victordeandres.es/post/angular-push-notifications" title="angular push notifications">"Tutorial implementación de notificaciones push en Angular"</a> el usuario nos enviaba una petición post con un objeto que llamamos "subscription" con su información de conexión. </p>
+  
+  <p class="post__paragraph">El código sería como el siguiente.</p>
+
+  <pre>
+    <code highlight class="javascript">
+  let Subcription;
+
+  app.post('/subscribe', (req, res) => &#123;
+    Subcription = req.body;
+    res.status(201).json(&#123;status: 'Subscription Correct'&#125;);
+  
+    sendMessage('Subscription Correct');
+  
+  &#125;);
+    </code>
+  </pre>
+
+  <p class="post__paragraph">Este código crea un nuevo endpoint, **subscribe** de tipo post. En él se guardamos el cuerpo del mensaje recibido, que es el que posee la información de nuestro suscriptor en la variable <span class="post__paragraph--font-weight">Subcription</span> que hemos definido con anterioridad a crear nuestro nuevo endpoiint. Como estamos haciendo una demo almacenamos la información en la variable <span class="post__paragraph--font-weight">Subcription</span> pero en un proyecto real deberíamos tener una base de datos donde almacenar la información de todos nuestros suscriptores.</p>
+  
+  <p class="post__paragraph">Una vez almacenado el cuerpo del mensaje enviamos un código de respuesta 201. Este código de respuesta de indica que la solicitud ha tenido éxito y se ha llevado a la creación de un recurso. Y posteriormente se invoca a la función sendMessage que será la encargada de enviar el mensaje "Subscription Correct" a nuestro suscriptor. </p>
+
+  <h3 class="post__title--title-paragraph">Mensaje.</h3>
+  <p class="post__paragraph">Para enviar el mensaje propiamente dicho utilizaremos la librería <span class="post__paragraph--font-weight">web-push</span> que instalamos anteriormente.</p>
+  <p class="post__paragraph">Para ello lo primero que deberemos hacer es importarla antes de hacer uso de ella.</p>
+
+  <pre>
+    <code highlight class="javascript">
+  const webpush = require('web-push');
+    </code>
+  </pre>
+
+  <p class="post__paragraph">Una vez importada, deberemos configurarla. Para ello utilizaremos el método setVapidDetails, enviando los siguientes parámetros: una dirección de correo electrónico, y las claves pública y privada creadas al principio de este artículo.</p>
+    
+  <pre>
+    <code highlight class="javascript">
+  const publicVapidKey = 'BJIi33DcIJFfrrvao9CKgRW-dc2W14C6ZLCSoI1UgAd9b-0gA2odF496J7_iNWFkyiBtM8Hhi3fjmcGqjqwDPNg';
+  const privateVapidKey = 'VIH2GywYhfj85evbo-rES1MgygmJCRi9zGbSU16PxbQ';
+
+  webpush.setVapidDetails('mailto:example@test.com', publicVapidKey, privateVapidKey);
+    </code>
+  </pre>
+
+  <p class="post__paragraph">Una vez importada y configurada la librería web-push, crearemos nuestra función de envió de notificaciones.</p>
+    
+
+  <pre>
+    <code highlight class="bash">
+  function sendMessage(message) &#123;
+
+    const payload = JSON.stringify(&#123; 
+      title: 'Test Push Notificaction',
+      message: message
+    &#125;);
+    
+    webpush.sendNotification(subscription, payload).catch(error => &#123;
+      console.error(error.stack);
+    &#125;);
+  &#125;
+    </code>
+  </pre>
+
+  <p class="post__paragraph">Como puedes observar la función para el envió de las notificaciones es muy sencilla.</p>
+  
+  <p class="post__paragraph">En primer lugar creamos un objeto JSON con las propiedades title y message, que contendrá el cuerpo de la notificación que queremos enviar a nuestros suscriptores. Y posteriormente llamamos al método sendNotification que será el encargado de enviar las notificaciones a nuestros suscriptores.</p>
+
+  <h3 class="post__title--title-paragraph">Final.</h3>  
+
+  <p class="post__paragraph">Y este es el final de este segundo artículo donde hemos visto cómo programar tanto desde la parte del cliente, como de la del servidor el envío de notificaciones a los suscriptores de una página web.</p>
+    
+    <blog-post-footer [titlepost]="titlepost"></blog-post-footer>
+
+    <blog-link-post
+    [idLink] = "'AngularPushNotifications'"
+    [sourcePhoto] = "'https://images.unsplash.com/photo-1464621922360-27f3bf0eca75?q=75&fm=jpg'"
+    [postTitle] = "'Desarrollo notificaciones push en Angular'"
+    [postSubTitle] = "'Tutorial para el desarrollo de notificaciones push en Angular'"
+    [postPublishInfo] = "'12 de Mayo 2019'"
+    postLink = "post/angular-push-notifications">
+  </blog-link-post> 
+
+    <blog-link-post
+      [idLink] = "'AngularWebComponents'"
+      [sourcePhoto] = "'https://images.unsplash.com/photo-1426927308491-6380b6a9936f?q=75&fm=jpg'"
+      [postTitle] = "'Desarrollo de WebComponents con Angular, @angular/elements'"
+      [postSubTitle] = "'Tutorial para desarrollar webComponents con @angular/elements'"
+      [postPublishInfo] = "'17 de Noviembre 2018'"
+      postLink = "post/angular-webcomponents">
+    </blog-link-post> 
+
+  </div>
+</article>
+<blog-post-comment [idpost]="url"></blog-post-comment>
+
+

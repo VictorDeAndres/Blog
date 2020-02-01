@@ -24,6 +24,7 @@ export class PostsService {
       'Git',
       'GraphQL',
       'Javascript',
+      'NodeJs',
       'Tips',
       'Unit Test',
       'WebApps',
@@ -45,19 +46,7 @@ export class PostsService {
   }
 
   public INITIALPOSTS(): any {
-    return [{
-        'categories' : {
-          'Fundamentos' : 'Fundamentos',
-          'Javascript' : 'Javascript',
-          'Tips': 'Tips'
-        },
-        'publisheddate' : '30 de Marzo 2019',
-        // tslint:disable-next-line:max-line-length
-        'resume' : 'Como ya sabes una de las grandes ventajas de Javascript es que es una programación asíncrona. Pero al igual que es una gran ventaja también puede ser una fuente muy común de errores y confusiones para todo tipo de programadores. En este artículo vamos a ver como poder hacer bucles asíncronos.',
-        'title' : 'JavaScript - ES6. Bucles Asíncronos',
-        'url' : 'post/es6-bucles-asincronos',
-        'isEnabled': true
-      },
+    return [
       {
         'categories' : {
           'Fundamentos' : 'Fundamentos',
@@ -102,6 +91,18 @@ export class PostsService {
         'resume' : 'Por definición una función es un procedimiento, un conjunto de sentencias que realizan una tarea o calculan un valor. En Javascript este es uno de los conceptos más importantes y versátiles de este lenguaje de programación.',
         'title' : 'Funciones en Javascript',
         'url' : 'post/javascript-functions',
+        'isEnabled': true
+      }, {
+        'categories' : {
+          'Desarrollo': 'Desarrollo',
+          'NodeJs': 'NodeJs',
+          'WebApps': 'WebApps'
+        },
+        'publisheddate' : '3 de Enero 2020',
+        // tslint:disable-next-line:max-line-length
+        'resume' : 'Esta es la segunda parte del post anterior, Tutorial implementación de notificaciones push en Angular, en el cual creamos un cliente con Angular para recibir notificaciones push. En este nuevo post vamos a desarrollar un servidor web para emitir nuestras notificaciones',
+        'title' : 'Tutorial. Crea tu propio servidor notificaciones push.',
+        'url' : 'post/servidor-push-notifications',
         'isEnabled': true
       }
     ];
