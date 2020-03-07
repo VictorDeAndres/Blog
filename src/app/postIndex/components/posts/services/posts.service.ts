@@ -25,6 +25,7 @@ export class PostsService {
       'GraphQL',
       'Javascript',
       'NodeJs',
+      'Svelte',
       'Tips',
       'Unit Test',
       'WebApps',
@@ -48,17 +49,6 @@ export class PostsService {
   public INITIALPOSTS(): any {
     return [
       {
-        'categories' : {
-          'Fundamentos' : 'Fundamentos',
-          'Javascript' : 'Javascript',
-        },
-        'publisheddate' : '20 de Abril 2019',
-        // tslint:disable-next-line:max-line-length
-        'resume' : 'Como desarrollador seguro que en tu día a día utilizas los Arrays. Desde la llegada de la especificación ECMAScript 6 disponemos de un nuevo tipo de estructura, Set. En este post veremos en las diferencias entre los Arrays y los set. Además los principales métodos para utilizar esta nueva estructura.',
-        'title' : 'JavaScript - ES6. Array VS Set',
-        'url' : 'post/array-vs-set',
-        'isEnabled': true
-      }, {
         'categories' : {
           'Angular': 'Angular',
           'Desarrollo': 'Desarrollo',
@@ -100,9 +90,21 @@ export class PostsService {
         },
         'publisheddate' : '3 de Enero 2020',
         // tslint:disable-next-line:max-line-length
-        'resume' : 'Esta es la segunda parte del post anterior, Tutorial implementación de notificaciones push en Angular, en el cual creamos un cliente con Angular para recibir notificaciones push. En este nuevo post vamos a desarrollar un servidor web para emitir nuestras notificaciones',
+        'resume' : 'Esta es la segunda parte del post anterior, Tutorial implementación de notificaciones push en Angular, en el cual creamos un cliente con Angular para recibir notificaciones push. En este nuevo post vamos a desarrollar un servidor web para emitir nuestras notificaciones.',
         'title' : 'Tutorial. Crea tu propio servidor notificaciones push.',
         'url' : 'post/servidor-push-notifications',
+        'isEnabled': true
+      }, {
+        'categories' : {
+          'Desarrollo': 'Desarrollo',
+          'Svelte': 'Svelte',
+          'WebApps': 'WebApps'
+        },
+        'publisheddate' : '4 de Febrero 2020',
+        // tslint:disable-next-line:max-line-length
+        'resume' : 'Svelte no tiene un gestor de rutas propio, y tampoco existe un standard de facto. Por ello vamos a desarrollar nuestro gestor de rutas para svelte. El funcionamiento de nuestro gestor de rutas será muy sencillo. Imaginemos que estamos desarrollando una página spa donde en la parte superior tenemos un menú, y queremos ir variando el cuerpo de nuestra página según las distintas opciones de nuestro menú.',
+        'title' : 'Crea tu propio "routing" en Svelte.',
+        'url' : 'post/routes-svelte',
         'isEnabled': true
       }
     ];

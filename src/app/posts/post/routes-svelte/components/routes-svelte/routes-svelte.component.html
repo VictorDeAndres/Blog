@@ -1,0 +1,196 @@
+<ngx-json-ld [json]="schema"></ngx-json-ld>
+<blog-post-header></blog-post-header>
+<article class="post">
+  <div class="post__container">
+    <div class="post__title"></div>
+    <h1 class="post__title--title">
+      Crea tu propio "routing" en Svelte. 
+    </h1>
+    <h2 class="post__title--subtitle">
+      Desarrolla tu propio sistema de rutas en Svelte.
+    </h2>
+    <div class="post__title--footer"></div>
+
+    <blog-post-publish-info [publishDate]="publishDate" [postCategories]="postCategories"></blog-post-publish-info>
+    <div class="post__image">
+      <img class="post__image--image" src="https://images.unsplash.com/photo-1535745122259-f1e187953c4c?q=75&fm=jpg" alt="routes svelte">
+      <div class="post__photo">Photo by Bruno Wolff on Unsplash</div>
+    </div>
+   
+    <h3 class="post__title--title-paragraph">Breve introducción a Svelte.</h3>
+    <p class="post__paragraph">Sí estás leyendo este post, entiendo que ya conoces Svelte un nuevo frontend framework o librería, que está teniendo bastante aceptación entre la comunidad de desarrolladores y creo que tiene un gran potencial.</p>
+    <p class="post__paragraph">Aún así haré una breve introducción de este nuevo framework/librería.</p>
+    <p class="post__paragraph">Svelte tiene muchos conceptos similares a los tres otros grandes frontend frameworks: React, Angular y Vue. Si ya conoces alguno de ellos empezar a trabajar con él no te será complejo. Pero Svelte tiene una gran diferencia con ellos. Svelte tiene que ser <span class="post__paragraph--font-weight">compilado</span>. A diferencia de los otros frameworks los cuales no es necesario compilarlos para poder ejecutarlos. Pueden funcionar directamente en un navegador, aunque habitualmente generamos bundles o paquetes para mejorar el rendimiento de nuestros programas.</p>
+    <p class="post__paragraph">Aunque los desarrollos con Svelte están realizados con HTML, Javascript y CSS, este código no es compresible para los navegadores si no es compilado previamente. Este paso es obligatorio antes de publicar nuestra app, puedes entenderlo como una desventaja o como una ventaja. Yo lo entiendo como una ventaja respecto al resto de sus competidores, ya que al compilar nuestro código se realiza una optimización que incrementará el rendimiento de nuestra aplicación.</p>
+    <p class="post__paragraph">No quiero extenderme mucho más en esta introducción, ya que el motivo principal de este post es explicar cómo desarrollar una emulación de llamadas a rutas en una app escrita con Svelte.</p>
+    <p class="post__paragraph">Si quieres conocer un poco más en profundidad que es Svelte te recomiendo que navegues a su página web, <a href="https://svelte.dev/" title="svelte">Svelte</a>, donde podrás conocerlo más en profundidad.</p>
+
+    <h3 class="post__title--title-paragraph">Inicio.</h3>
+    <p class="post__paragraph">Svelte no tiene un gestor de rutas propio, y tampoco existe un standard de facto. Aunque en <a href="https://www.npmjs.com/" title="npm">npm</a> puedes encontrar distintas librerías que te proporcionan esta funcionalidad, en esta ocasión vamos a desarrollar nuestro gestor de rutas.</p>
+    <p class="post__paragraph">El funcionamiento de nuestro gestor de rutas es muy sencillo. Imaginemos que estamos desarrollando una página spa donde en la parte superior tenemos un menú, y queremos ir variando el cuerpo de nuestra página según las distintas opciones de nuestro menú. </p>
+
+    <h3 class="post__title--title-paragraph">Página principal.</h3>
+    <p class="post__paragraph">El fichero app.svelte, que es nuestra vista principal sería como sigue:</p>
+    <pre>
+      <code highlight class="html">
+  &#60;script&#62;
+    const menuOptions = [
+      &#123;
+        id: 0,
+        displayName: 'Opcion Alfa',
+        url: 'alfa'
+      &#125;,&#123;
+        id: 1,
+        displayName: 'Opcion Bravo',
+        url: 'bravo'
+      &#125;
+    ]
+  &#60;/script&#62;
+  
+  &#60;div class="spa"&#62;
+    &#60;main&#62;
+      &#60;ul&#62;
+        &#123;#each menuOptions as menu&#125;
+          &#60;li&#62;
+            &#60;a href="#&#123;menu.url&#125;"&#62;&#123;menu.displayName&#125;&#60;/a&#62;
+          &#60;/li&#62;
+        &#123;/each&#125;
+      &#60;/ul&#62;
+    &#60;/main&#62;
+  
+    &#60;div class="view--container"&#62;
+      Bienvenido a la página principal
+    &#60;/div&#62;
+  &#60;/div&#62;
+  
+  &#60;style&#62;
+    .spa &#123;
+      display: flex;
+      flex-direction: column;
+    &#125;
+  
+    ul &#123;
+      list-style: none;
+    &#125;
+  
+    li &#123;
+      float: left;
+      margin: 0 2em;
+      font-size: 1.5em;
+    &#125;
+  
+    .view--container &#123;
+      margin: 2em 4em;
+    &#125;
+  &#60;/style&#62;
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Como verás no hay nada reseñable en este código. Simplemente he creado un objeto Json que contendrá las opciones de nuestro menú. Para en el momento de la visualización poder crear un loop y poder mostrar las distintas opciones de nuestro menú.</p>
+    <p class="post__paragraph">Es una página muy sencilla. Simplemente tenemos un menú con dos opciones, y un mensaje de bienvenida.</p>
+
+    <h3 class="post__title--title-paragraph">Capturar los clicks en el menú.</h3>
+    <p class="post__paragraph">Si ahora pulsamos sobre cualquiera de las opciones de menú lo único que observaremos será como varía la dirección de nuestro navegador, haciendo referencia a una nueva url, pero no veremos ningún cambio en nuestra vista.</p>
+    <p class="post__paragraph">Para desarrollar nuestro emulador de rutas lo primero será capturar los clicks en nuestras opciones del menú. Para ello utilizaremos el evento click de svelte que nos permite llamar a una función predefinida por nosotros. Además vamos a pasar como parámetro de nuestra función el id de la opción seleccionada.</p>
+    <p class="post__paragraph">Para ello haremos las siguientes modificaciones: Primero añadiremos el siguiente código en nuestro bloque script.</p>
+    <pre>
+      <code highlight class="javascript">
+  function handleClickMenu(selectedOption) &#123;
+    console.info(selectedOption);
+  &#125;
+      </code>
+    </pre>
+    <p class="post__paragraph">Por el momento simplemente mostraremos por la consola el id de la opción seleccionada.</p>
+    <p class="post__paragraph">Y en nuestro código html sustituiremos el código de nuestro link por el siguiente:</p>
+    <pre>
+      <code highlight class="html">
+  &#60;a href="#&#123;menu.url&#125;" on:click=&#123; () =&#62; handleClickMenu(menu.id)&#125;&#60;&#123;menu.displayName&#125;&#60;/a&#62;
+      </code>
+    </pre>
+
+    <p class="post__paragraph">Con esta modificación estamos indicando que cada vez que hagamos un click en cualquiera de las opciones del menú llamaremos a la función handleClickMenu enviado como único parámetro el identificador de la opción.</p>
+
+    <h3 class="post__title--title-paragraph">Cambio de vista.</h3>
+    <p class="post__paragraph">Una vez hemos capturado los clicks el siguiente paso que vamos a desarrollar es el cambio de nuestra vista. De este forma simularemos el cambio de ruta en nuestra aplicación.</p>
+    <p class="post__paragraph">Lo primero que haremos será importar nuestros componentes en nuestro componente principal.</p>    
+
+    <pre>
+      <code highlight class="javascript">
+  import Alfa from './Alfa.svelte';
+  import Bravo from './Bravo.svelte';
+      </code>
+    </pre>
+    <p class="post__paragraph">Una vez hemos importados nuestras componentes modificare nuestro objeto menuOptions, creando una nueva propiedad, <span class="post__paragraph--font-weight">component</span> qué hará referencia a un componente en concreto, el que visualizaremos cuando se seleccione una opción.</p>
+    <p class="post__paragraph">Siendo la definición del objeto menuOptions como sigue:</p>
+    <pre>
+      <code highlight class="javascript">
+  const menuOptions = [
+    &#123;
+      id: 0,
+      displayName: 'Opcion Alfa',
+      url: 'alfa',
+      component: Alfa
+    &#125;,&#123;
+      id: 1,
+      displayName: 'Opcion Bravo',
+      url: 'bravo',
+      component: Bravo
+    &#125;
+  ]
+      </code>
+    </pre>
+    <p class="post__paragraph">El siguiente paso es indicar que cada vez que hagamos click en cualquiera de nuestras opciones de menú se cargue el componente indicado.</p>
+    <p class="post__paragraph">Para ello creare una nueva variable en nuestro desarrollo, currentSelectedOptionMenu, que será donde se almacenará el id seleccionado, para poder mostrar el componente correspondiente posteriormente. Este paso lo realizaremos en la función <span class="post__paragraph--font-weight">handleClickMenu</span> que creamos anteriormente.</p>
+    <p class="post__paragraph">La función quedará de la siguiente forma:</p>
+    <pre>
+      <code highlight class="javascript">
+  function handleClickMenu(selectedOption) &#123;
+    currentSelectedOptionMenu = selectedOption;
+  &#125;
+      </code>
+    </pre>
+    <p class="post__paragraph">He borrado el mensaje por consola, ya no nos es necesario.</p>
+    <p class="post__paragraph">Y el último paso es modificar la vista para que muestre el componente seleccionado. Para ello modificaremos el código html correspondiente al bloque, <span class="post__paragraph--font-weight">view--container</span>.</p>
+    <p class="post__paragraph">El nuevo código sería:</p>
+    <pre>
+      <code highlight class="html">
+  <div class="view--container">
+    &#123;#if currentSelectedOptionMenu !== null&#125;
+      &#60;svelte:component this=&#123;menuOptions[currentSelectedOptionMenu].component&#125;/&#62;
+    &#123;:else&#125;
+      &#60;div&#62;Bienvenido a la página principal&#60;/div&#62;
+    &#123;/if&#125;
+  </div>
+      </code>
+    </pre>
+    <p class="post__paragraph">Voy a comentar más detalladamente esta parte.</p>
+    <p class="post__paragraph">Lo primero que vemos es una condición que nos indica que cuando el valor currentSelectedOptionMenu no sea nulo no muestre un componente, y en caso contrario muestre el texto "Bienvenido a la página principal". Pero donde se hace la "magia" es en la línea:</p>
+    <pre>
+      <code highlight class="html">
+  &#60;svelte:component this=&#123;menuOptions[currentSelectedOptionMenu].component&#125;/&#62;
+      </code>
+    </pre>
+    <p class="post__paragraph">En esta línea hacemos uso de la etiqueta &#60;svelte:component&#62;. Esta etiqueta de la api de svelte nos proporciona la funcionalidad de renderizar componentes dinámicamente. Y nosotros la utilizamos para renderizar un nuevo componente, el componente correspondiente a la propiedad component de nuestro objeto <span class="post__paragraph--font-weight">menuOptions</span> de la opción previamente seleccionada.</p>
+
+    <h3 class="post__title--title-paragraph">Conclusión.</h3>
+    <p class="post__paragraph">Como verás hemos construido nuestro propio gestor de rutas de una manera muy sencilla. El código que hemos visto en esta ocasión es bastante sencillo.</p>
+    <p class="post__paragraph">Pero a partir de este punto podemos seguir definiendo nueva funcionalidad para nuestras vistas. Por ejemplo crear unas guardas para proporcionar seguridad a nuestra página web. </p> 
+    <p class="post__paragraph">Puedes encontrar el código de este ejemplo en el siguiente repositorio de github: <a href="https://github.com/VictorDeAndres/routes-svelte" title="routes-svelte">https://github.com/VictorDeAndres/routes-svelte</a></p> 
+
+
+    
+    <blog-post-footer [titlepost]="titlepost"></blog-post-footer>
+
+    <blog-link-post
+      [idLink] = "'Microfrontend'"
+      [sourcePhoto] = "'https://victordeandres.es/assets/images/posts/microfrontend.png'"
+      [postTitle] = "'Micro FrontEnds'"
+      [postSubTitle] = "'Enfoque de microservicios para el desarrollo web front-end'"
+      [postPublishInfo] = "'24 de Julio 2017'"
+      postLink = "post/micro-frontends">
+    </blog-link-post>
+  </div>
+</article>
+<blog-post-comment [idpost]="url"></blog-post-comment>
+
+

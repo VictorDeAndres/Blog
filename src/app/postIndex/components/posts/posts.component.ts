@@ -43,7 +43,7 @@ export class PostsComponent implements OnInit {
     this._postService.Posts = this.posts;
 
     this.loadAuxData();
-    const firebase = this._db.list('/posts', ref => ref.orderByKey().endAt('20190420')).valueChanges()
+    const firebase = this._db.list('/posts', ref => ref.orderByKey().endAt('20190512')).valueChanges()
       .subscribe( data => {
         const restPosts = [];
         // Add new attribute at all rows

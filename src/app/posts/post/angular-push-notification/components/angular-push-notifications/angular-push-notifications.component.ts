@@ -52,7 +52,7 @@ export class AngularPushNotificationsComponent implements OnInit, AfterViewInit 
       'genre': 'front end software development',
       'keywords': 'desarrollo, push notifications, angular',
       'wordcount': '1239',
-      'url': 'https://victordeandres.es/post/angular-push-notificationss',
+      'url': 'https://victordeandres.es/post/angular-push-notifications',
       'datePublished': '2018-05-12',
       'dateCreated': '2018-05-12',
       'dateModified': '2018-05-12',

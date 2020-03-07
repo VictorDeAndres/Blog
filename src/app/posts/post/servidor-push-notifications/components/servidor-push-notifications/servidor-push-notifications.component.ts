@@ -52,7 +52,7 @@ export class ServidorPushNotificationsComponent implements OnInit, AfterViewInit
       'genre': 'front end software development',
       'keywords': 'desarrollo, push notifications, servidor',
       'wordcount': '1239',
-      'url': 'https://victordeandres.es/post/angular-push-notificationss',
+      'url': 'https://victordeandres.es/post/angular-push-notifications',
       'datePublished': '2020-01-03',
       'dateCreated': '2020-01-03',
       'dateModified': '2020-01-03',

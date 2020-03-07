@@ -65,6 +65,9 @@ const routes: Routes = [{
 }, {
   path: 'servidor-push-notifications',
   loadChildren: './../posts/post/servidor-push-notifications/servidor-push-notifications.module#ServidorPushNotificationsModule'
+}, {
+  path: 'routes-svelte',
+  loadChildren: './../posts/post/routes-svelte/routes-svelte.module#RoutesSvelteModule'
 }];
 
 
